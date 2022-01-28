@@ -29,11 +29,8 @@ header {
 .calendar-content {
   display: flex;
   max-width: 50%;
-  flex-basis: 420px;
-  flex-grow: 100;
-  align-items: stretch;
   padding-top: 1em;
-  justify-content: center;
+  flex-direction: column;
 }
 
 .input-date {
