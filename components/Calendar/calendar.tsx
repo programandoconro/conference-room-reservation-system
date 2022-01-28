@@ -1,24 +1,17 @@
-import { useState, memo, useEffect } from "react";
-import { Button, Card, CardContent, Input, Icon } from "@mui/material";
+import { useState, memo, useEffect, FC } from "react";
+import { Card, CardContent } from "@mui/material";
 import DatePicker, { registerLocale } from "react-datepicker";
 import ja from "date-fns/locale/ja";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import { formatDate } from "../../utils/formatDate";
+import CalendarIcon from "./icon";
 
-const CalendarComponent = () => {
+const CalendarComponent: FC = () => {
   const [elevation, setElevation] = useState(5);
   const [date, setDate] = useState(formatDate(new Date()));
 
   useEffect(() => {
     registerLocale("ja", ja);
   }, []);
-
-  const handleHoverOver = () => {
-    setElevation(10);
-  };
-  const handleHoverOut = () => {
-    setElevation(5);
-  };
 
   return (
     <div>
@@ -28,20 +21,10 @@ const CalendarComponent = () => {
             <CardContent>
               <DatePicker
                 locale={"ja"}
-                onChange={(d) => {
-                  d && setDate(formatDate(d));
+                onChange={(newDate) => {
+                  newDate && setDate(formatDate(newDate));
                 }}
-                customInput={
-                  <div
-                    onMouseOut={handleHoverOut}
-                    onMouseOver={handleHoverOver}
-                  >
-                    <Input type={"date"} disabled={true} value={date} />
-                    <Icon>
-                      <CalendarTodayIcon />
-                    </Icon>
-                  </div>
-                }
+                customInput={CalendarIcon({ date, setElevation })}
               />
             </CardContent>
           </Card>
