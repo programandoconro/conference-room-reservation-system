@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { grid, box } from "./sx";
-import theme from "../../utils/theme";
+import theme from "utils/theme";
 import { Box, Grid, Typography } from "@mui/material";
-import ReservationContext from "../Contexts/ReservationContext";
+import ReservationContext from "contexts/reservationContext";
 
 const Rooms = () => {
   const { date } = useContext(ReservationContext);

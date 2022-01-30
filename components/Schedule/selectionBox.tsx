@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Typography } from "@mui/material";
-import theme from "../../utils/theme";
+import theme from "utils/theme";
 
 const hoverInColor = theme.palette.primary.main;
 const clickColor = theme.palette.success.main;

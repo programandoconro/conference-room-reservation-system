@@ -2,8 +2,8 @@ import { useState, FC, useContext } from "react";
 import DatePicker from "react-datepicker";
 import CalendarIcon from "./calendar-icon";
 import { Button, Modal } from "@mui/material";
-import formatDate from "../../utils/formatDate";
-import ReservationContext from "../Contexts/ReservationContext";
+import formatDate from "utils/formatDate";
+import ReservationContext from "contexts/reservationContext";
 
 const CalendarComponent: FC = () => {
   const [open, setOpen] = useState(false);

@@ -20,9 +20,6 @@ header {
   justify-content: center;
 }
 
-.input-date {
-}
-
 .calendar-icon {
   display: flex;
   flex-direction: row;

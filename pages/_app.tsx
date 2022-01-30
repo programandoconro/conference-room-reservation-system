@@ -6,6 +6,7 @@ import "../styles/globals.css";
 import "../styles/calendar.css";
 import "../styles/reservation.css";
 import "../styles/schedule.css";
+import "../styles/navigation.css";
 
 registerLocale("ja", ja);
 

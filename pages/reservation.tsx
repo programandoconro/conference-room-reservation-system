@@ -1,8 +1,9 @@
 import { useState } from "react";
-import formatDate from "../utils/formatDate";
-import Calendar from "../components/Calendar/calendar";
-import Schedule from "../components/Schedule/schedule";
-import ReservationContext from "../components/Contexts/ReservationContext";
+import formatDate from "@components/utils/formatDate";
+import Calendar from "@components/calendar/calendar";
+import Schedule from "@components/schedule/schedule";
+import NavigationArea from "@components/nav-area/navigationArea";
+import ReservationContext from "contexts/reservationContext";
 
 const Reservation = () => {
   const [date, setDate] = useState(formatDate(new Date()));
@@ -14,6 +15,7 @@ const Reservation = () => {
         </header>
 
         <Calendar />
+        <NavigationArea />
         <Schedule />
       </div>
     </ReservationContext.Provider>

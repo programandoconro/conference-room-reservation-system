@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import SelectionBox from "./selectionBox";
-import { hours } from "../../utils/constants";
+import { hours } from "utils/constants";
 import { outerBox, innerBox, grid } from "./sx";
 
 const OuterBox = (props: { item: string }) => {
