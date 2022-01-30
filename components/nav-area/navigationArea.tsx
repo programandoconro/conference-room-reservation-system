@@ -7,6 +7,7 @@ import formatDate from "@components/utils/formatDate";
 import { buttonStyle } from "./sx";
 import add from "date-fns/add";
 import sub from "date-fns/sub";
+import Calendar from "@components/calendar/calendar";
 
 const NavigationArea = () => {
   const { date, setDate } = useContext(ReservationContext);
@@ -27,7 +28,7 @@ const NavigationArea = () => {
     setDate(formatDate(yesterday));
   };
   return (
-    <Card elevation={5} className="navigation-container">
+    <div className="navigation-container">
       <CardContent className="navigation-card">
         <Button variant="contained" sx={buttonStyle} onClick={handleYesterday}>
           <NavigateBeforeIcon />
@@ -39,7 +40,7 @@ const NavigationArea = () => {
           <NavigateNextIcon />
         </Button>
       </CardContent>
-    </Card>
+    </div>
   );
 };
 

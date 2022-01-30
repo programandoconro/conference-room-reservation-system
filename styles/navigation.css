@@ -1,12 +1,13 @@
 .navigation-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
+  justify-content: space-between;
+  padding: 0;
+  bottom: 0;
 }
 .navigation-card {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0;
+  bottom: 0;
 }
