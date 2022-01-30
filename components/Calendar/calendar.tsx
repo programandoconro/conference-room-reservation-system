@@ -1,37 +1,59 @@
-import { useState, memo, useEffect, FC } from "react";
-import { Card, CardContent } from "@mui/material";
-import DatePicker, { registerLocale } from "react-datepicker";
-import ja from "date-fns/locale/ja";
-import { formatDate } from "../../utils/formatDate";
-import CalendarIcon from "./icon";
+import { useState, FC, useContext } from "react";
+import DatePicker from "react-datepicker";
+import CalendarIcon from "./calendar-icon";
+import { Button, Modal } from "@mui/material";
+import formatDate from "../../utils/formatDate";
+import ReservationContext from "../Contexts/ReservationContext";
 
 const CalendarComponent: FC = () => {
-  const [elevation, setElevation] = useState(5);
-  const [date, setDate] = useState(formatDate(new Date()));
+  const [open, setOpen] = useState(false);
+  const { date, setDate } = useContext(ReservationContext);
 
-  useEffect(() => {
-    registerLocale("ja", ja);
-  }, []);
+  const handleOpenModal = () => {
+    setOpen(true);
+  };
+  const handleCloseModal = () => {
+    setOpen(false);
+  };
 
   return (
     <div>
       <div className="calendar-container">
-        <main className="calendar-content">
-          <Card raised={true} elevation={elevation}>
-            <CardContent>
-              <DatePicker
-                locale={"ja"}
-                onChange={(newDate) => {
-                  newDate && setDate(formatDate(newDate));
-                }}
-                customInput={CalendarIcon({ date, setElevation })}
-              />
-            </CardContent>
-          </Card>
-        </main>
+        <div onClick={handleOpenModal}>
+          <CalendarIcon date={date} />
+        </div>
+        <Modal
+          open={open}
+          onBackdropClick={handleCloseModal}
+          closeAfterTransition={true}
+        >
+          <div className="calendar-modal">
+            <DatePicker
+              className="calendar-date-picker"
+              open={true}
+              onSelect={handleCloseModal}
+              locale={"ja"}
+              onChange={(newDate) => {
+                newDate && setDate(formatDate(newDate));
+              }}
+              customInput={<></>}
+              popperPlacement="bottom"
+              showPopperArrow={false}
+              disabledKeyboardNavigation={true}
+            >
+              <Button
+                className="calendar-close-button"
+                onClick={handleCloseModal}
+                size="small"
+              >
+                x
+              </Button>
+            </DatePicker>
+          </div>
+        </Modal>
       </div>
     </div>
   );
 };
 
-export default memo(CalendarComponent);
+export default CalendarComponent;

@@ -1,38 +1,95 @@
 @import "react-datepicker/dist/react-datepicker.css";
 
-html,
-body {
-  height: 100%;
-}
-
 body {
   margin: 0;
   font-family: Segoe UI, Tahoma, sans-serif;
+  align-items: center;
 }
 
 header {
-  background-color: rgb(50, 54, 57);
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
   padding: 20px;
-  color: white;
+  width: 100%;
 }
 
 .calendar-container {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
   margin: 10px 0;
   padding: 10px;
   justify-content: center;
 }
 
-.calendar-content {
-  display: flex;
-  max-width: 50%;
-  padding-top: 1em;
-  flex-direction: column;
+.input-date {
 }
 
-.input-date {
-  background-color: seashell;
+.calendar-icon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.calendar-close-button {
+  position: absolute;
+  right: -25px;
+  color: grey;
+}
+
+.calendar-modal {
+  display: flex;
+  margin: auto;
+  width: fit-content;
+  top: 40%;
+  position: absolute;
+  transform: translateY(-50%);
+  left: 50%;
+}
+.calendar-date-picker {
+}
+.react-datepicker__day {
+  color: black;
+}
+.react-datepicker__header {
+  text-align: center;
+  padding-top: 20px;
+  position: relative;
+  border: black;
+}
+
+.react-datepicker__today-button {
+  background: #3e82cf;
+  border-top: 0px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  padding: 5px 0;
+  clear: left;
+}
+.react-datepicker {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  display: inline-block;
+  position: relative;
+}
+.react-datepicker__navigation--next {
+  padding-top: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+.react-datepicker__navigation--previous {
+  margin-top: 10px;
+  padding-top: 10px;
+  margin-left: 10px;
+}
+.react-datepicker__month {
+  padding: 5px;
+}
+.react-datepicker__week {
+  padding: 5px;
+}
+.react-datepicker__day {
+}
+.react-datepicker__day--today {
+}
+.react-datepicker__day--weekend {
 }
