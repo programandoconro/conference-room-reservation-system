@@ -6,12 +6,17 @@ import ReservationContext from "contexts/reservationContext";
 
 const Rooms = () => {
   const { date } = useContext(ReservationContext);
-  const rooms = [date, "room1", "room2", "room3", date];
+  const day = date.slice(-2);
+  const month = date.slice(5, 7);
+
+  const japDate = `${day}/${month}月`;
+  const rooms = [japDate, "会議室１", "会議室２", "会議室3", japDate];
+
   return (
-    <Grid container wrap="nowrap" sx={grid} style={{ display: "grid" }}>
+    <Grid style={{ display: "grid" }} sx={grid}>
       {rooms.map((room, index) => {
         return (
-          <div key={index}>
+          <div key={index} style={{ width: "100%" }}>
             {index === 0 || index === rooms.length - 1 ? (
               <Box
                 sx={box}

@@ -1,34 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 import theme from "utils/theme";
 
 const hoverInColor = theme.palette.success.main;
-const clickColor = theme.palette.primary.main;
+const reservationColor = theme.palette.primary.main;
 const hoverOutColor = "white";
 
-const SelectionBox = () => {
+const SelectionBox = (props: { color: string }) => {
   const [bg, setBg] = useState<string>(hoverOutColor);
-  const handleClick = () => {
-    setBg(clickColor);
-  };
   const handleMouseEnter = () => {
-    bg !== clickColor && setBg(hoverInColor);
+    bg !== reservationColor && setBg(hoverInColor);
   };
   const handleMouseLeave = () => {
-    bg !== clickColor && setBg(hoverOutColor);
+    bg !== reservationColor && setBg(hoverOutColor);
   };
+  useEffect(() => {
+    setBg(props.color);
+  }, []);
   return (
     <div
       style={{
         backgroundColor: bg,
+        width: "100%",
       }}
-      onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Typography style={{ color: "transparent", height: "39px" }}>
-        i
-      </Typography>
+      <Typography style={{ color: "transparent", height: "39px" }} />
     </div>
   );
 };

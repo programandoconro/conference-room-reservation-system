@@ -1,6 +1,6 @@
 .schedule {
-  display: grid;
-  justify-content: center;
+  display: flex;
   align-items: center;
-  padding: 10px;
+  justify-content: center;
+  width: 100%;
 }

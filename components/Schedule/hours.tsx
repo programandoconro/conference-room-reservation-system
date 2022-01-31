@@ -1,42 +1,80 @@
-import { FC } from "react";
-import { Grid, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { FC, useContext, useState } from "react";
+import { Grid, Typography, Box } from "@mui/material";
 import SelectionBox from "./selectionBox";
-import { hours } from "utils/constants";
 import { outerBox, innerBox, grid } from "./sx";
-
-const OuterBox = (props: { item: string }) => {
-  return (
-    <Box sx={outerBox}>
-      <Typography sx={{ display: "flex", alignItems: "center" }}>
-        {props.item}
-      </Typography>
-    </Box>
-  );
-};
-const InnerBox = () => {
-  return (
-    <Box sx={innerBox}>
-      <SelectionBox />
-    </Box>
-  );
-};
+import { rooms, hours } from "utils/constants";
+import ReservationContext from "contexts/reservationContext";
+import theme from "utils/theme";
+import ReservationForm from "reservation-form/reservationForm";
 
 const Hours: FC = () => {
+  const { date, reservations } = useContext(ReservationContext);
+  const [openForm, setOpenForm] = useState(false);
+
+  const OuterBox = (props: { item: string }) => {
+    return (
+      <Box sx={outerBox}>
+        <Typography sx={{ display: "flex", alignItems: "center" }}>
+          {props.item}
+        </Typography>
+      </Box>
+    );
+  };
+  const reservationColor = theme.palette.primary.main;
+  const [reservationRoom, setReservationRoom] = useState<string>("");
+  const [reservationHour, setReservationHour] = useState<string>("");
+  const InnerBox = (props: { hour: string; room: string }) => {
+    const { hour, room } = props;
+    let color = "white";
+    reservations.forEach((reservation) => {
+      if (
+        date === reservation.date &&
+        hour === reservation.hour &&
+        room === reservation.room
+      ) {
+        color = reservationColor;
+      }
+    });
+    const handleClickReservation = () => {
+      setReservationHour(hour);
+      setReservationRoom(room);
+      setOpenForm(true);
+    };
+    return (
+      <div onClick={handleClickReservation}>
+        <Box sx={innerBox}>
+          <SelectionBox color={color} />
+        </Box>
+      </div>
+    );
+  };
+  const handleCloseForm = () => {
+    setOpenForm(false);
+  };
   return (
-    <Grid container wrap="nowrap" sx={grid}>
-      {hours.map((hour, index) => {
-        return (
-          <div key={index}>
-            <OuterBox item={hour} />
-            <InnerBox />
-            <InnerBox />
-            <InnerBox />
-            <OuterBox item={hour} />
-          </div>
-        );
-      })}
-    </Grid>
+    <>
+      <Grid style={{ width: "100%" }} container wrap="nowrap" sx={grid}>
+        {" "}
+        {hours.map((hour, index) => {
+          return (
+            <div key={index} style={{ width: "100%" }}>
+              <OuterBox item={hour} />
+              <InnerBox hour={hour} room={rooms[0]} />
+              <InnerBox hour={hour} room={rooms[1]} />
+              <InnerBox hour={hour} room={rooms[2]} />
+              <OuterBox item={hour} />
+            </div>
+          );
+        })}
+      </Grid>
+
+      <ReservationForm
+        open={openForm}
+        handleClose={handleCloseForm}
+        hour={reservationHour}
+        room={reservationRoom}
+      />
+    </>
   );
 };
 

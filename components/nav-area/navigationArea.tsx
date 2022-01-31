@@ -7,7 +7,6 @@ import formatDate from "@components/utils/formatDate";
 import { buttonStyle } from "./sx";
 import add from "date-fns/add";
 import sub from "date-fns/sub";
-import Calendar from "@components/calendar/calendar";
 
 const NavigationArea = () => {
   const { date, setDate } = useContext(ReservationContext);

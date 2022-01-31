@@ -14,19 +14,22 @@ export const innerBox = {
   borderRight: 0.5,
   borderColor: theme.palette.secondary.light,
   userSelect: "none",
-  minWidth: "60px",
+  display: "flex",
+  width: "100%",
 };
 export const grid = {
   borderTop: 0.5,
   borderLeft: 0.5,
   borderColor: theme.palette.secondary.light,
+  display: "flex",
+  justifyContent: "center",
 };
 export const box = {
   borderBottom: 0.5,
   borderColor: theme.palette.secondary.light,
-  width: "140px",
   display: "flex",
   height: "40px",
   justifyContent: "center",
   alignItems: "center",
+  minWidth: "80px",
 };
