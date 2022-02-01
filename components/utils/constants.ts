@@ -30,26 +30,10 @@ export const initialReservation = [
     name: "John Doe",
     email: "ro@casa.com",
     timestamp: today,
-    date: today,
+    date: "",
     hour: "16",
     room: rooms[0],
   },
-  {
-    company: "lateral",
-    name: "John Doe",
-    email: "ro@casa.com",
-    timestamp: today,
-    date: tomorrow,
-    hour: "18",
-    room: rooms[1],
-  },
-  {
-    company: "lateral",
-    name: "John Doe",
-    email: "ro@casa.com",
-    timestamp: today,
-    date: today,
-    hour: "14",
-    room: rooms[2],
-  },
 ];
+export const SECRET_KEY =
+  "laksdjf2347rdy66lkhlk4j54h3l4j5h673lk4j5h7ljk34h578ljk0lhj7w3";

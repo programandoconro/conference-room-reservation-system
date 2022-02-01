@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../prisma/prisma";
 import { ReservationType } from "utils/types";
@@ -7,7 +6,7 @@ type Data = {
   data: ReservationType[] | "success";
 };
 
-const getReservations = async (
+const reservationsRoute = async (
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) => {
@@ -43,4 +42,4 @@ const getReservations = async (
     }
   }
 };
-export default getReservations;
+export default reservationsRoute;
