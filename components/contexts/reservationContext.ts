@@ -14,6 +14,10 @@ const InitialReservationContext: ReservationContextType = {
   setDate: (date: string) => {},
   reservations: [
     {
+      company: "lateral",
+      name: "John Doe",
+      email: "ro@casa.com",
+      timestamp: "",
       date: "",
       hour: "",
       room: "",

@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import ReservationContext from "contexts/reservationContext";
 import { Button, Card, CardContent, Modal, Typography } from "@mui/material";
+import { postReservation } from "utils/requests";
+import { getTimestamp } from "utils/formatDate";
 
 const ReservationForm = (props: {
   open: boolean;
@@ -12,14 +14,20 @@ const ReservationForm = (props: {
     useContext(ReservationContext);
   const { open, handleClose, hour, room } = props;
 
-  const makeReservation = () => {
+  const makeReservation = async () => {
     const newReservations = [...reservations];
-    newReservations.push({
+    const reservationToPost = {
       date: date,
       hour: hour,
       room: room,
-    });
+      email: "",
+      name: "",
+      company: "",
+      timestamp: getTimestamp(),
+    };
+    newReservations.push(reservationToPost);
     setReservations(newReservations);
+    await postReservation(reservationToPost);
     handleClose();
   };
 

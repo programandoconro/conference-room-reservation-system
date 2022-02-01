@@ -1,12 +1,12 @@
 import { FC } from "react";
-import Hours from "./hours";
-import Rooms from "./rooms";
+import HoursGrid from "./hoursGrid";
+import RoomsGrid from "./roomsGrid";
 
 const Schedule: FC = () => {
   return (
     <div className="schedule">
-      <Rooms />
-      <Hours />
+      <RoomsGrid />
+      <HoursGrid />
     </div>
   );
 };

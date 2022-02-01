@@ -7,7 +7,7 @@ import ReservationContext from "contexts/reservationContext";
 import theme from "utils/theme";
 import ReservationForm from "reservation-form/reservationForm";
 
-const Hours: FC = () => {
+const HoursGrid: FC = () => {
   const { date, reservations } = useContext(ReservationContext);
   const [openForm, setOpenForm] = useState(false);
 
@@ -35,13 +35,17 @@ const Hours: FC = () => {
         color = reservationColor;
       }
     });
-    const handleClickReservation = () => {
-      setReservationHour(hour);
-      setReservationRoom(room);
-      setOpenForm(true);
+    const handleClickReservation = (color: string) => {
+      if (color !== reservationColor) {
+        setReservationHour(hour);
+        setReservationRoom(room);
+        setOpenForm(true);
+      } else {
+        alert("この時間は予約済みです。");
+      }
     };
     return (
-      <div onClick={handleClickReservation}>
+      <div onClick={() => handleClickReservation(color)}>
         <Box sx={innerBox}>
           <SelectionBox color={color} />
         </Box>
@@ -54,7 +58,6 @@ const Hours: FC = () => {
   return (
     <>
       <Grid style={{ width: "100%" }} container wrap="nowrap" sx={grid}>
-        {" "}
         {hours.map((hour, index) => {
           return (
             <div key={index} style={{ width: "100%" }}>
@@ -78,4 +81,4 @@ const Hours: FC = () => {
   );
 };
 
-export default Hours;
+export default HoursGrid;

@@ -26,16 +26,28 @@ const tomorrow = formatDate(
 export const rooms = ["会議室１", "会議室２", "会議室3"];
 export const initialReservation = [
   {
+    company: "lateral",
+    name: "John Doe",
+    email: "ro@casa.com",
+    timestamp: today,
     date: today,
     hour: "16",
     room: rooms[0],
   },
   {
+    company: "lateral",
+    name: "John Doe",
+    email: "ro@casa.com",
+    timestamp: today,
     date: tomorrow,
     hour: "18",
     room: rooms[1],
   },
   {
+    company: "lateral",
+    name: "John Doe",
+    email: "ro@casa.com",
+    timestamp: today,
     date: today,
     hour: "14",
     room: rooms[2],

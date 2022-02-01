@@ -4,7 +4,7 @@ import theme from "utils/theme";
 import { Box, Grid, Typography } from "@mui/material";
 import ReservationContext from "contexts/reservationContext";
 
-const Rooms = () => {
+const RoomsGrid = () => {
   const { date } = useContext(ReservationContext);
   const day = date.slice(-2);
   const month = date.slice(5, 7);
@@ -38,4 +38,4 @@ const Rooms = () => {
     </Grid>
   );
 };
-export default Rooms;
+export default RoomsGrid;
