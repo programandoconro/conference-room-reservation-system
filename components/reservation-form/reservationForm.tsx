@@ -34,12 +34,14 @@ const ReservationForm = (props: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: "100%",
     margin: "auto",
-    width: "max-content",
+    width: "fit-content",
   };
   const subTitle = {
     textDecoration: "underline",
+  };
+  const buttonStyle = {
+    width: "200px",
   };
 
   return (
@@ -62,7 +64,11 @@ const ReservationForm = (props: {
             </Typography>
             <Typography>{`${hour}:00`}</Typography>
             <hr />
-            <Button onClick={makeReservation} variant="contained">
+            <Button
+              style={buttonStyle}
+              onClick={makeReservation}
+              variant="contained"
+            >
               次
             </Button>
           </CardContent>

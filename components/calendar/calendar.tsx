@@ -45,6 +45,11 @@ const CalendarComponent: FC = () => {
                 className="calendar-close-button"
                 onClick={handleCloseModal}
                 size="small"
+                style={{
+                  position: "absolute",
+                  right: "-25px",
+                  color: "grey",
+                }}
               >
                 x
               </Button>
