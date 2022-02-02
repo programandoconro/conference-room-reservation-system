@@ -20,7 +20,8 @@ const loginRouter = async (req: NextApiRequest, res: NextApiResponse) => {
         }
       } else {
         const email = req.body.email;
-        const password = await encryptPassword(req.body.password);
+        const password = req.body.password;
+
         const isUser = await prisma.user.findFirst({
           where: {
             email,
@@ -30,6 +31,7 @@ const loginRouter = async (req: NextApiRequest, res: NextApiResponse) => {
         if (isUser) {
           res.status(200).json({ token: isUser.token });
         } else {
+          console.log("fail");
           res.status(404).json({ data: "fail" });
         }
       }

@@ -12,6 +12,7 @@ import { signUpUser } from "utils/requests";
 import { UserType } from "utils/types";
 import UserContext from "contexts/userContext";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const SignUp = () => {
   const router = useRouter();
@@ -21,7 +22,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const { authenticated, setAuthenticated } = useContext(UserContext);
+  const { setAuthenticated } = useContext(UserContext);
 
   const handleSignUp = async () => {
     const user: UserType = {
@@ -36,10 +37,9 @@ const SignUp = () => {
       const response = await signUpUser(user);
       console.log(response);
       if (response && response.status === 200) {
-        alert("User created successfully");
         setAuthenticated(true);
         localStorage.setItem("token", response.data.token);
-        router.push("/reservations");
+        router.push("/");
       }
     } else {
       alert("Invalid email or password");
@@ -49,7 +49,7 @@ const SignUp = () => {
     <div className="login">
       <Card elevation={5}>
         <Container>
-          <Typography className="login-item" variant="h5">
+          <Typography className="login-item" variant="h5" style={inputStyle}>
             登録
           </Typography>
         </Container>
@@ -59,6 +59,7 @@ const SignUp = () => {
             placeholder="名前"
             label="名前"
             onChange={(e) => setName(e.target.value)}
+            style={inputStyle}
           />
 
           <TextField
@@ -66,12 +67,14 @@ const SignUp = () => {
             placeholder="メールアドレス"
             label="メールアドレス"
             onChange={(e) => setEmail(e.target.value)}
+            style={inputStyle}
           />
           <TextField
             className="login-item"
             placeholder="会社"
             label="会社"
             onChange={(e) => setCompany(e.target.value)}
+            style={inputStyle}
           />
 
           <TextField
@@ -80,6 +83,7 @@ const SignUp = () => {
             type="password"
             label="パスワード"
             onChange={(e) => setPassword(e.target.value)}
+            style={inputStyle}
           />
           <TextField
             className="login-item"
@@ -87,20 +91,22 @@ const SignUp = () => {
             type="password"
             label="パスワード"
             onChange={(e) => setConfirmPassword(e.target.value)}
+            style={inputStyle}
           />
           <Button
             className="login-button"
             variant="contained"
             color="primary"
             onClick={handleSignUp}
+            style={buttonStyle}
           >
             登録
           </Button>
           <Typography className="signup-item">
             もうアカウントがありますか？{" "}
-            <a className="signup-link " href="/login">
-              サインイン{" "}
-            </a>
+            <Link href={"./"}>
+              <a className="signup-link ">サインイン </a>
+            </Link>
           </Typography>
         </CardContent>
       </Card>
@@ -108,4 +114,20 @@ const SignUp = () => {
   );
 };
 
+export const inputStyle = {
+  paddingBottom: "2%",
+  paddingTop: "2%",
+  marginTop: "2%",
+  width: "100%",
+};
+export const buttonStyle = {
+  padding: "16px",
+  border: "none",
+  cursor: "pointer",
+  opacity: "0.9",
+  margin: "2%",
+  display: "block",
+  width: "100%",
+  marginTop: "4%",
+};
 export default SignUp;

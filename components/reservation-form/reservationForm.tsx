@@ -20,9 +20,9 @@ const ReservationForm = (props: {
       date: date,
       hour: hour,
       room: room,
-      email: "",
-      name: "",
-      company: "",
+      email: "mail",
+      name: "name",
+      company: "company",
       timestamp: getTimestamp(),
     };
     newReservations.push(reservationToPost);
@@ -30,19 +30,44 @@ const ReservationForm = (props: {
     await postReservation(reservationToPost);
     handleClose();
   };
+  const cardStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
+    margin: "auto",
+    width: "max-content",
+  };
+  const subTitle = {
+    textDecoration: "underline",
+  };
 
   return (
     <Modal open={open} onBackdropClick={handleClose}>
-      <Card>
-        <CardContent>
-          <Typography>{date}</Typography>
-          <Typography>{hour}</Typography>
-          <Typography>{room}</Typography>
-          <Button onClick={makeReservation} variant="contained">
-            次
-          </Button>
-        </CardContent>
-      </Card>
+      <div style={cardStyle}>
+        <Card>
+          <CardContent>
+            <Typography style={subTitle} variant="h5">
+              部屋タイプ
+            </Typography>
+            <Typography>{room}</Typography>
+            <hr />
+            <Typography style={subTitle} variant="h5">
+              予約日
+            </Typography>
+            <Typography>{date}</Typography>
+            <hr />
+            <Typography style={subTitle} variant="h5">
+              時間
+            </Typography>
+            <Typography>{`${hour}:00`}</Typography>
+            <hr />
+            <Button onClick={makeReservation} variant="contained">
+              次
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
     </Modal>
   );
 };

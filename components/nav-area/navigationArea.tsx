@@ -28,7 +28,7 @@ const NavigationArea = () => {
   };
   return (
     <div className="navigation-container">
-      <CardContent className="navigation-card">
+      <div className="navigation-card">
         <Button variant="contained" sx={buttonStyle} onClick={handleYesterday}>
           <NavigateBeforeIcon />
         </Button>
@@ -38,7 +38,7 @@ const NavigationArea = () => {
         <Button variant="contained" sx={buttonStyle} onClick={handleTomorrow}>
           <NavigateNextIcon />
         </Button>
-      </CardContent>
+      </div>
     </div>
   );
 };

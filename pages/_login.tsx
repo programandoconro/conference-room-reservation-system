@@ -11,6 +11,8 @@ import { isEmail, isPassword } from "@components/utils/checkers";
 import { loginUser } from "@components/utils/requests";
 import { useRouter } from "next/router";
 import UserContext from "@components/contexts/userContext";
+import Link from "next/link";
+import { buttonStyle, inputStyle } from "./signup";
 
 const Login = () => {
   const router = useRouter();
@@ -28,7 +30,7 @@ const Login = () => {
       if (response && response.status === 200) {
         setAuthenticated(true);
         localStorage.setItem("token", response.data.token);
-        router.push("/reservations");
+        // router.push("/reservations");
       }
     } else {
       alert("Invalid email or password");
@@ -49,6 +51,7 @@ const Login = () => {
             placeholder="email"
             label="メールアドレス"
             onChange={(e) => setEmail(e.target.value)}
+            style={inputStyle}
           />
           <TextField
             className="login-item"
@@ -56,20 +59,22 @@ const Login = () => {
             type="password"
             label="パスワード"
             onChange={(e) => setPassword(e.target.value)}
+            style={inputStyle}
           />
           <Button
             className="login-button"
             variant="contained"
             color="primary"
             onClick={handleLogin}
+            style={buttonStyle}
           >
             サインイン
           </Button>
           <Typography className="signup-item">
             アカウントがありませんか？{" "}
-            <a className="signup-link" href="/signup">
-              登録
-            </a>
+            <Link href={"/signup"}>
+              <a className="signup-link">登録</a>
+            </Link>
           </Typography>
         </CardContent>
       </Card>

@@ -8,6 +8,7 @@ export const outerBox = {
   display: "flex",
   minHeight: "40px",
   justifyContent: "center",
+  backgroundColor: "white",
 };
 export const innerBox = {
   borderBottom: 0.5,
@@ -32,4 +33,5 @@ export const box = {
   justifyContent: "center",
   alignItems: "center",
   minWidth: "80px",
+  backgroundColor: "white",
 };

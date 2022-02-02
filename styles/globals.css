@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box;
 }
+html {
+  background-color: lightgray;
+}
 
 .login {
   display: flex;
@@ -15,21 +18,9 @@
   flex-direction: column;
 }
 
-.login-button {
-  padding: 16px;
-  border: none;
-  cursor: pointer;
-  opacity: 0.9;
-  margin: 10px;
-  display: block;
-  width: 100%;
-}
-
 .login-item {
   padding-bottom: 10px;
   padding-top: 10px;
-
-  width: 100%;
 }
 .signup-item {
   padding-top: 10px;

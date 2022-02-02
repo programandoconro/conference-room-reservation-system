@@ -1,7 +1,5 @@
 .schedule {
   display: flex;
-  align-items: center;
-  justify-content: center;
   max-width: 50%;
-  min-width: 500px;
+  min-width: 600px;
 }

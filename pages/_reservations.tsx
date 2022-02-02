@@ -4,7 +4,7 @@ import Calendar from "@components/calendar/calendar";
 import Schedule from "@components/schedule/schedule";
 import NavigationArea from "@components/nav-area/navigationArea";
 import ReservationContext from "contexts/reservationContext";
-import { Container } from "@mui/material";
+import { Card, CardContent, Container } from "@mui/material";
 import { ReservationType } from "@components/utils/types";
 import { initialReservation } from "@components/utils/constants";
 import { getReservations } from "utils/requests";
@@ -26,16 +26,29 @@ const Reservation = () => {
     <ReservationContext.Provider
       value={{ date, setDate, reservations, setReservations }}
     >
-      <Container className="reservation-page">
-        <header>
+      <div className="page">
+        <header className="header">
           <h1>会議室予約システム</h1>
         </header>
-        <div className="reservation-container">
-          <Calendar />
-          <NavigationArea />
-          <Schedule />
+        <div className="reservations">
+          <Container className="calendar">
+            <Calendar />
+          </Container>
+          <Container className="navigation">
+            <NavigationArea />
+          </Container>
+          <div className="schedule-container">
+            <Container>
+              <Schedule />
+            </Container>
+          </div>
         </div>
-      </Container>
+        <div className="footer">
+          <Container>
+            <h1>会議室予約システム</h1>
+          </Container>
+        </div>
+      </div>
     </ReservationContext.Provider>
   );
 };

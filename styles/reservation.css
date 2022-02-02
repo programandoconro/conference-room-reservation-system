@@ -1,7 +1,40 @@
-.reservation-page {
+.page {
+  background-color: lightgray;
+  height: 100%;
+  width: 100%;
 }
-.reservation-container {
+.reservations {
+  background-color: white;
+}
+.schedule-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-bottom: 5%;
+  padding-bottom: 5%;
+  overflow-x: scroll;
+  scroll-behavior: unset;
+  width: 100%;
+}
+.calendar {
+}
+
+.navigation {
+  display: flex;
+  bottom: 0;
+  padding-bottom: 1%;
+}
+.header {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  height: 10%;
+  width: 100%;
+  background-color: white;
+}
+
+.footer {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  display: flex;
+  background-color: white;
 }

@@ -1,13 +1,11 @@
 import { useContext, useEffect } from "react";
 import type { NextPage } from "next";
-import Login from "./login";
+import Login from "./_login";
 import UserContext from "@components/contexts/userContext";
-import Reservation from "./reservations";
+import Reservation from "./_reservations";
 import { loginUserWithToken } from "@components/utils/requests";
-import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
-  const router = useRouter();
   const { authenticated, setAuthenticated } = useContext(UserContext);
 
   useEffect(() => {
@@ -17,15 +15,22 @@ const Home: NextPage = () => {
         const response = await loginUserWithToken({ token });
         if (response && response.status === 200) {
           setAuthenticated(true);
-          router.push("/reservations");
+        } else {
+          setAuthenticated(false);
         }
+      } else {
+        setAuthenticated(false);
       }
-      console.log(token);
     };
     loginWithToken();
-  }, []);
+  }, [authenticated, setAuthenticated]);
 
-  return <div>{authenticated ? <Reservation /> : <Login />}</div>;
+  if (authenticated === null) {
+    return <div style={{ color: "whitesmoke" }}>loading...</div>;
+  } else if (authenticated) {
+    return <Reservation />;
+  }
+  return <Login />;
 };
 
 export default Home;

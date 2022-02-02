@@ -13,9 +13,8 @@ const singUpRoute = async (req: NextApiRequest, res: NextApiResponse) => {
       const name = req.body.name;
       const email = req.body.email;
       const company = req.body.company;
-      const password = await encryptPassword(req.body.password);
+      const password = req.body.password;
       const token = createToken(name);
-      console.log(token);
 
       const user = { name, email, company, password, token };
 
@@ -29,7 +28,7 @@ const singUpRoute = async (req: NextApiRequest, res: NextApiResponse) => {
           })
           .catch((err) => {
             console.log(err);
-            res.status(500).json({ error: err });
+            //res.status(500).json({ error: err });
           });
       }
     }

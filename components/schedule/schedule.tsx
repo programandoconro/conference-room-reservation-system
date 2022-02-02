@@ -7,6 +7,7 @@ const Schedule: FC = () => {
     <div className="schedule">
       <RoomsGrid />
       <HoursGrid />
+      <RoomsGrid />
     </div>
   );
 };

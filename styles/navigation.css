@@ -1,13 +1,12 @@
 .navigation-container {
   display: flex;
-  justify-content: space-between;
   padding: 0;
   bottom: 0;
 }
 .navigation-card {
   display: flex;
-  align-items: flex-end;
   justify-content: flex-end;
   padding: 0;
   bottom: 0;
+  margin-bottom: 0;
 }
