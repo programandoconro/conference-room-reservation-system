@@ -10,8 +10,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-bottom: 5%;
-  padding-bottom: 5%;
+  padding-bottom: 40px;
+  padding-top: 40px;
   overflow-x: scroll;
   scroll-behavior: unset;
   width: 100%;
