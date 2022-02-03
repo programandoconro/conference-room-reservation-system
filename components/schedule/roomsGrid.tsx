@@ -3,14 +3,16 @@ import { grid, box } from "./sx";
 import theme from "utils/theme";
 import { Box, Grid, Typography } from "@mui/material";
 import ReservationContext from "contexts/reservationContext";
+import { getDayName, getMonth, getDayFormat } from "utils/formatDate";
 
 const RoomsGrid = () => {
   const { date } = useContext(ReservationContext);
-  const day = date.slice(-2);
-  const month = date.slice(5, 7);
+  const day = getDayFormat(date);
+  const month = getMonth(date);
+  const dayName = getDayName(date);
 
-  const japDate = `${day}/${month}月`;
-  const rooms = [japDate, "会議室１", "会議室２", "会議室3", japDate];
+  const japDate = `${month}/${day}(${dayName})`;
+  const rooms = [japDate, "大会議室", "中会議室", "小会議室", japDate];
 
   return (
     <Grid style={{ display: "grid" }} sx={grid}>

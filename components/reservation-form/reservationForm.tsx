@@ -2,7 +2,7 @@ import { useContext } from "react";
 import ReservationContext from "contexts/reservationContext";
 import { Button, Card, CardContent, Modal, Typography } from "@mui/material";
 import { postReservation } from "utils/requests";
-import { getTimestamp } from "utils/formatDate";
+import { getTimestamp, getDayName } from "utils/formatDate";
 
 const ReservationForm = (props: {
   open: boolean;
@@ -44,6 +44,8 @@ const ReservationForm = (props: {
     width: "200px",
   };
 
+  const reservationDay = `${date}(${getDayName(date).slice(0, 1)})`;
+
   return (
     <Modal open={open} onBackdropClick={handleClose}>
       <div style={cardStyle}>
@@ -57,7 +59,7 @@ const ReservationForm = (props: {
             <Typography style={subTitle} variant="h5">
               予約日
             </Typography>
-            <Typography>{date}</Typography>
+            <Typography>{reservationDay}</Typography>
             <hr />
             <Typography style={subTitle} variant="h5">
               時間

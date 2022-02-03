@@ -23,7 +23,7 @@ const tomorrow = formatDate(
   })
 );
 
-export const rooms = ["会議室１", "会議室２", "会議室3"];
+export const rooms = ["大会議室", "中会議室", "小会議室"];
 export const initialReservation = [
   {
     company: "lateral",

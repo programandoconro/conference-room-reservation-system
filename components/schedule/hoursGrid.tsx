@@ -1,15 +1,25 @@
 import { FC, useContext, useState } from "react";
-import { Grid, Typography, Box } from "@mui/material";
+import { Grid, Typography, Box, Theme } from "@mui/material";
 import SelectionBox from "./selectionBox";
 import { outerBox, innerBox, grid } from "./sx";
 import { rooms, hours } from "utils/constants";
 import ReservationContext from "contexts/reservationContext";
 import theme from "utils/theme";
 import ReservationForm from "reservation-form/reservationForm";
+import getHours from "date-fns/getHours";
+import isBefore from "date-fns/isBefore";
+import { getDayName, getMonth, getDayFormat } from "utils/formatDate";
+import getDay from "date-fns/getDay";
+import differenceInWeeks from "date-fns/differenceInWeeks";
+import differenceInMonths from "date-fns/differenceInMonths";
 
 const HoursGrid: FC = () => {
   const { date, reservations } = useContext(ReservationContext);
   const [openForm, setOpenForm] = useState(false);
+  const day = getDayFormat(date);
+  const month = getMonth(date);
+  const dayName = getDayName(date);
+  const japDate = `${month}/${day}(${dayName})`;
 
   const OuterBox = (props: { item: string }) => {
     return (
@@ -26,6 +36,30 @@ const HoursGrid: FC = () => {
   const InnerBox = (props: { hour: string; room: string }) => {
     const { hour, room } = props;
     let color = "white";
+
+    if (isBefore(new Date(date), new Date())) {
+      color = "lightgrey";
+      if (getDay(new Date()) === getDay(new Date(date))) {
+        if (getHours(new Date()) >= Number(hour)) {
+          color = "lightgrey";
+        } else {
+          color = "white";
+        }
+      }
+    }
+    if (
+      differenceInWeeks(new Date(date), new Date()) < 2 &&
+      room === "中会議室"
+    ) {
+      color = "lightgrey";
+    }
+    if (
+      differenceInMonths(new Date(date), new Date()) < 1 &&
+      room === "大会議室"
+    ) {
+      color = "lightgrey";
+    }
+
     reservations.forEach((reservation) => {
       if (
         date === reservation.date &&
@@ -36,18 +70,20 @@ const HoursGrid: FC = () => {
       }
     });
     const handleClickReservation = (color: string) => {
-      if (color !== reservationColor) {
+      if (color === "white") {
         setReservationHour(hour);
         setReservationRoom(room);
         setOpenForm(true);
-      } else {
-        alert("この時間は予約済みです。");
       }
     };
     return (
       <div onClick={() => handleClickReservation(color)}>
         <Box sx={innerBox}>
-          <SelectionBox color={color} />
+          <SelectionBox
+            color={color}
+            room={room}
+            japDate={`${japDate} ${hour}:00`}
+          />
         </Box>
       </div>
     );

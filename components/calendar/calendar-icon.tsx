@@ -13,7 +13,11 @@ const CalendarIcon = (props: { date: string }) => {
     setElevation(5);
   };
   return (
-    <Container>
+    <Container
+      style={{
+        padding: "0",
+      }}
+    >
       <Card
         raised={true}
         elevation={elevation}
@@ -21,6 +25,10 @@ const CalendarIcon = (props: { date: string }) => {
         onMouseOver={handleHoverOver}
         sx={{
           userSelect: "none",
+        }}
+        style={{
+          display: "flex",
+          height: "60px",
         }}
       >
         <CardContent className="calendar-icon">

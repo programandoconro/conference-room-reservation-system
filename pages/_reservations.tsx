@@ -30,18 +30,20 @@ const Reservation = () => {
         <header className="header">
           <h1>会議室予約システム</h1>
         </header>
+        <hr />
         <div className="reservations">
-          <Container className="calendar">
-            <Calendar />
-          </Container>
-          <Container className="navigation">
-            <NavigationArea />
-          </Container>
           <div className="schedule-container">
+            <Container className="calendar">
+              <Calendar />
+            </Container>
+            <Container className="navigation">
+              <NavigationArea />
+            </Container>
             <Container>
               <Schedule />
             </Container>
           </div>
+          <hr />
         </div>
         <div className="footer">
           <Container>
