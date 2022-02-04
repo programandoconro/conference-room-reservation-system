@@ -5,14 +5,13 @@ import Logout from "./logout";
 const Header = () => {
   return (
     <div style={{ display: "flex", justifyContent: "space-between" }}>
-      <div
-        style={{
-          display: "flex",
-          maxHeight: "60vh",
-          maxWidth: "60vw",
-        }}
-      >
-        <Image src={header} alt="main-header" />
+      <div className="image-container">
+        <div className="room-info">
+          <h1>Room Info</h1>
+        </div>
+        <div className="header-left">
+          <Image src={header} alt="main-header" />
+        </div>
       </div>
       <div
         style={{

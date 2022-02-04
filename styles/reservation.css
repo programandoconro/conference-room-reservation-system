@@ -16,6 +16,35 @@
 .schedule {
   display: flex;
 }
+.image-container {
+  position: relative;
+}
+.header-left {
+  display: flex;
+  max-height: 60vh;
+  max-width: 60vw;
+  opacity: 1;
+  display: block;
+  transition: 0.5s ease;
+  border: 5px transparent;
+}
+.room-info {
+  position: absolute;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.image-container:hover .header-left {
+  opacity: 0.3;
+  border: 5px solid white;
+}
+.image-container:hover .room-info {
+  opacity: 1;
+}
 
 .navigation {
   display: flex;
