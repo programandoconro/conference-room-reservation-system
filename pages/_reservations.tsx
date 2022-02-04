@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
+import ReservationContext from "contexts/reservationContext";
 import formatDate from "@components/utils/formatDate";
 import Calendar from "@components/calendar/calendar";
 import Schedule from "@components/schedule/schedule";
 import NavigationArea from "@components/nav-area/navigationArea";
-import ReservationContext from "contexts/reservationContext";
-import { Card, CardContent, Container } from "@mui/material";
+import Header from "@components/header";
+import { Container } from "@mui/material";
 import { ReservationType } from "@components/utils/types";
 import { initialReservation } from "@components/utils/constants";
 import { getReservations } from "utils/requests";
@@ -27,10 +28,10 @@ const Reservation = () => {
       value={{ date, setDate, reservations, setReservations }}
     >
       <div className="page">
-        <header className="header">
-          <h1>会議室予約システム</h1>
-        </header>
         <div className="reservations">
+          <header>
+            <Header />
+          </header>
           <Container className="calendar">
             <Calendar />
           </Container>

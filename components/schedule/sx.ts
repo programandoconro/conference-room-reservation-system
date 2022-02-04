@@ -1,5 +1,3 @@
-import theme from "utils/theme";
-
 export const outerBox = {
   userSelect: "none",
   display: "flex",
@@ -14,7 +12,6 @@ export const innerBox = {
   width: "100%",
 };
 export const grid = {
-  borderColor: theme.palette.primary.main,
   display: "flex",
   justifyContent: "center",
 };
