@@ -13,14 +13,7 @@ const Header = () => {
           <Image src={header} alt="main-header" />
         </div>
       </div>
-      <div
-        style={{
-          height: "60px",
-          display: "flex",
-          justifyContent: "end",
-          padding: "10px",
-        }}
-      >
+      <div className="logout-button">
         <Logout />
       </div>
     </div>
