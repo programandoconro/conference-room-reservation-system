@@ -1,11 +1,18 @@
 ## Start database:
 
 ```
-docker-compose up # stop with ctrl-c after it finished
+docker-compose up -d
 docker-compose start
 ```
 
-## Start App
+## Connect prisma to database:
+
+```
+npx prisma generate
+npx prisma db push
+```
+
+## Start App:
 
 ```
 npm install

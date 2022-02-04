@@ -14,4 +14,4 @@ services:
       - "MYSQL_DATABASE=reservation_system"
       - "MYSQL_USER=admin"
       - "MYSQL_PASSWORD=kaigatsu_lateral"
-      - "TZ: Asia/Tokyo"
+      - "TZ:Asia/Tokyo"
