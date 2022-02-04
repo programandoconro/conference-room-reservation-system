@@ -1,37 +1,28 @@
 import theme from "utils/theme";
 
 export const outerBox = {
-  borderRight: 0.5,
-  borderBottom: 0.5,
-  borderColor: theme.palette.secondary.light,
   userSelect: "none",
   display: "flex",
   minHeight: "40px",
   justifyContent: "center",
-  backgroundColor: "white",
 };
 export const innerBox = {
   borderBottom: 0.5,
-  borderRight: 0.5,
-  borderColor: theme.palette.secondary.light,
+  borderColor: "lightgray",
   userSelect: "none",
   display: "flex",
   width: "100%",
 };
 export const grid = {
-  borderTop: 0.5,
-  borderLeft: 0.5,
-  borderColor: theme.palette.secondary.light,
+  borderColor: theme.palette.primary.main,
   display: "flex",
   justifyContent: "center",
 };
-export const box = {
-  borderBottom: 0.5,
-  borderColor: theme.palette.secondary.light,
+export const roomsBox = {
   display: "flex",
   height: "40px",
   justifyContent: "center",
-  alignItems: "center",
+  alignItems: "flex-end",
   minWidth: "80px",
   backgroundColor: "white",
 };

@@ -1,5 +1,5 @@
 {
-  "name": "conference-rooms-reservation",
+  "name": "conference-room-reservation",
   "private": true,
   "scripts": {
     "dev": "next dev",

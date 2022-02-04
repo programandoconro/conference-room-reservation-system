@@ -31,25 +31,20 @@ const Reservation = () => {
           <h1>会議室予約システム</h1>
         </header>
         <div className="reservations">
-          <div className="nav-wrapper">
-            <Container className="calendar">
-              <Calendar />
-            </Container>
-            <Container className="navigation">
-              <NavigationArea />
-            </Container>
-          </div>
-          <div className="schedule-wrapper">
-            <Container className="schedule-container">
-              <Schedule />
-            </Container>
-          </div>
-        </div>
-        <div className="footer">
-          <Container>
-            <h1>会議室予約システム</h1>
+          <Container className="calendar">
+            <Calendar />
+          </Container>
+          <Container className="navigation">
+            <NavigationArea />
+          </Container>
+          <Container className="schedule-container">
+            <Schedule />
           </Container>
         </div>
+        <div className="footer"></div>
+        <Container>
+          <h1>会議室予約システム</h1>
+        </Container>
       </div>
     </ReservationContext.Provider>
   );

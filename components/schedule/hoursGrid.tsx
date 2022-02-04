@@ -101,7 +101,6 @@ const HoursGrid: FC = () => {
               <InnerBox hour={hour} room={rooms[0]} />
               <InnerBox hour={hour} room={rooms[1]} />
               <InnerBox hour={hour} room={rooms[2]} />
-              <OuterBox item={hour} />
             </div>
           );
         })}

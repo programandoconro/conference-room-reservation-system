@@ -5,31 +5,16 @@
 }
 .reservations {
   background-color: white;
-  position: relative;
-}
-.schedule-wrapper {
-  background-color: white;
-  height: 400px;
-  width: 100%;
-  position: absolute;
-  z-index: 100;
-  overflow-x: scroll;
-}
-.nav-wrapper {
-  z-index: -1;
 }
 .schedule-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-bottom: 40px;
-  position: absolute;
   overflow-y: visible;
 }
 .schedule {
   display: flex;
-  max-width: 50%;
-  min-width: 600px;
 }
 
 .navigation {
