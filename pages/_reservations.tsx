@@ -31,14 +31,16 @@ const Reservation = () => {
           <h1>会議室予約システム</h1>
         </header>
         <div className="reservations">
-          <Container className="calendar">
-            <Calendar />
-          </Container>
-          <Container className="navigation">
-            <NavigationArea />
-          </Container>
-          <div className="schedule-container">
-            <Container>
+          <div className="nav-wrapper">
+            <Container className="calendar">
+              <Calendar />
+            </Container>
+            <Container className="navigation">
+              <NavigationArea />
+            </Container>
+          </div>
+          <div className="schedule-wrapper">
+            <Container className="schedule-container">
               <Schedule />
             </Container>
           </div>
