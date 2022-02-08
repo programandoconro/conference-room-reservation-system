@@ -34,10 +34,10 @@ const Reservation = () => {
       }}
     >
       <div className="page">
+        <header>
+          <Header />
+        </header>
         <div className="reservations">
-          <header>
-            <Header />
-          </header>
           <Container className="calendar">
             <Calendar />
           </Container>
@@ -50,10 +50,6 @@ const Reservation = () => {
             </div>
           </Container>
         </div>
-        <div className="footer"></div>
-        <Container>
-          <h1>会議室予約システム</h1>
-        </Container>
       </div>
     </ReservationContext.Provider>
   );

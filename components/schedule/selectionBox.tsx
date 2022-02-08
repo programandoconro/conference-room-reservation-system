@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card, Typography } from "@mui/material";
 
-const hoverInColor = "#b4f2dd"; // aquamarine light
+const hoverInColor = "#4200ff";
 const hoverOutColor = "white";
 
 const SelectionBox = (props: {

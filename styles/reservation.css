@@ -5,6 +5,11 @@
 }
 .reservations {
   background-color: white;
+  min-height: 50%;
+}
+header {
+  height: 50%;
+  background-color: white;
 }
 .schedule-container {
   display: flex;
@@ -21,15 +26,6 @@
 }
 .image-container {
   position: relative;
-}
-.header-left {
-  display: flex;
-  max-height: 60vh;
-  max-width: 60vw;
-  opacity: 1;
-  display: block;
-  border: 5px transparent;
-  transition: 2s ease;
 }
 .room-info {
   position: absolute;
@@ -70,12 +66,5 @@
   padding: 10px;
   height: 10%;
   width: 100%;
-  background-color: white;
-}
-
-.footer {
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-  width: 100%;
-  display: flex;
   background-color: white;
 }

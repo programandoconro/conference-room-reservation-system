@@ -11,7 +11,7 @@ import isBefore from "date-fns/isBefore";
 import { getDayName, getMonth, getDayFormat } from "utils/formatDate";
 import getDay from "date-fns/getDay";
 import differenceInWeeks from "date-fns/differenceInWeeks";
-import differenceInMonths from "date-fns/differenceInMonths";
+import { getLimitTime } from "@components/utils/requests";
 
 const HoursGrid: FC = () => {
   const { date, reservations } = useContext(ReservationContext);
@@ -21,6 +21,13 @@ const HoursGrid: FC = () => {
   const dayName = getDayName(date);
   const japDate = `${month}/${day}(${dayName})`;
 
+  const [limitBigRoom, setLimitBigRoom] = useState(0);
+  const [limitMedRoom, setLimitMedRoom] = useState(0);
+  const [limitSmallRoom, setLimitSmallRoom] = useState(0);
+
+  useEffect(() => {
+    getLimitTime(setLimitBigRoom, setLimitMedRoom, setLimitSmallRoom);
+  }, []);
   const OuterBox = (props: { item: string }) => {
     return (
       <Box sx={outerBox}>
@@ -49,14 +56,20 @@ const HoursGrid: FC = () => {
       }
     }
     if (
-      differenceInWeeks(new Date(date), new Date()) < 2 &&
+      differenceInWeeks(new Date(date), new Date()) < limitMedRoom &&
       room === "中会議室"
     ) {
       color = "lightgrey";
     }
     if (
-      differenceInMonths(new Date(date), new Date()) < 1 &&
+      differenceInWeeks(new Date(date), new Date()) < limitBigRoom &&
       room === "大会議室"
+    ) {
+      color = "lightgrey";
+    }
+    if (
+      differenceInWeeks(new Date(date), new Date()) < limitSmallRoom &&
+      room === "小会議室"
     ) {
       color = "lightgrey";
     }
