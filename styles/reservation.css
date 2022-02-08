@@ -11,10 +11,13 @@
   flex-direction: column;
   justify-content: center;
   padding-bottom: 40px;
-  overflow-y: visible;
+  padding-top: 40px;
+  overflow-x: scroll;
 }
 .schedule {
   display: flex;
+  max-width: "80%";
+  min-width: 600px;
 }
 .image-container {
   position: relative;

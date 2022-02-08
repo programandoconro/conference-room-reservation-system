@@ -3,7 +3,8 @@ import header from "./main-header.png";
 import Image from "next/image";
 import Logout from "./logout";
 import UserContext from "@components/contexts/userContext";
-import { Container, Typography } from "@mui/material";
+import { Container, Typography, Button } from "@mui/material";
+import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 
 const Header = () => {
   const { user } = useContext(UserContext);
@@ -12,15 +13,25 @@ const Header = () => {
       style={{
         display: "flex",
         justifyContent: "flex-end",
+        padding: "10px",
       }}
     >
-      <Typography paddingRight={"10px"}>Welcome</Typography>
-      <Typography sx={{ fontWeight: "bold" }} paddingRight={"10px"}>
-        {user?.name}さん
-      </Typography>
-      <div className="logout-button">
-        <Logout />
+      <div>
+        <div>
+          <h5 style={{ paddingBottom: 0, margin: 0 }}>ようこそ</h5>
+          <h4 style={{ paddingTop: 0, margin: 0 }}>{user?.name}様</h4>
+        </div>
       </div>
+      <Button
+        style={{
+          backgroundColor: "white",
+          fontSize: "18px",
+          color: "black",
+        }}
+      >
+        <LiveHelpIcon />
+      </Button>
+      <Logout />
     </div>
   );
 };

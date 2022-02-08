@@ -1,6 +1,7 @@
 import { useContext, FC } from "react";
 import UserContext from "@components/contexts/userContext";
 import { Button } from "@mui/material";
+import MeetingRoomIcon from "@mui/icons-material/MeetingRoom";
 
 const Logout: FC = () => {
   const { setAuthenticated } = useContext(UserContext);
@@ -9,7 +10,15 @@ const Logout: FC = () => {
     localStorage.removeItem("token");
   };
   return (
-    <Button variant="contained" color="secondary" onClick={handleLogout}>
+    <Button
+      style={{
+        backgroundColor: "white",
+        fontSize: "18px",
+        color: "black",
+      }}
+      onClick={handleLogout}
+    >
+      <MeetingRoomIcon />
       Logout
     </Button>
   );

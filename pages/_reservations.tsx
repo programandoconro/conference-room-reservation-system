@@ -45,7 +45,9 @@ const Reservation = () => {
             <NavigationArea />
           </Container>
           <Container className="schedule-container">
-            <Schedule />
+            <div className="schedule">
+              <Schedule />
+            </div>
           </Container>
         </div>
         <div className="footer"></div>
