@@ -23,7 +23,6 @@ const Login = () => {
 
   const handleLogin = async () => {
     const isValid = isEmail(email) && isPassword(password);
-    console.log(email, password);
     if (isValid) {
       const response = await loginUser({ email, password });
 

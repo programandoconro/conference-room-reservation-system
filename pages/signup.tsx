@@ -64,16 +64,16 @@ const SignUp = () => {
 
           <TextField
             className="login-item"
-            placeholder="メールアドレス"
-            label="メールアドレス"
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder="会社"
+            label="会社"
+            onChange={(e) => setCompany(e.target.value)}
             style={inputStyle}
           />
           <TextField
             className="login-item"
-            placeholder="会社"
-            label="会社"
-            onChange={(e) => setCompany(e.target.value)}
+            placeholder="メールアドレス"
+            label="メールアドレス"
+            onChange={(e) => setEmail(e.target.value)}
             style={inputStyle}
           />
 
@@ -104,7 +104,7 @@ const SignUp = () => {
           </Button>
           <Typography className="signup-item">
             もうアカウントがありますか？{" "}
-            <Link href={"./"}>
+            <Link href={"/"}>
               <a className="signup-link ">サインイン </a>
             </Link>
           </Typography>
