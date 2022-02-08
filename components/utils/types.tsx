@@ -13,3 +13,15 @@ export type UserType = {
   email: string;
   password: string;
 };
+
+export type ReservationLimitType = {
+  大会議室: number;
+  中会議室: number;
+  小会議室: number;
+};
+export type ReservationContextType = {
+  date: string;
+  setDate: (date: string) => void;
+  reservations: ReservationType[];
+  setReservations: (reservation: ReservationType[]) => void;
+};

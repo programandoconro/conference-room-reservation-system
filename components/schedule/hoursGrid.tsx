@@ -1,4 +1,4 @@
-import { FC, useContext, useState } from "react";
+import { FC, useContext, useState, useEffect } from "react";
 import { Grid, Typography, Box, Theme } from "@mui/material";
 import SelectionBox from "./selectionBox";
 import { outerBox, innerBox, grid } from "./sx";
@@ -30,6 +30,7 @@ const HoursGrid: FC = () => {
       </Box>
     );
   };
+
   const reservationColor = theme.palette.primary.main;
   const [reservationRoom, setReservationRoom] = useState<string>("");
   const [reservationHour, setReservationHour] = useState<string>("");

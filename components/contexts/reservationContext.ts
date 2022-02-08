@@ -1,13 +1,10 @@
 import { createContext } from "react";
 import formatDate from "utils/formatDate";
-import { ReservationType } from "utils/types";
-
-type ReservationContextType = {
-  date: string;
-  setDate: (date: string) => void;
-  reservations: ReservationType[];
-  setReservations: (reservation: ReservationType[]) => void;
-};
+import {
+  ReservationType,
+  ReservationContextType,
+  ReservationLimitType,
+} from "utils/types";
 
 const InitialReservationContext: ReservationContextType = {
   date: formatDate(new Date()),

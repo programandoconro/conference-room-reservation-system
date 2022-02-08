@@ -29,3 +29,10 @@ model Reservation {
   room      String
   timestamp String
 }
+
+model RoomsLimits {
+  room String @id
+  week String
+
+
+}

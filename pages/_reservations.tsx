@@ -6,12 +6,13 @@ import Schedule from "@components/schedule/schedule";
 import NavigationArea from "@components/nav-area/navigationArea";
 import Header from "@components/header";
 import { Container } from "@mui/material";
-import { ReservationType } from "@components/utils/types";
+import { ReservationLimitType, ReservationType } from "@components/utils/types";
 import { initialReservation } from "@components/utils/constants";
 import { getReservations } from "utils/requests";
 
 const Reservation = () => {
   const [date, setDate] = useState(formatDate(new Date()));
+
   const [reservations, setReservations] =
     useState<ReservationType[]>(initialReservation);
 
@@ -25,7 +26,12 @@ const Reservation = () => {
 
   return (
     <ReservationContext.Provider
-      value={{ date, setDate, reservations, setReservations }}
+      value={{
+        date,
+        setDate,
+        reservations,
+        setReservations,
+      }}
     >
       <div className="page">
         <div className="reservations">
