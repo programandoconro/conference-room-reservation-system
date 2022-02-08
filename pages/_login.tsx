@@ -19,7 +19,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { setAuthenticated } = useContext(UserContext);
+  const { setAuthenticated, user, setUser } = useContext(UserContext);
 
   const handleLogin = async () => {
     const isValid = isEmail(email) && isPassword(password);
@@ -29,6 +29,13 @@ const Login = () => {
       if (response && response.status === 200) {
         setAuthenticated(true);
         localStorage.setItem("token", response.data.token);
+        setUser({
+          name: response.data.name,
+          company: response.data.company,
+          email: response.data.email,
+          password: response.data.password,
+        });
+
         // router.push("/reservations");
       }
     } else {

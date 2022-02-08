@@ -22,7 +22,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const { setAuthenticated } = useContext(UserContext);
+  const { setAuthenticated, setUser } = useContext(UserContext);
 
   const handleSignUp = async () => {
     const user: UserType = {
@@ -38,6 +38,12 @@ const SignUp = () => {
       console.log(response);
       if (response && response.status === 200) {
         setAuthenticated(true);
+        setUser({
+          name: response.data.name,
+          company: response.data.company,
+          email: response.data.email,
+          password: response.data.password,
+        });
         localStorage.setItem("token", response.data.token);
         router.push("/");
       }

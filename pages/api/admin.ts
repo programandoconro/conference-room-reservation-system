@@ -28,7 +28,7 @@ const limitsRouter = async (req: NextApiRequest, res: NextApiResponse) => {
     }
     case "GET": {
       const response = await prisma.roomsLimits.findMany();
-      return res.status(200).json({ data: response });
+      return res.status(200).json({ data: [response] });
     }
     default: {
       return res.status(405).end();

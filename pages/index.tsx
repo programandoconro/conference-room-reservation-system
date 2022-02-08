@@ -6,7 +6,7 @@ import Reservation from "./_reservations";
 import { loginUserWithToken } from "@components/utils/requests";
 
 const Home: NextPage = () => {
-  const { authenticated, setAuthenticated } = useContext(UserContext);
+  const { authenticated, setAuthenticated, setUser } = useContext(UserContext);
 
   useEffect(() => {
     const loginWithToken = async () => {
@@ -15,6 +15,12 @@ const Home: NextPage = () => {
         const response = await loginUserWithToken({ token });
         if (response && response.status === 200) {
           setAuthenticated(true);
+          setUser({
+            name: response.data.name,
+            company: response.data.company,
+            email: response.data.email,
+            password: response.data.password,
+          });
         } else {
           setAuthenticated(false);
         }
@@ -23,7 +29,7 @@ const Home: NextPage = () => {
       }
     };
     loginWithToken();
-  }, [authenticated, setAuthenticated]);
+  }, [authenticated, setAuthenticated, setUser]);
 
   if (authenticated === null) {
     return <div style={{ color: "whitesmoke" }}>loading...</div>;

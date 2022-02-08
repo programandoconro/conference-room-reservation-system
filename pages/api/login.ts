@@ -14,7 +14,12 @@ const loginRouter = async (req: NextApiRequest, res: NextApiResponse) => {
           },
         });
         if (isUser) {
-          res.status(200).json({ token: isUser.token });
+          res.status(200).json({
+            token: isUser.token,
+            name: isUser.name,
+            email: isUser.email,
+            company: isUser.company,
+          });
         } else {
           res.status(404).json({ data: "fail" });
         }
@@ -29,7 +34,12 @@ const loginRouter = async (req: NextApiRequest, res: NextApiResponse) => {
           },
         });
         if (isUser) {
-          res.status(200).json({ token: isUser.token });
+          res.status(200).json({
+            name: isUser.name,
+            email: isUser.email,
+            company: isUser.company,
+            token: isUser.token,
+          });
         } else {
           console.log("fail");
           res.status(404).json({ data: "fail" });

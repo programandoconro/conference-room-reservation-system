@@ -7,19 +7,35 @@ const Limit = () => {
   const [limitMedRoom, setLimiMedRoom] = useState(0);
   const [limitSmallRoom, setLimiSmallRoom] = useState(0);
 
+  useEffect(() => {
+    axios.get("/api/admin").then((res) => {
+      res.data.data[0].forEach((item: { room: string; week: string }) => {
+        if (item.room === "大会議室") {
+          setLimiBigRoom(Number(item.week));
+        }
+        if (item.room === "中会議室") {
+          setLimiMedRoom(Number(item.week));
+        }
+        if (item.room === "小会議室") {
+          setLimiSmallRoom(Number(item.week));
+        }
+      });
+    });
+  }, []);
   const handleChange = async (
     room: string,
     target: string,
     setState: (n: number) => void
   ) => {
     if (Number(target) >= 0) {
-      await axios.post("/api/limits", {
+      await axios.post("/api/admin", {
         room: room,
         week: target,
       });
       setState(Number(target));
     }
   };
+
   return (
     <Container>
       <Typography>週</Typography>
@@ -71,7 +87,6 @@ const Limit = () => {
           value={limitSmallRoom}
         />
       </div>
-      <Button variant="contained">設定する</Button>
     </Container>
   );
 };
