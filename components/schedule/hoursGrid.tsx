@@ -31,7 +31,10 @@ const HoursGrid: FC = () => {
   const OuterBox = (props: { item: string }) => {
     return (
       <Box sx={outerBox}>
-        <Typography sx={{ display: "flex", alignItems: "center" }}>
+        <Typography
+          style={{ fontWeight: "lighter", fontSize: "12px" }}
+          sx={{ display: "flex", alignItems: "center" }}
+        >
           {props.item}
         </Typography>
       </Box>

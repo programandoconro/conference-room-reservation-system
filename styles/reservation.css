@@ -21,8 +21,9 @@ header {
 }
 .schedule {
   display: flex;
-  max-width: "80%";
+  width: 100%;
   min-width: 600px;
+  padding-right: 10px;
 }
 .image-container {
   position: relative;

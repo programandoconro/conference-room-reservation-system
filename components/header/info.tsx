@@ -26,7 +26,13 @@ const Info = () => {
             }}
           >
             <Card
-              style={{ display: "flex", margin: "2px", width: "fit-content" }}
+              style={{
+                display: "flex",
+                margin: "2px",
+                minWidth: "fit-content",
+                width: "80%",
+                justifyContent: "center",
+              }}
             >
               <CardContent>
                 <Typography style={{ fontWeight: "lighter", fontSize: "12px" }}>

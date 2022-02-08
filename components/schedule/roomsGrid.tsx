@@ -10,7 +10,7 @@ const RoomsGrid = () => {
         return (
           <div key={index} style={{ width: "100%" }}>
             <Box key={index} sx={roomsBox}>
-              <Typography>{room}</Typography>
+              <Typography style={{ fontWeight: "bold" }}>{room}</Typography>
             </Box>
           </div>
         );

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import { Icon, Card, CardContent, Container } from "@mui/material";
+import { Card, CardContent, Container, Typography } from "@mui/material";
 
 const CalendarIcon = (props: { date: string }) => {
   const [elevation, setElevation] = useState(5);
@@ -32,10 +32,8 @@ const CalendarIcon = (props: { date: string }) => {
         }}
       >
         <CardContent className="calendar-icon">
-          <p>{date}</p>
-          <Icon>
-            <CalendarTodayIcon />
-          </Icon>
+          <Typography style={{ fontWeight: "lighter" }}>{date}</Typography>
+          <CalendarTodayIcon />
         </CardContent>
       </Card>
     </Container>
