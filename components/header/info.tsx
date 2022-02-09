@@ -15,35 +15,40 @@ const Info = () => {
         margin: "10px",
       }}
     >
-      {reservations.map((reservation, key) => {
-        return (
-          <div
-            key={key}
-            style={{
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            <Card
+      {reservations
+        .slice(0)
+        .reverse()
+        .map((reservation, key) => {
+          return (
+            <div
+              key={key}
               style={{
-                display: "flex",
-                margin: "2px",
-                minWidth: "fit-content",
-                width: "80%",
                 justifyContent: "center",
+                display: "flex",
               }}
             >
-              <CardContent>
-                <Typography style={{ fontWeight: "lighter", fontSize: "12px" }}>
-                  {reservation.date} {String(reservation.start)} ~{" "}
-                  {String(reservation.end)}
-                  {reservation.room}
-                </Typography>
-              </CardContent>
-            </Card>
-          </div>
-        );
-      })}
+              <Card
+                style={{
+                  display: "flex",
+                  margin: "2px",
+                  minWidth: "fit-content",
+                  width: "80%",
+                  justifyContent: "center",
+                }}
+              >
+                <CardContent>
+                  <Typography
+                    style={{ fontWeight: "lighter", fontSize: "12px" }}
+                  >
+                    {reservation.date} {String(reservation.start)} ~{" "}
+                    {String(reservation.end)}
+                    {reservation.room}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </div>
+          );
+        })}
     </Container>
   );
 };

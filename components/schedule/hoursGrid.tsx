@@ -80,8 +80,8 @@ const HoursGrid = (props: {
     reservations.forEach((reservation) => {
       if (
         date === reservation.date &&
-        hour >= String(reservation.start) &&
-        hour <= String(reservation.end) &&
+        hour >= reservation.start.slice(0, 2) &&
+        hour < reservation.end.slice(0, 2) &&
         room === reservation.room
       ) {
         color = reservationColor;

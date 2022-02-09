@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import TimePicker from "@mui/lab/TimePicker";
 import { TextField, Button } from "@mui/material";
 import UserContext from "contexts/userContext";
@@ -32,11 +32,10 @@ const TimePickerMode = (props: TimePickerType) => {
 
       setReservations([...reservations, reservation]);
       postReservation(reservation);
-
-      setOpen(false);
     } else {
-      alert("Please select a start and end time");
+      // alert("時間を選択してください");
     }
+    setOpen(false);
   };
 
   return (
