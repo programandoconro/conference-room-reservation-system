@@ -15,6 +15,9 @@ export const getDayFormat = (date: string) => {
 export const getMonth = (date: string) => {
   return format(new Date(date), "MM", { locale: ja });
 };
+export const getTime = (date: number): string => {
+  return format(date, "HH:mm", { locale: ja });
+};
 
 const formatDate = (date: Date) => {
   return format(date, "yyyy/MM/dd", { locale: ja });

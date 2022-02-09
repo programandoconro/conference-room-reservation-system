@@ -10,16 +10,26 @@ import "../styles/calendar.css";
 import "../styles/reservation.css";
 import "../styles/navigation.css";
 
+import DateAdapter from "@mui/lab/AdapterDateFns";
+import { LocalizationProvider } from "@mui/lab";
+
 registerLocale("ja", ja);
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const [user, setUser] = useState<UserType | null>(null);
+  const [user, setUser] = useState<UserType>({
+    company: "",
+    name: "",
+    email: "",
+    password: "",
+  });
   const [authenticated, setAuthenticated] = useState<boolean | null>(null);
   return (
     <UserContext.Provider
       value={{ user, setUser, authenticated, setAuthenticated }}
     >
-      <Component {...pageProps} />
+      <LocalizationProvider dateAdapter={DateAdapter}>
+        <Component {...pageProps} />
+      </LocalizationProvider>
     </UserContext.Provider>
   );
 };

@@ -25,7 +25,8 @@ model Reservation {
   name      String
   company   String
   date      String
-  hour      String
+  start     String
+  end       String
   room      String
   timestamp String
 }

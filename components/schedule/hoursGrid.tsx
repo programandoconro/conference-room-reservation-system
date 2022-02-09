@@ -1,11 +1,10 @@
 import { FC, useContext, useState, useEffect } from "react";
-import { Grid, Typography, Box, Theme } from "@mui/material";
+import { Grid, Typography, Box } from "@mui/material";
 import SelectionBox from "./selectionBox";
 import { outerBox, innerBox, grid } from "./sx";
 import { rooms, hours } from "utils/constants";
 import ReservationContext from "contexts/reservationContext";
 import theme from "utils/theme";
-import ReservationForm from "reservation-form/reservationForm";
 import getHours from "date-fns/getHours";
 import isBefore from "date-fns/isBefore";
 import { getDayName, getMonth, getDayFormat } from "utils/formatDate";
@@ -13,9 +12,12 @@ import getDay from "date-fns/getDay";
 import differenceInWeeks from "date-fns/differenceInWeeks";
 import { getLimitTime } from "@components/utils/requests";
 
-const HoursGrid: FC = () => {
+const HoursGrid = (props: {
+  setRoom: (v: string) => void;
+  setOpenTimePicker: (v: boolean) => void;
+}) => {
+  const { setOpenTimePicker, setRoom } = props;
   const { date, reservations } = useContext(ReservationContext);
-  const [openForm, setOpenForm] = useState(false);
   const day = getDayFormat(date);
   const month = getMonth(date);
   const dayName = getDayName(date);
@@ -42,8 +44,6 @@ const HoursGrid: FC = () => {
   };
 
   const reservationColor = theme.palette.primary.main;
-  const [reservationRoom, setReservationRoom] = useState<string>("");
-  const [reservationHour, setReservationHour] = useState<string>("");
   const InnerBox = (props: { hour: string; room: string }) => {
     const { hour, room } = props;
     let color = "white";
@@ -80,7 +80,8 @@ const HoursGrid: FC = () => {
     reservations.forEach((reservation) => {
       if (
         date === reservation.date &&
-        hour === reservation.hour &&
+        hour >= String(reservation.start) &&
+        hour <= String(reservation.end) &&
         room === reservation.room
       ) {
         color = reservationColor;
@@ -88,9 +89,8 @@ const HoursGrid: FC = () => {
     });
     const handleClickReservation = (color: string) => {
       if (color === "white") {
-        setReservationHour(hour);
-        setReservationRoom(room);
-        setOpenForm(true);
+        setOpenTimePicker(true);
+        setRoom(room);
       }
     };
     return (
@@ -105,11 +105,8 @@ const HoursGrid: FC = () => {
       </div>
     );
   };
-  const handleCloseForm = () => {
-    setOpenForm(false);
-  };
   return (
-    <>
+    <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <Grid style={{ width: "100%" }} container wrap="nowrap" sx={grid}>
         {hours.map((hour, index) => {
           return (
@@ -122,14 +119,7 @@ const HoursGrid: FC = () => {
           );
         })}
       </Grid>
-
-      <ReservationForm
-        open={openForm}
-        handleClose={handleCloseForm}
-        hour={reservationHour}
-        room={reservationRoom}
-      />
-    </>
+    </div>
   );
 };
 

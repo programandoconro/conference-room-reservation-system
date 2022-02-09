@@ -6,7 +6,7 @@ import Schedule from "@components/schedule/schedule";
 import NavigationArea from "@components/nav-area/navigationArea";
 import Header from "@components/header";
 import { Container } from "@mui/material";
-import { ReservationLimitType, ReservationType } from "@components/utils/types";
+import { ReservationType } from "@components/utils/types";
 import { initialReservation } from "@components/utils/constants";
 import { getReservations } from "utils/requests";
 
@@ -19,7 +19,7 @@ const Reservation = () => {
   useEffect(() => {
     const getInitialReservations = async () => {
       const response = await getReservations();
-      response.data && setReservations(response.data);
+      response?.data && setReservations(response.data);
     };
     getInitialReservations();
   }, []);

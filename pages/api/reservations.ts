@@ -23,9 +23,10 @@ const reservationsRoute = async (
       const room = req.body.room;
       const date = req.body.date;
       const timestamp = req.body.timestamp;
-      const hour = req.body.hour;
+      const start = req.body.start;
+      const end = req.body.end;
 
-      const data = { name, email, company, room, date, timestamp, hour };
+      const data = { name, email, company, room, date, timestamp, start, end };
       console.log("posting reservation");
       if (allStrings(data)) {
         await prisma.reservation.create({
@@ -36,7 +37,8 @@ const reservationsRoute = async (
             room,
             date,
             timestamp,
-            hour,
+            start,
+            end,
           },
         });
         res.status(200).json({ data: "success" });

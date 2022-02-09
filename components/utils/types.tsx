@@ -3,7 +3,8 @@ export type ReservationType = {
   name: string;
   email: string;
   date: string;
-  hour: string;
+  start: string;
+  end: string;
   room: string;
   timestamp: string;
 };
@@ -14,14 +15,22 @@ export type UserType = {
   password: string;
 };
 
-export type ReservationLimitType = {
-  大会議室: number;
-  中会議室: number;
-  小会議室: number;
-};
 export type ReservationContextType = {
   date: string;
   setDate: (date: string) => void;
   reservations: ReservationType[];
   setReservations: (reservation: ReservationType[]) => void;
+};
+
+export type UserContextType = {
+  user: UserType;
+  setUser: (user: UserType) => void;
+  authenticated: boolean | null;
+  setAuthenticated: (authenticated: boolean | null) => void;
+};
+
+export type TimePickerType = {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  room: string;
 };

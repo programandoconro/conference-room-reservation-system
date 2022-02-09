@@ -1,10 +1,9 @@
 import { useContext } from "react";
 import { Container, Card, CardContent, Typography } from "@mui/material";
-import ReservationContext from "@components/contexts/reservationContext";
+import ReservationContext from "contexts/reservationContext";
 
 const Info = () => {
   const { reservations } = useContext(ReservationContext);
-  console.log(reservations);
   return (
     <Container
       style={{
@@ -36,7 +35,9 @@ const Info = () => {
             >
               <CardContent>
                 <Typography style={{ fontWeight: "lighter", fontSize: "12px" }}>
-                  {reservation.date} {reservation.hour}:00 {reservation.room}
+                  {reservation.date} {String(reservation.start)} ~{" "}
+                  {String(reservation.end)}
+                  {reservation.room}
                 </Typography>
               </CardContent>
             </Card>

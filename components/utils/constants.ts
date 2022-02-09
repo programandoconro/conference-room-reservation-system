@@ -32,8 +32,9 @@ export const initialReservation = [
     name: "John Doe",
     email: "ro@casa.com",
     timestamp: today,
-    date: "",
-    hour: "16",
+    date: "2022/02/07",
+    start: "4:00",
+    end: "5:00",
     room: rooms[0],
   },
 ];

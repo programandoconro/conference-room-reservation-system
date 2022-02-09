@@ -6,8 +6,12 @@ export const postReservation = async (props: ReservationType) => {
 };
 
 export const getReservations = async () => {
-  const response = await axios.get("http://localhost:3000/api/reservations");
-  return response.data;
+  try {
+    const response = await axios.get("http://localhost:3000/api/reservations");
+    return response.data;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const signUpUser = async (props: UserType) => {
@@ -52,19 +56,23 @@ export const getLimitTime = (
   setLimitMedRoom: (n: number) => void,
   setLimitSmallRoom: (n: number) => void
 ) => {
-  axios.get("/api/admin").then((res) => {
-    res.data.data[0].forEach((item: { room: string; week: string }) => {
-      if (item.room === "大会議室") {
-        setLimitBigRoom(Number(item.week));
-      }
-      if (item.room === "中会議室") {
-        setLimitMedRoom(Number(item.week));
-      }
-      if (item.room === "小会議室") {
-        setLimitSmallRoom(Number(item.week));
-      }
+  try {
+    axios.get("/api/admin").then((res) => {
+      res.data.data[0].forEach((item: { room: string; week: string }) => {
+        if (item.room === "大会議室") {
+          setLimitBigRoom(Number(item.week));
+        }
+        if (item.room === "中会議室") {
+          setLimitMedRoom(Number(item.week));
+        }
+        if (item.room === "小会議室") {
+          setLimitSmallRoom(Number(item.week));
+        }
+      });
     });
-  });
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const postLimitTime = (room: string, target: string) => {

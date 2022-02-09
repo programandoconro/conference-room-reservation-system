@@ -1,10 +1,6 @@
 import { createContext } from "react";
-import formatDate from "utils/formatDate";
-import {
-  ReservationType,
-  ReservationContextType,
-  ReservationLimitType,
-} from "utils/types";
+import formatDate, { getTimestamp } from "utils/formatDate";
+import { ReservationType, ReservationContextType } from "utils/types";
 
 const InitialReservationContext: ReservationContextType = {
   date: formatDate(new Date()),
@@ -14,9 +10,10 @@ const InitialReservationContext: ReservationContextType = {
       company: "lateral",
       name: "John Doe",
       email: "ro@casa.com",
-      timestamp: "",
-      date: "",
-      hour: "",
+      timestamp: getTimestamp(),
+      date: "2022/02/07",
+      start: "4:00",
+      end: "5:00",
       room: "",
     },
   ],

@@ -1,12 +1,5 @@
 import { createContext } from "react";
-import { UserType } from "@components/utils/types";
-
-type UserContextType = {
-  user: UserType | null;
-  setUser: (user: UserType) => void;
-  authenticated: boolean | null;
-  setAuthenticated: (authenticated: boolean | null) => void;
-};
+import { UserType, UserContextType } from "@components/utils/types";
 
 const InitialUserContext: UserContextType = {
   user: {
