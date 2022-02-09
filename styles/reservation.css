@@ -16,13 +16,11 @@ header {
   flex-direction: column;
   justify-content: center;
   padding-bottom: 40px;
-  padding-top: 40px;
-  overflow-x: scroll;
+  overflow-y: visible;
 }
 .schedule {
   display: flex;
   width: 100%;
-  min-width: 600px;
   padding-right: 10px;
 }
 .image-container {
