@@ -3,7 +3,7 @@ import { Container, Card, CardContent, Typography } from "@mui/material";
 import ReservationContext from "contexts/reservationContext";
 
 const Info = () => {
-  const { reservations } = useContext(ReservationContext);
+  const { reservations, date } = useContext(ReservationContext);
   return (
     <Container
       style={{
@@ -34,6 +34,8 @@ const Info = () => {
                   minWidth: "fit-content",
                   width: "80%",
                   justifyContent: "center",
+                  backgroundColor:
+                    date === reservation.date ? "yellow" : "white",
                 }}
               >
                 <CardContent>

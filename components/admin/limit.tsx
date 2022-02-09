@@ -38,6 +38,7 @@ const Limit = () => {
           width: "fit-content",
           padding: "10px",
           flexDirection: "column",
+          minWidth: "200px",
         }}
       >
         <div

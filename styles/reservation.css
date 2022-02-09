@@ -6,6 +6,8 @@
 .reservations {
   background-color: white;
   min-height: 50%;
+  border: 10px solid lightgray;
+  padding-bottom: 40px;
 }
 header {
   height: 50%;
@@ -15,7 +17,6 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-bottom: 40px;
   overflow-y: visible;
 }
 .schedule {

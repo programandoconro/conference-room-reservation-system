@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import TimePicker from "@mui/lab/TimePicker";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Typography } from "@mui/material";
 import UserContext from "contexts/userContext";
 import ReservationContext from "contexts/reservationContext";
 import { getTimestamp, getTime } from "@components/utils/formatDate";
@@ -53,6 +53,11 @@ const TimePickerMode = (props: TimePickerType) => {
               renderInput={(params) => <TextField {...params} />}
             />
           </div>
+          <Typography
+            style={{ display: "flex", alignSelf: "center", padding: "10px" }}
+          >
+            ~
+          </Typography>
           <div style={{ width: "150px" }}>
             <TimePicker
               value={endTime}
