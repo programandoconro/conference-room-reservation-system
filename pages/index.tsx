@@ -29,7 +29,8 @@ const Home: NextPage = () => {
       }
     };
     loginWithToken();
-  }, [authenticated, setAuthenticated, setUser]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (authenticated === null) {
     return <div style={{ color: "whitesmoke" }}>loading...</div>;
