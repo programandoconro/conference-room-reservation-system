@@ -1,7 +1,6 @@
 import { FC, useContext, useState, useEffect } from "react";
 import { Grid, Typography, Box } from "@mui/material";
 import SelectionBox from "./selectionBox";
-import { outerBox, innerBox, grid } from "./sx";
 import { rooms, hours } from "utils/constants";
 import ReservationContext from "contexts/reservationContext";
 import theme from "utils/theme";
@@ -32,10 +31,11 @@ const HoursGrid = (props: {
   }, []);
   const OuterBox = (props: { item: string }) => {
     return (
-      <Box sx={outerBox}>
+      <Box className="flex justify-center select-none " minHeight={"40px"}>
         <Typography
-          style={{ fontWeight: "lighter", fontSize: "12px" }}
-          sx={{ display: "flex", alignItems: "center" }}
+          className="flex self-center"
+          fontSize="12px"
+          fontWeight={"lighter"}
         >
           {props.item}
         </Typography>
@@ -95,7 +95,7 @@ const HoursGrid = (props: {
     };
     return (
       <div onClick={() => handleClickReservation(color)}>
-        <Box sx={innerBox}>
+        <Box className="flex select-none w-full border-b-2">
           <SelectionBox
             color={color}
             room={room}
@@ -106,11 +106,11 @@ const HoursGrid = (props: {
     );
   };
   return (
-    <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
-      <Grid style={{ width: "100%" }} container wrap="nowrap" sx={grid}>
+    <div className="flex w-full">
+      <Grid className="w-full" container wrap="nowrap">
         {hours.map((hour, index) => {
           return (
-            <div key={index} style={{ width: "100%" }}>
+            <div className="w-full" key={index}>
               <OuterBox item={hour} />
               <InnerBox hour={hour} room={rooms[0]} />
               <InnerBox hour={hour} room={rooms[1]} />

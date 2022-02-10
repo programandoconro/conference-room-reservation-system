@@ -41,24 +41,18 @@ const TimePickerMode = (props: TimePickerType) => {
   return (
     <div>
       {open && (
-        <div
-          style={{
-            display: "flex",
-          }}
-        >
-          <div style={{ width: "150px" }}>
+        <div className="flex">
+          <div className="w-36">
             <TimePicker
               value={startTime}
               onChange={(e) => setStartTime(e)}
               renderInput={(params) => <TextField {...params} />}
             />
           </div>
-          <Typography
-            style={{ display: "flex", alignSelf: "center", padding: "10px" }}
-          >
+          <Typography className="flext text-center p-1 self-center">
             ~
           </Typography>
-          <div style={{ width: "150px" }}>
+          <div className="w-36">
             <TimePicker
               value={endTime}
               onChange={(e) => setEndTime(e)}

@@ -8,15 +8,15 @@ const Schedule: FC = () => {
   const [room, setRoom] = useState("");
 
   return (
-    <div style={{ display: "grid", width: "100%" }}>
-      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+    <div className="grid w-full">
+      <div className="flex">
         <TimePickerMode
           open={openTimePicker}
           setOpen={setOpenTimePicker}
           room={room}
         />
       </div>
-      <div className="schedule">
+      <div className="flex w-full">
         <RoomsGrid />
         <HoursGrid setOpenTimePicker={setOpenTimePicker} setRoom={setRoom} />
       </div>

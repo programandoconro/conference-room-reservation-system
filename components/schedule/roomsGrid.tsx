@@ -1,16 +1,20 @@
-import { grid, roomsBox } from "./sx";
 import { Box, Grid, Typography } from "@mui/material";
 
 const RoomsGrid = () => {
   const rooms = ["", "大会議室", "中会議室", "小会議室"];
 
   return (
-    <Grid style={{ display: "grid" }} sx={grid}>
+    <Grid>
       {rooms.map((room, index) => {
         return (
-          <div key={index} style={{ width: "100%" }}>
-            <Box key={index} sx={roomsBox}>
-              <Typography style={{ fontWeight: "bold" }}>{room}</Typography>
+          <div key={index}>
+            <Box
+              className="flex justify-center items-center"
+              height={"40px"}
+              minWidth={"80px"}
+              key={index}
+            >
+              <Typography className="font-bold">{room}</Typography>
             </Box>
           </div>
         );

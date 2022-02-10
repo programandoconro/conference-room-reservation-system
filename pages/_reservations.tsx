@@ -33,18 +33,16 @@ const Reservation = () => {
         setReservations,
       }}
     >
-      <div className="page">
-        <header>
-          <Header />
-        </header>
-        <div className="reservations">
-          <Container className="calendar">
+      <div className="h-full w-full bg-white">
+        <Header />
+        <div className="pb-4 border-2 border-solid border-grey">
+          <Container>
             <Calendar />
           </Container>
-          <Container className="navigation">
+          <Container>
             <NavigationArea />
           </Container>
-          <Container className="schedule-container">
+          <Container>
             <div className="schedule">
               <Schedule />
             </div>

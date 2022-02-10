@@ -5,16 +5,7 @@ import ReservationContext from "contexts/reservationContext";
 const Info = () => {
   const { reservations, date } = useContext(ReservationContext);
   return (
-    <Container
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        backgroundColor: "gray",
-        padding: "10px",
-        overflowY: "scroll",
-        margin: "10px",
-      }}
-    >
+    <Container className="flex bg-slate-100 p-1 mt-1 overflow-y-scroll">
       {reservations
         .slice(0)
         .reverse()
@@ -22,18 +13,11 @@ const Info = () => {
           return (
             <div
               key={key}
-              style={{
-                justifyContent: "center",
-                display: "flex",
-              }}
+              className="flex flex-col items-center justify-center"
             >
               <Card
+                className="flex min-w-full mt-2 w-8/12 "
                 style={{
-                  display: "flex",
-                  margin: "2px",
-                  minWidth: "fit-content",
-                  width: "80%",
-                  justifyContent: "center",
                   backgroundColor:
                     date === reservation.date ? "yellow" : "white",
                 }}

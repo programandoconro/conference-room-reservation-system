@@ -2,16 +2,7 @@ import { Container, Card, CardContent, Typography } from "@mui/material";
 
 const News = () => {
   return (
-    <Container
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        padding: "10px",
-        overflowY: "scroll",
-        margin: "10px",
-        border: "1px solid black",
-      }}
-    >
+    <Container className="flex overflow-y-scroll mt-1 border border-solid border-black">
       <Typography
         variant="overline"
         style={{ fontWeight: "lighter", fontSize: "12px" }}
