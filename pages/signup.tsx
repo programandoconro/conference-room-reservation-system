@@ -7,10 +7,10 @@ import {
   Button,
   Typography,
 } from "@mui/material";
-import { isEmail, isPassword } from "utils/checkers";
-import { signUpUser } from "utils/requests";
-import { UserType } from "utils/types";
-import UserContext from "contexts/userContext";
+import { isEmail, isPassword } from "@comp/utils/checkers";
+import { signUpUser } from "@comp/utils/requests";
+import { UserType } from "@comp/utils/types";
+import UserContext from "@comp/contexts/userContext";
 import { useRouter } from "next/router";
 import Link from "next/link";
 

@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../prisma/prisma";
 import { allStrings } from "utils/checkers";
-import { createToken, encryptPassword } from "@components/utils/encryption";
+import { createToken, encryptPassword } from "@comp/utils/encryption";
 
 const singUpRoute = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {

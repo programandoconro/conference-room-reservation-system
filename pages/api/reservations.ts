@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../prisma/prisma";
 import { ReservationType } from "utils/types";
-import { allStrings } from "@components/utils/checkers";
+import { allStrings } from "@comp/utils/checkers";
 
 type Data = {
   data: ReservationType[] | "success";

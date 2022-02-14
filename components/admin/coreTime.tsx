@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { Container, Card, CardContent, Typography } from "@mui/material";
 
 const CoreTime = () => {

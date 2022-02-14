@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
 import TimePicker from "@mui/lab/TimePicker";
 import { TextField, Button, Typography } from "@mui/material";
-import UserContext from "contexts/userContext";
-import ReservationContext from "contexts/reservationContext";
-import { getTimestamp, getTime } from "@components/utils/formatDate";
-import { TimePickerType } from "@components/utils/types";
-import { postReservation } from "@components/utils/requests";
+import UserContext from "@comp/contexts/userContext";
+import ReservationContext from "@comp/contexts/reservationContext";
+import { getTimestamp, getTime } from "@comp/utils/formatDate";
+import { TimePickerType } from "@comp/utils/types";
+import { postReservation } from "@comp/utils/requests";
 
 const TimePickerMode = (props: TimePickerType) => {
   const { open, setOpen, room } = props;

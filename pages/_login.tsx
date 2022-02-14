@@ -7,10 +7,10 @@ import {
   Typography,
   TextField,
 } from "@mui/material";
-import { isEmail, isPassword } from "@components/utils/checkers";
-import { loginUser } from "@components/utils/requests";
+import { isEmail, isPassword } from "@comp/utils/checkers";
+import { loginUser } from "@comp/utils/requests";
 import { useRouter } from "next/router";
-import UserContext from "@components/contexts/userContext";
+import UserContext from "@comp/contexts/userContext";
 import Link from "next/link";
 import { buttonStyle, inputStyle } from "./signup";
 

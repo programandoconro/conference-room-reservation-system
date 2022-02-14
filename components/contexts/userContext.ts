@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { UserType, UserContextType } from "@components/utils/types";
+import { UserType, UserContextType } from "@comp/utils/types";
 
 const InitialUserContext: UserContextType = {
   user: {

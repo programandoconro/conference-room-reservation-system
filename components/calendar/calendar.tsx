@@ -1,6 +1,6 @@
 import { useState, FC, useContext } from "react";
 import { Button, TextField } from "@mui/material";
-import formatDate from "utils/formatDate";
+import formatDate from "@comp/utils/formatDate";
 import ReservationContext from "contexts/reservationContext";
 import { DatePicker } from "@mui/lab";
 
@@ -11,7 +11,7 @@ const CalendarComponent: FC = () => {
   const handleOpen = () => {
     setOpen(true);
   };
-  const handleCloseModal = () => {
+  const handleClose = () => {
     setOpen(false);
   };
 
@@ -26,7 +26,7 @@ const CalendarComponent: FC = () => {
 
   return (
     <div>
-      <div className="calendar-container">
+      <div className="flex m-1 p-1">
         <div onClick={handleOpen}>
           <DatePicker
             mask="____/__/__"
@@ -35,22 +35,9 @@ const CalendarComponent: FC = () => {
             value={date}
             onChange={(e) => e && handleChange(e)}
             renderInput={(params) => <TextField {...params} />}
-            onClose={handleCloseModal}
+            onClose={handleClose}
             inputFormat="yyyy/MM/dd"
-          >
-            <Button
-              className="calendar-close-button"
-              onClick={handleCloseModal}
-              size="small"
-              style={{
-                position: "absolute",
-                right: "-25px",
-                color: "grey",
-              }}
-            >
-              x
-            </Button>
-          </DatePicker>
+          />
         </div>
       </div>
     </div>

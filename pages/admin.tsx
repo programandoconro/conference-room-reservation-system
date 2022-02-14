@@ -1,5 +1,5 @@
-import Limit from "@components/admin/limit";
-import CoreTime from "@components/admin/coreTime";
+import Limit from "@comp/admin/limit";
+import CoreTime from "@comp/admin/coreTime";
 
 const Admin = () => {
   return (

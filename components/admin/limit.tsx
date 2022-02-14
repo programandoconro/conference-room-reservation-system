@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Card, Container, Input, Typography } from "@mui/material";
-import { getLimitTime, postLimitTime } from "@components/utils/requests";
+import { getLimitTime, postLimitTime } from "@comp/utils/requests";
 
 const Limit = () => {
   const [limitBigRoom, setLimitBigRoom] = useState(0);

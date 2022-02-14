@@ -3,7 +3,7 @@ import ReservationContext from "contexts/reservationContext";
 import { Button, Card, CardContent, Typography } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import formatDate from "@components/utils/formatDate";
+import formatDate from "@comp/utils/formatDate";
 import { buttonStyle } from "./sx";
 import add from "date-fns/add";
 import sub from "date-fns/sub";
@@ -27,8 +27,8 @@ const NavigationArea = () => {
     setDate(formatDate(yesterday));
   };
   return (
-    <div className="navigation-container">
-      <div className="navigation-card">
+    <div className="flex p-0">
+      <div className="flex justify-end">
         <Button variant="contained" sx={buttonStyle} onClick={handleYesterday}>
           <NavigateBeforeIcon />
         </Button>

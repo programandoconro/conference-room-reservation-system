@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
 import type { NextPage } from "next";
 import Login from "./_login";
-import UserContext from "@components/contexts/userContext";
+import UserContext from "@comp/contexts/userContext";
 import Reservation from "./_reservations";
-import { loginUserWithToken } from "@components/utils/requests";
+import { loginUserWithToken } from "@comp/utils/requests";
 
 const Home: NextPage = () => {
   const { authenticated, setAuthenticated, setUser } = useContext(UserContext);

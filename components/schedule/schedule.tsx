@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import HoursGrid from "./hoursGrid";
-import TimePickerMode from "@components/timepicker/timePicker";
+import TimePickerMode from "@comp/timepicker/timePicker";
 
 const Schedule: FC = () => {
   const [openTimePicker, setOpenTimePicker] = useState(false);

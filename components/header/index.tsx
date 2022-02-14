@@ -2,7 +2,7 @@ import { useContext } from "react";
 import Logout from "./logout";
 import Info from "./info";
 import News from "./news";
-import UserContext from "@components/contexts/userContext";
+import UserContext from "@comp/contexts/userContext";
 import { Button, Typography } from "@mui/material";
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 

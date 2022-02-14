@@ -1,11 +1,9 @@
 import { useState } from "react";
 import type { AppProps } from "next/app";
-import UserContext from "@components/contexts/userContext";
-import { UserType } from "@components/utils/types";
+import UserContext from "@comp/contexts/userContext";
+import { UserType } from "@comp/utils/types";
 
 import "../styles/globals.css";
-import "../styles/calendar.css";
-import "../styles/navigation.css";
 
 import DateAdapter from "@mui/lab/AdapterDateFns";
 import { LocalizationProvider } from "@mui/lab";

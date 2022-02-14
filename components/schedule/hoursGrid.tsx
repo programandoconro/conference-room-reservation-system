@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Grid, Typography, Box } from "@mui/material";
-import { rooms, hours } from "utils/constants";
-import { getLimitTime } from "@components/utils/requests";
+import { rooms, hours } from "@comp/utils/constants";
+import { getLimitTime } from "@comp/utils/requests";
 import HeaderRow from "./headerRow";
 import InnerBox from "./innerBox";
 

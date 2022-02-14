@@ -1,6 +1,6 @@
 import { createContext } from "react";
-import formatDate, { getTimestamp } from "utils/formatDate";
-import { ReservationType, ReservationContextType } from "utils/types";
+import formatDate, { getTimestamp } from "@comp/utils/formatDate";
+import { ReservationType, ReservationContextType } from "@comp/utils/types";
 
 const InitialReservationContext: ReservationContextType = {
   date: formatDate(new Date()),
