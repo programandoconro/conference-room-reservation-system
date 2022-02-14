@@ -2,6 +2,7 @@ import formatDate from "./formatDate";
 import add from "date-fns/add";
 
 export const hours = [
+  "~",
   "08",
   "09",
   "10",
@@ -15,7 +16,6 @@ export const hours = [
   "18",
   "19",
   "20",
-  "21",
 ];
 
 const today = formatDate(new Date());

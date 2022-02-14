@@ -1,26 +1,15 @@
-import { FC, useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Grid, Typography, Box } from "@mui/material";
-import SelectionBox from "./selectionBox";
 import { rooms, hours } from "utils/constants";
-import ReservationContext from "contexts/reservationContext";
-import theme from "utils/theme";
-import getHours from "date-fns/getHours";
-import isBefore from "date-fns/isBefore";
-import { getDayName, getMonth, getDayFormat } from "utils/formatDate";
-import getDay from "date-fns/getDay";
-import differenceInWeeks from "date-fns/differenceInWeeks";
 import { getLimitTime } from "@components/utils/requests";
+import HeaderRow from "./headerRow";
+import InnerBox from "./innerBox";
 
 const HoursGrid = (props: {
   setRoom: (v: string) => void;
   setOpenTimePicker: (v: boolean) => void;
 }) => {
   const { setOpenTimePicker, setRoom } = props;
-  const { date, reservations } = useContext(ReservationContext);
-  const day = getDayFormat(date);
-  const month = getMonth(date);
-  const dayName = getDayName(date);
-  const japDate = `${month}/${day}(${dayName})`;
 
   const [limitBigRoom, setLimitBigRoom] = useState(0);
   const [limitMedRoom, setLimitMedRoom] = useState(0);
@@ -29,96 +18,39 @@ const HoursGrid = (props: {
   useEffect(() => {
     getLimitTime(setLimitBigRoom, setLimitMedRoom, setLimitSmallRoom);
   }, []);
-  const OuterBox = (props: { item: string }) => {
+
+  const Rows = (props: { room: string }) => {
     return (
-      <Box className="flex justify-center select-none " minHeight={"40px"}>
-        <Typography
-          className="flex self-center"
-          fontSize="12px"
-          fontWeight={"lighter"}
-        >
-          {props.item}
-        </Typography>
-      </Box>
-    );
-  };
-
-  const reservationColor = theme.palette.primary.main;
-  const InnerBox = (props: { hour: string; room: string }) => {
-    const { hour, room } = props;
-    let color = "white";
-
-    if (isBefore(new Date(date), new Date())) {
-      color = "lightgrey";
-      if (getDay(new Date()) === getDay(new Date(date))) {
-        if (getHours(new Date()) >= Number(hour)) {
-          color = "lightgrey";
-        } else {
-          color = "white";
-        }
-      }
-    }
-    if (
-      differenceInWeeks(new Date(date), new Date()) < limitMedRoom &&
-      room === "中会議室"
-    ) {
-      color = "lightgrey";
-    }
-    if (
-      differenceInWeeks(new Date(date), new Date()) < limitBigRoom &&
-      room === "大会議室"
-    ) {
-      color = "lightgrey";
-    }
-    if (
-      differenceInWeeks(new Date(date), new Date()) < limitSmallRoom &&
-      room === "小会議室"
-    ) {
-      color = "lightgrey";
-    }
-
-    reservations.forEach((reservation) => {
-      if (
-        date === reservation.date &&
-        hour >= reservation.start.slice(0, 2) &&
-        hour < reservation.end.slice(0, 2) &&
-        room === reservation.room
-      ) {
-        color = reservationColor;
-      }
-    });
-    const handleClickReservation = (color: string) => {
-      if (color === "white") {
-        setOpenTimePicker(true);
-        setRoom(room);
-      }
-    };
-    return (
-      <div onClick={() => handleClickReservation(color)}>
-        <Box className="flex select-none w-full border-b-2">
-          <SelectionBox
-            color={color}
-            room={room}
-            japDate={`${japDate} ${hour}:00`}
-          />
+      <Grid className="w-full hover:bg-purple-200" container wrap="nowrap">
+        <Box className="flex justify-center items-center" minWidth={"80px"}>
+          <Typography className="font-bold">{props.room}</Typography>
         </Box>
-      </div>
-    );
-  };
-  return (
-    <div className="flex w-full">
-      <Grid className="w-full" container wrap="nowrap">
         {hours.map((hour, index) => {
           return (
             <div className="w-full" key={index}>
-              <OuterBox item={hour} />
-              <InnerBox hour={hour} room={rooms[0]} />
-              <InnerBox hour={hour} room={rooms[1]} />
-              <InnerBox hour={hour} room={rooms[2]} />
+              <InnerBox
+                hour={hour}
+                room={props.room}
+                limitBigRoom={limitBigRoom}
+                limitMedRoom={limitMedRoom}
+                limitSmallRoom={limitSmallRoom}
+                setRoom={setRoom}
+                setOpenTimePicker={setOpenTimePicker}
+              />
             </div>
           );
         })}
       </Grid>
+    );
+  };
+  return (
+    <div className="flex w-full ">
+      <div className="w-full">
+        <HeaderRow />
+        <Rows room={rooms[0]} />
+        <Rows room={rooms[1]} />
+        <Rows room={rooms[2]} />
+      </div>
     </div>
   );
 };

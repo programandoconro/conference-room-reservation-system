@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
 import HoursGrid from "./hoursGrid";
-import RoomsGrid from "./roomsGrid";
 import TimePickerMode from "@components/timepicker/timePicker";
 
 const Schedule: FC = () => {
@@ -16,8 +15,7 @@ const Schedule: FC = () => {
           room={room}
         />
       </div>
-      <div className="flex w-full">
-        <RoomsGrid />
+      <div className="flex w-full m-5">
         <HoursGrid setOpenTimePicker={setOpenTimePicker} setRoom={setRoom} />
       </div>
     </div>
