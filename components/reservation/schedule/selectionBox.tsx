@@ -31,7 +31,7 @@ const SelectionBox = (props: { color: string }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className={isReserved}>
+      <div className="border-x border-dashed">
         <Typography className="bg-transparent" height={"39px"} />
       </div>
     </div>

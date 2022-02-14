@@ -1,5 +1,6 @@
 import format from "date-fns/format/index.js";
 import ja from "date-fns/locale/ja";
+import endOfDay from "date-fns/endOfDay";
 
 export const getTimestamp = () => {
   return format(new Date(), "yyyy-MM-dd HH:mm:ss", { locale: ja });
@@ -17,6 +18,10 @@ export const getMonth = (date: string) => {
 };
 export const getTime = (date: number): string => {
   return format(date, "HH:mm", { locale: ja });
+};
+
+export const getToday = () => {
+  return format(new Date(), "yyyy/MM/dd", { locale: ja });
 };
 
 const formatDate = (date: Date) => {

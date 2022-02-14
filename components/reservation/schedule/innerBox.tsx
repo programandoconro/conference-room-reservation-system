@@ -7,6 +7,7 @@ import isBefore from "date-fns/isBefore";
 import getDay from "date-fns/getDay";
 import differenceInWeeks from "date-fns/differenceInWeeks";
 import minutesToPercentange from "./minutesToPercentange";
+import { getToday } from "@comp/utils/formatDate";
 
 const InnerBox = (props: {
   hour: string;
@@ -30,7 +31,8 @@ const InnerBox = (props: {
   let color = "transparent";
   const { date, reservations } = useContext(ReservationContext);
 
-  if (isBefore(new Date(date), new Date())) {
+  const isDateBeforeToday = isBefore(new Date(date), new Date(getToday()));
+  if (isDateBeforeToday) {
     color = "lightgrey";
     if (getDay(new Date()) === getDay(new Date(date))) {
       if (getHours(new Date()) >= Number(hour)) {
@@ -61,10 +63,7 @@ const InnerBox = (props: {
   ) {
     color = "lightgrey";
   }
-
-  const isGrey = isBefore(new Date(date), new Date())
-    ? "lightgrey"
-    : "transparent";
+  const isGrey = isDateBeforeToday ? "lightgrey" : "transparent";
   reservations.forEach((reservation) => {
     const minutesStart = reservation.start.slice(-2);
     const minutesEnd = reservation.end.slice(-2);
@@ -104,14 +103,7 @@ const InnerBox = (props: {
     color === "transparent" ? "solid 0.5px lightgrey" : "border-none";
   return (
     <div onClick={() => handleClickReservation(color)}>
-      <Box
-        className="flex select-none w-full m-0"
-        style={{
-          border: isReserved,
-          borderTop: "solid 0.5px lightgrey",
-          borderBottom: "solid 0.5px lightgrey",
-        }}
-      >
+      <Box className="flex select-none w-full m-0 border border-gray-200">
         <SelectionBox color={color} />
       </Box>
     </div>
