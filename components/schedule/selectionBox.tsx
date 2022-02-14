@@ -19,7 +19,7 @@ const SelectionBox = (props: { color: string }) => {
     <div
       className="w-full relative flex justify-center"
       style={{
-        backgroundColor: color,
+        background: color,
         outline: border,
         outlineOffset: "-2px",
         opacity: "0.5",
