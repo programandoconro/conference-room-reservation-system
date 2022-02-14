@@ -23,6 +23,9 @@ const CalendarComponent: FC = () => {
       console.log("not a valid date");
     }
   };
+  const handleToday = () => {
+    setDate(formatDate(new Date()));
+  };
 
   return (
     <div>
@@ -39,6 +42,12 @@ const CalendarComponent: FC = () => {
             inputFormat="yyyy/MM/dd"
           />
         </div>
+        <button
+          className="m-1 bg-blue-700 rounded w-14 h-8 self-center"
+          onClick={handleToday}
+        >
+          <h5 className="text-white">今日</h5>
+        </button>
       </div>
     </div>
   );

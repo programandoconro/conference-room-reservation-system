@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import type { NextPage } from "next";
 import Login from "@comp/login";
 import UserContext from "@comp/contexts/userContext";
-import Reservation from "../components/reservation";
+import Reservation from "@comp/reservation";
 import { loginUserWithToken } from "@comp/utils/requests";
 
 const Home: NextPage = () => {

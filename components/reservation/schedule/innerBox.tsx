@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { Box } from "@mui/material";
 import SelectionBox from "./selectionBox";
 import ReservationContext from "contexts/reservationContext";
-import theme from "utils/theme";
 import getHours from "date-fns/getHours";
 import isBefore from "date-fns/isBefore";
 import getDay from "date-fns/getDay";
@@ -30,7 +29,6 @@ const InnerBox = (props: {
 
   let color = "transparent";
   const { date, reservations } = useContext(ReservationContext);
-  const reservationColor = theme.palette.primary.main;
 
   if (isBefore(new Date(date), new Date())) {
     color = "lightgrey";
@@ -43,9 +41,6 @@ const InnerBox = (props: {
     }
   }
   if (hour === "~") {
-    color = "lightgrey";
-  }
-  if (hour > "19") {
     color = "lightgrey";
   }
   if (
@@ -67,32 +62,34 @@ const InnerBox = (props: {
     color = "lightgrey";
   }
 
+  const isGrey = isBefore(new Date(date), new Date())
+    ? "lightgrey"
+    : "transparent";
   reservations.forEach((reservation) => {
     const minutesStart = reservation.start.slice(-2);
     const minutesEnd = reservation.end.slice(-2);
+    const minutesAfterHour = minutesToPercentange(Number(minutesStart));
+    const minutesBeforeHour = minutesToPercentange(Number(minutesEnd));
     if (date === reservation.date && room === reservation.room) {
+      if (hour > "19") {
+        color = "lightgrey";
+      }
       if (
         hour >= reservation.start.slice(0, 2) &&
         hour < reservation.end.slice(0, 2)
       ) {
         if (minutesStart === "00") {
-          const bg = `linear-gradient(to right, yellow ${minutesToPercentange(
-            Number(minutesStart)
-          )}, white 0%)`;
+          const bg = `linear-gradient(to right, yellow ${minutesAfterHour},${isGrey} 0%)`;
           color = bg;
         } else if (hour === reservation.start.slice(0, 2)) {
-          const bg = `linear-gradient(to right, white ${minutesToPercentange(
-            Number(minutesStart)
-          )}, yellow 0%)`;
+          const bg = `linear-gradient(to right, ${isGrey} ${minutesAfterHour}, yellow 0%)`;
           color = bg;
         } else if (hour > reservation.start.slice(0, 2)) {
-          const bg = `linear-gradient(to right, yellow 100%, white 0%)`;
+          const bg = `linear-gradient(to right, yellow 100%, transparent 0%)`;
           color = bg;
         }
       } else if (hour === reservation.end.slice(0, 2)) {
-        const bg = `linear-gradient(to right, yellow ${minutesToPercentange(
-          Number(minutesEnd)
-        )}, white 0%)`;
+        const bg = `linear-gradient(to right, yellow ${minutesBeforeHour}, ${isGrey} 0%)`;
         color = bg;
       }
     }
