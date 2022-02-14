@@ -88,7 +88,7 @@ const InnerBox = (props: {
           const bg = `linear-gradient(to right, yellow 100%, transparent 0%)`;
           color = bg;
         }
-      } else if (hour === reservation.end.slice(0, 2)) {
+      } else if (hour === reservation.end.slice(0, 2) && minutesEnd > "00") {
         const bg = `linear-gradient(to right, yellow ${minutesBeforeHour}, ${isGrey} 0%)`;
         color = bg;
       }
@@ -100,9 +100,18 @@ const InnerBox = (props: {
       setRoom(room);
     }
   };
+  const isReserved =
+    color === "transparent" ? "solid 0.5px lightgrey" : "border-none";
   return (
     <div onClick={() => handleClickReservation(color)}>
-      <Box className="flex select-none w-full border border-gray-300 ">
+      <Box
+        className="flex select-none w-full m-0"
+        style={{
+          border: isReserved,
+          borderTop: "solid 0.5px lightgrey",
+          borderBottom: "solid 0.5px lightgrey",
+        }}
+      >
         <SelectionBox color={color} />
       </Box>
     </div>

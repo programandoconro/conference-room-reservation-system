@@ -3,7 +3,7 @@ import { Typography } from "@mui/material";
 
 const SelectionBox = (props: { color: string }) => {
   const { color } = props;
-  const [border, setBorder] = useState<string>("white");
+  const [border, setBorder] = useState<string>("transparent");
 
   const handleMouseEnter = () => {
     if (color === "transparent") {
@@ -12,9 +12,13 @@ const SelectionBox = (props: { color: string }) => {
   };
   const handleMouseLeave = () => {
     if (color === "transparent") {
-      setBorder("white");
+      setBorder("transparent");
     }
   };
+  const isReserved =
+    color === "lightgrey" || color === "transparent"
+      ? "border-x border-dashed"
+      : "";
   return (
     <div
       className="w-full relative flex justify-center"
@@ -27,7 +31,7 @@ const SelectionBox = (props: { color: string }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="border border-dashed">
+      <div className={isReserved}>
         <Typography className="bg-transparent" height={"39px"} />
       </div>
     </div>
