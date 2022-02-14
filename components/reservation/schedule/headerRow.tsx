@@ -1,5 +1,5 @@
 import { Grid, Box, Typography } from "@mui/material";
-import { hours } from "utils/constants";
+import { hours } from "@comp/utils/constants";
 
 const OuterBox = (props: { item: string }) => {
   return (

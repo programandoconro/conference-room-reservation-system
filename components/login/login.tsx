@@ -12,7 +12,7 @@ import { loginUser } from "@comp/utils/requests";
 import { useRouter } from "next/router";
 import UserContext from "@comp/contexts/userContext";
 import Link from "next/link";
-import { buttonStyle, inputStyle } from "./signup";
+import { buttonStyle, inputStyle } from "../../pages/signup";
 
 const Login = () => {
   const router = useRouter();

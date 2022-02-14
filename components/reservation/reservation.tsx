@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import ReservationContext from "contexts/reservationContext";
-import formatDate from "@comp/utils/formatDate";
-import Calendar from "@comp/calendar/calendar";
-import Schedule from "@comp/schedule/schedule";
-import NavigationArea from "@comp/nav-area/navigationArea";
-import Header from "@comp/header";
+import Schedule from "./schedule";
+import Header from "./header";
+import Calendar from "./calendar/";
+import NavigationArea from "./nav-area/";
 import { Container } from "@mui/material";
+import formatDate from "@comp/utils/formatDate";
 import { ReservationType } from "@comp/utils/types";
+import { getReservations } from "@comp/utils/requests";
 import { initialReservation } from "@comp/utils/constants";
-import { getReservations } from "utils/requests";
+import ReservationContext from "@comp/contexts/reservationContext";
 
 const Reservation = () => {
   const [date, setDate] = useState(formatDate(new Date()));
