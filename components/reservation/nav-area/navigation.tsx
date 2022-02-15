@@ -23,18 +23,22 @@ const NavigationArea = () => {
   };
   return (
     <div className="flex  ">
-      <div className="flex justify-center align-middle">
-        <button className="flex my-1  " onClick={handleYesterday}>
+      <div className="flex justify-center align-middle my-1">
+        <button
+          className="flex  hover:bg-purple-200 rounded transition"
+          onClick={handleYesterday}
+        >
           <NavigateBeforeIcon />
-          <h5>前の日</h5>
+          前の日
         </button>
-        <div className="flex  mx-10 my-1 ">
-          <h5>
-            {date}（{getDayName(date)}）
-          </h5>
+        <div className="flex mx-10  ">
+          {date}（{getDayName(date)}）
         </div>
-        <button className="flex my-1 " onClick={handleTomorrow}>
-          <h5>次の日</h5>
+        <button
+          className="flex  hover:bg-purple-200 rounded transition"
+          onClick={handleTomorrow}
+        >
+          次の日
           <NavigateNextIcon />
         </button>
       </div>

@@ -10,17 +10,13 @@ const Logout: FC = () => {
     localStorage.removeItem("token");
   };
   return (
-    <Button
-      style={{
-        backgroundColor: "white",
-        fontSize: "18px",
-        color: "black",
-      }}
+    <button
+      className=" p-1 hover:bg-orange-200 rounded transition"
       onClick={handleLogout}
     >
       <MeetingRoomIcon />
       Logout
-    </Button>
+    </button>
   );
 };
 

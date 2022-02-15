@@ -43,7 +43,7 @@ const CalendarComponent: FC = () => {
           />
         </div>
         <button
-          className="m-1 bg-blue-700 rounded w-14 h-8 self-center"
+          className="m-1 bg-blue-700 rounded w-14 h-8 self-center hover:bg-blue-600 transition"
           onClick={handleToday}
         >
           <h5 className="text-white">今日</h5>

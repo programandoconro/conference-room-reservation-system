@@ -1,8 +1,8 @@
-import { Container, Card, CardContent, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 const News = () => {
   return (
-    <Container className="flex overflow-y-scroll mt-1 border border-solid border-black">
+    <div className="overflow-y-auto p-1  w-1/3 mt-1 border border-solid border-black">
       <Typography
         variant="overline"
         style={{ fontWeight: "lighter", fontSize: "12px" }}
@@ -39,7 +39,7 @@ const News = () => {
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt
         mollit anim id est laborum.
       </Typography>
-    </Container>
+    </div>
   );
 };
 export default News;

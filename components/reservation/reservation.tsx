@@ -41,7 +41,9 @@ const Reservation = () => {
       }}
     >
       <div className="h-full w-full bg-white">
-        <Header />
+        <Container>
+          <Header />
+        </Container>
         <div className="pb-4 border-2 border-solid border-grey">
           <Container>
             <Calendar />
