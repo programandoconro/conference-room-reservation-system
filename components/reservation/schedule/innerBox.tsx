@@ -6,7 +6,7 @@ import isBefore from "date-fns/isBefore";
 import getDay from "date-fns/getDay";
 import differenceInWeeks from "date-fns/differenceInWeeks";
 import minutesToPercentange from "./minutesToPercentange";
-import { getToday } from "@comp/utils/formatDate";
+import { getIsToday } from "@comp/utils/formatDate";
 
 const InnerBox = (props: {
   hour: string;
@@ -62,9 +62,12 @@ const InnerBox = (props: {
   ) {
     color = "lightgrey";
   }
-  const isGrey = isBefore(new Date(), new Date(getToday()))
-    ? "lightgrey"
-    : "transparent";
+  const isGrey =
+    (isDateBeforeToday && !getIsToday(date)) ||
+    (getIsToday(date) && new Date().getHours() >= Number(hour))
+      ? "lightgrey"
+      : "transparent";
+
   let isEndReservation: boolean = false;
   reservations.forEach((reservation) => {
     const minutesStart = reservation.start.slice(-2);

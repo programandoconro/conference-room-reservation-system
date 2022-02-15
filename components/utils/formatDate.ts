@@ -1,9 +1,13 @@
 import format from "date-fns/format/index.js";
 import ja from "date-fns/locale/ja";
-import endOfDay from "date-fns/endOfDay";
+import isToday from "date-fns/isToday";
 
 export const getTimestamp = () => {
   return format(new Date(), "yyyy-MM-dd HH:mm:ss", { locale: ja });
+};
+
+export const getIsToday = (date: string) => {
+  return isToday(new Date(date));
 };
 
 export const getDayName = (date: string) => {
