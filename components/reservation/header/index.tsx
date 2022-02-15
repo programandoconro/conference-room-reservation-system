@@ -34,7 +34,7 @@ const Header = () => {
         className="flex m-1 justify-end gap-1 overflow-hidden"
         style={{ maxHeight: "40vh" }}
       >
-        <div className="w-1/3 mt-1 self-center overflow-hidden border-0 rounded">
+        <div className="w-1/3 overflow-hidden border-0 rounded-full">
           <Image layout="responsive" src={pic} alt="pic" />
         </div>
         <News />
