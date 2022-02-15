@@ -18,6 +18,10 @@ const InitialReservationContext: ReservationContextType = {
     },
   ],
   setReservations: (reservations: ReservationType[]) => {},
+  start: null,
+  end: null,
+  setStart: (start: Date | number | null) => {},
+  setEnd: (start: Date | number | null) => {},
 };
 
 const ReservationContext = createContext<ReservationContextType>(

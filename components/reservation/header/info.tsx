@@ -9,7 +9,15 @@ const Info = () => {
       {reservations
         .slice(0)
         .reverse()
-        .map((reservation, key) => {
+        .map((res, key) => {
+          const timeStart = new Date(res.start).toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+          const timeEnd = new Date(res.end).toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          });
           return (
             <div
               key={key}
@@ -18,17 +26,15 @@ const Info = () => {
               <Card
                 className="flex min-w-full mt-2 w-8/12 "
                 style={{
-                  backgroundColor:
-                    date === reservation.date ? "yellow" : "white",
+                  backgroundColor: date === res.date ? "yellow" : "white",
                 }}
               >
                 <CardContent>
                   <Typography
                     style={{ fontWeight: "lighter", fontSize: "12px" }}
                   >
-                    {reservation.date} {String(reservation.start)} ~{" "}
-                    {String(reservation.end)}
-                    {reservation.room}
+                    {res.date} {timeStart} - {timeEnd}
+                    {res.room}
                   </Typography>
                 </CardContent>
               </Card>

@@ -1,9 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import TimePicker from "@mui/lab/TimePicker";
 import { TextField, Button, Typography } from "@mui/material";
 import UserContext from "@comp/contexts/userContext";
 import ReservationContext from "@comp/contexts/reservationContext";
-import { getTimestamp, getTime } from "@comp/utils/formatDate";
+import { getTimestamp } from "@comp/utils/formatDate";
 import { TimePickerType } from "@comp/utils/types";
 import { postReservation } from "@comp/utils/requests";
 
@@ -11,21 +11,18 @@ const TimePickerMode = (props: TimePickerType) => {
   const { open, setOpen, room } = props;
 
   const { user } = useContext(UserContext);
-  const { date, setReservations, reservations } =
+  const { date, setReservations, reservations, start, setStart, end, setEnd } =
     useContext(ReservationContext);
 
-  const [startTime, setStartTime] = useState<number | null>(null);
-  const [endTime, setEndTime] = useState<number | null>(null);
-
   const handleSetReservation = () => {
-    if (startTime && endTime) {
+    if (start && end) {
       const reservation = {
         company: user.company,
         name: user.name,
         email: user.email,
         date: date,
-        start: getTime(startTime),
-        end: getTime(endTime),
+        start: String(start),
+        end: String(end),
         room: room,
         timestamp: getTimestamp(),
       };
@@ -44,8 +41,8 @@ const TimePickerMode = (props: TimePickerType) => {
         <div className="flex">
           <div className="w-36">
             <TimePicker
-              value={startTime}
-              onChange={(e) => setStartTime(e)}
+              value={start}
+              onChange={(e) => e && setStart(e)}
               renderInput={(params) => <TextField {...params} />}
             />
           </div>
@@ -54,8 +51,8 @@ const TimePickerMode = (props: TimePickerType) => {
           </Typography>
           <div className="w-36">
             <TimePicker
-              value={endTime}
-              onChange={(e) => setEndTime(e)}
+              value={end}
+              onChange={(e) => e && setEnd(e)}
               renderInput={(params) => <TextField {...params} />}
             />
           </div>

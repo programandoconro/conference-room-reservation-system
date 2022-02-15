@@ -20,6 +20,10 @@ export type ReservationContextType = {
   setDate: (date: string) => void;
   reservations: ReservationType[];
   setReservations: (reservation: ReservationType[]) => void;
+  start: Date | number | null;
+  end: Date | number | null;
+  setStart: (start: Date | number | null) => void;
+  setEnd: (end: Date | number | null) => void;
 };
 
 export type UserContextType = {

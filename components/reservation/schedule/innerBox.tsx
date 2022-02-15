@@ -28,7 +28,8 @@ const InnerBox = (props: {
   } = props;
 
   let color = "transparent";
-  const { date, reservations } = useContext(ReservationContext);
+  const { date, reservations, setStart, setEnd, start, end } =
+    useContext(ReservationContext);
 
   const isDateBeforeToday = isBefore(new Date(date), new Date());
   if (isDateBeforeToday) {
@@ -41,7 +42,7 @@ const InnerBox = (props: {
       }
     }
   }
-  if (hour === "~") {
+  if (hour === "~" || hour > "19") {
     color = "lightgrey";
   }
   if (
@@ -69,40 +70,47 @@ const InnerBox = (props: {
       : "transparent";
 
   let isEndReservation: boolean = false;
-  reservations.forEach((reservation) => {
-    const minutesStart = reservation.start.slice(-2);
-    const minutesEnd = reservation.end.slice(-2);
+  let message: string = "";
+  reservations.forEach((res) => {
+    const minutesStart = new Date(res.start).getMinutes().toString();
+    const minutesEnd = new Date(res.end).getMinutes().toString();
+    const hourStart = new Date(res.start).getHours().toString();
+    const hourEnd = new Date(res.end).getHours().toString();
+
     const minutesAfterHour = minutesToPercentange(Number(minutesStart));
     const minutesBeforeHour = minutesToPercentange(Number(minutesEnd));
-    if (date === reservation.date && room === reservation.room) {
-      if (hour > "19") {
-        color = "lightgrey";
-      }
+
+    if (date === res.date && room === res.room) {
       if (
-        hour >= reservation.start.slice(0, 2) &&
-        hour < reservation.end.slice(0, 2)
+        hour >= new Date(res.start).getHours().toString() &&
+        hour < new Date(res.end).getHours().toString()
       ) {
-        if (minutesStart === "00") {
+        if (minutesStart === "0") {
           const bg = `linear-gradient(to right, yellow ${minutesAfterHour},${isGrey} 0%)`;
           color = bg;
-        } else if (hour === reservation.start.slice(0, 2)) {
+        } else if (hour === hourStart) {
           const bg = `linear-gradient(to right, ${isGrey} ${minutesAfterHour}, yellow 0%)`;
           color = bg;
-        } else if (hour > reservation.start.slice(0, 2)) {
+        } else if (hour > hourStart) {
           const bg = `linear-gradient(to right, yellow 100%, transparent 0%)`;
           color = bg;
         }
-      } else if (hour === reservation.end.slice(0, 2) && minutesEnd > "00") {
+      } else if (hour === hourEnd && minutesEnd > "00") {
         const bg = `linear-gradient(to right, yellow ${minutesBeforeHour}, ${isGrey} 0%)`;
         color = bg;
         isEndReservation = true;
       }
+    }
+    if (res.room === room && hourStart === hour) {
+      message = `${hourStart} - ${hourEnd}`;
     }
   });
   const handleClickReservation = (color: string) => {
     if (color === "transparent") {
       setOpenTimePicker(true);
       setRoom(room);
+      setStart(new Date(new Date().setHours(Number(hour), 0)));
+      setEnd(new Date(new Date().setHours(Number(hour) + 2, 0)));
     }
   };
   const isReservation =
@@ -117,8 +125,8 @@ const InnerBox = (props: {
           borderRight: isReservation,
         }}
       >
-        <div className="w-full">
-          <SelectionBox color={color} />
+        <div className="w-full overflow-hidden">
+          <SelectionBox color={color} message={message} />
         </div>
       </div>
     </div>

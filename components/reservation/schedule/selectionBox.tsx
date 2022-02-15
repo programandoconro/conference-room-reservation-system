@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Typography } from "@mui/material";
 
-const SelectionBox = (props: { color: string }) => {
-  const { color } = props;
+const SelectionBox = (props: { color: string; message?: string }) => {
+  const { color, message } = props;
   const [border, setBorder] = useState<string>("transparent");
 
   const handleMouseEnter = () => {
@@ -23,6 +22,7 @@ const SelectionBox = (props: { color: string }) => {
     }
     return "none";
   };
+  const isWritable: boolean = color !== "transparent" && color !== "lightgrey";
   return (
     <div
       className="w-full relative flex justify-center"
@@ -35,7 +35,16 @@ const SelectionBox = (props: { color: string }) => {
       onMouseLeave={handleMouseLeave}
     >
       <div style={{ borderRight: isReservation() }}>
-        <Typography className="bg-transparent" height={"39px"} />
+        <div
+          className="bg-transparent overflow-hidden"
+          style={{
+            height: "39px",
+            fontWeight: "lighter",
+            fontSize: "6px",
+          }}
+        >
+          {isWritable && message && message}
+        </div>
       </div>
     </div>
   );

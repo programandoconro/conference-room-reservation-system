@@ -16,6 +16,9 @@ const Reservation = () => {
   const [reservations, setReservations] =
     useState<ReservationType[]>(initialReservation);
 
+  const [start, setStart] = useState<Date | number | null>(null);
+  const [end, setEnd] = useState<Date | number | null>(null);
+
   useEffect(() => {
     const getInitialReservations = async () => {
       const response = await getReservations();
@@ -27,6 +30,10 @@ const Reservation = () => {
   return (
     <ReservationContext.Provider
       value={{
+        start,
+        setStart,
+        end,
+        setEnd,
         date,
         setDate,
         reservations,
