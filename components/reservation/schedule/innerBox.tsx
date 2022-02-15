@@ -7,7 +7,6 @@ import getDay from "date-fns/getDay";
 import differenceInWeeks from "date-fns/differenceInWeeks";
 import minutesToPercentange from "./minutesToPercentange";
 import { getToday } from "@comp/utils/formatDate";
-import { height } from "@mui/system";
 
 const InnerBox = (props: {
   hour: string;
@@ -31,7 +30,7 @@ const InnerBox = (props: {
   let color = "transparent";
   const { date, reservations } = useContext(ReservationContext);
 
-  const isDateBeforeToday = isBefore(new Date(date), new Date(getToday()));
+  const isDateBeforeToday = isBefore(new Date(date), new Date());
   if (isDateBeforeToday) {
     color = "lightgrey";
     if (getDay(new Date()) === getDay(new Date(date))) {
@@ -63,7 +62,10 @@ const InnerBox = (props: {
   ) {
     color = "lightgrey";
   }
-  const isGrey = isDateBeforeToday ? "lightgrey" : "transparent";
+  const isGrey = isBefore(new Date(), new Date(getToday()))
+    ? "lightgrey"
+    : "transparent";
+  let isEndReservation: boolean = false;
   reservations.forEach((reservation) => {
     const minutesStart = reservation.start.slice(-2);
     const minutesEnd = reservation.end.slice(-2);
@@ -90,6 +92,7 @@ const InnerBox = (props: {
       } else if (hour === reservation.end.slice(0, 2) && minutesEnd > "00") {
         const bg = `linear-gradient(to right, yellow ${minutesBeforeHour}, ${isGrey} 0%)`;
         color = bg;
+        isEndReservation = true;
       }
     }
   });
@@ -100,7 +103,7 @@ const InnerBox = (props: {
     }
   };
   const isReservation =
-    color === "transparent" || color === "lightgrey"
+    color === "transparent" || color === "lightgrey" || isEndReservation
       ? "0.5px solid lightgrey"
       : "none";
   return (
@@ -109,7 +112,6 @@ const InnerBox = (props: {
         className="flex select-none w-full m-0"
         style={{
           borderRight: isReservation,
-          borderLeft: isReservation,
         }}
       >
         <div className="w-full">
