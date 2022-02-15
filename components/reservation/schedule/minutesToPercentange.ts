@@ -3,7 +3,7 @@ const minutesToPercentange = (minutes: number): string => {
     return "100%";
   }
   const percentage = (minutes / 60) * 100;
-  return `${percentage}%`;
+  return `${percentage + 1}%`;
 };
 
 export default minutesToPercentange;

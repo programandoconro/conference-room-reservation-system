@@ -15,7 +15,7 @@ const Schedule: FC = () => {
           room={room}
         />
       </div>
-      <div className="flex w-full m-5">
+      <div className="flex w-full m-5 border-t border-gray-200">
         <HoursGrid setOpenTimePicker={setOpenTimePicker} setRoom={setRoom} />
       </div>
     </div>

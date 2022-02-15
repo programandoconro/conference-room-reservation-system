@@ -21,7 +21,11 @@ const HoursGrid = (props: {
 
   const Rows = (props: { room: string }) => {
     return (
-      <Grid className="w-full hover:bg-purple-200" container wrap="nowrap">
+      <Grid
+        className="w-full hover:bg-purple-200 border-b  border-gray-200"
+        container
+        wrap="nowrap"
+      >
         <Box className="flex justify-center items-center" minWidth={"80px"}>
           <Typography className="font-bold">{props.room}</Typography>
         </Box>

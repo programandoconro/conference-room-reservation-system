@@ -15,10 +15,10 @@ const SelectionBox = (props: { color: string }) => {
       setBorder("transparent");
     }
   };
-  const isReserved =
-    color === "lightgrey" || color === "transparent"
+  const isReservation =
+    color === "transparent" || color === "lightgrey"
       ? "border-x border-dashed"
-      : "";
+      : "border-none";
   return (
     <div
       className="w-full relative flex justify-center"
@@ -31,7 +31,7 @@ const SelectionBox = (props: { color: string }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="border-x border-dashed">
+      <div className={isReservation}>
         <Typography className="bg-transparent" height={"39px"} />
       </div>
     </div>

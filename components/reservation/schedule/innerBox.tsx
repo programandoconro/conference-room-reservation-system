@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { Box } from "@mui/material";
 import SelectionBox from "./selectionBox";
 import ReservationContext from "contexts/reservationContext";
 import getHours from "date-fns/getHours";
@@ -8,6 +7,7 @@ import getDay from "date-fns/getDay";
 import differenceInWeeks from "date-fns/differenceInWeeks";
 import minutesToPercentange from "./minutesToPercentange";
 import { getToday } from "@comp/utils/formatDate";
+import { height } from "@mui/system";
 
 const InnerBox = (props: {
   hour: string;
@@ -99,13 +99,23 @@ const InnerBox = (props: {
       setRoom(room);
     }
   };
-  const isReserved =
-    color === "transparent" ? "solid 0.5px lightgrey" : "border-none";
+  const isReservation =
+    color === "transparent" || color === "lightgrey"
+      ? "0.5px solid lightgrey"
+      : "none";
   return (
     <div onClick={() => handleClickReservation(color)}>
-      <Box className="flex select-none w-full m-0 border border-gray-200">
-        <SelectionBox color={color} />
-      </Box>
+      <div
+        className="flex select-none w-full m-0"
+        style={{
+          borderRight: isReservation,
+          borderLeft: isReservation,
+        }}
+      >
+        <div className="w-full">
+          <SelectionBox color={color} />
+        </div>
+      </div>
     </div>
   );
 };
