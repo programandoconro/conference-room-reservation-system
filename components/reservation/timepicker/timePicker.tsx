@@ -11,18 +11,18 @@ const TimePickerMode = (props: TimePickerType) => {
   const { open, setOpen, room } = props;
 
   const { user } = useContext(UserContext);
-  const { date, setReservations, reservations, start, setStart, end, setEnd } =
+  const { date, setReservations, reservations, pickerTime, setPickerTime } =
     useContext(ReservationContext);
 
   const handleSetReservation = () => {
-    if (start && end) {
+    if (pickerTime.start && pickerTime.end) {
       const reservation = {
         company: user.company,
         name: user.name,
         email: user.email,
         date: date,
-        start: String(start),
-        end: String(end),
+        start: String(pickerTime.start),
+        end: String(pickerTime.end),
         room: room,
         timestamp: getTimestamp(),
       };
@@ -41,8 +41,8 @@ const TimePickerMode = (props: TimePickerType) => {
         <div className="flex">
           <div className="w-36">
             <TimePicker
-              value={start}
-              onChange={(e) => e && setStart(e)}
+              value={pickerTime.start}
+              onChange={(e) => e && setPickerTime({ ...pickerTime, start: e })}
               renderInput={(params) => <TextField {...params} />}
             />
           </div>
@@ -51,8 +51,8 @@ const TimePickerMode = (props: TimePickerType) => {
           </Typography>
           <div className="w-36">
             <TimePicker
-              value={end}
-              onChange={(e) => e && setEnd(e)}
+              value={pickerTime.end}
+              onChange={(e) => e && setPickerTime({ ...pickerTime, end: e })}
               renderInput={(params) => <TextField {...params} />}
             />
           </div>

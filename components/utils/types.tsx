@@ -15,15 +15,25 @@ export type UserType = {
   password: string;
 };
 
+export type AdminType = {
+  company: string;
+  email: string;
+  password: string;
+};
+
+export type TimeType = {
+  start: Date | number | null;
+  end: Date | number | null;
+};
 export type ReservationContextType = {
   date: string;
   setDate: (date: string) => void;
+
   reservations: ReservationType[];
   setReservations: (reservation: ReservationType[]) => void;
-  start: Date | number | null;
-  end: Date | number | null;
-  setStart: (start: Date | number | null) => void;
-  setEnd: (end: Date | number | null) => void;
+
+  pickerTime: TimeType;
+  setPickerTime: (time: TimeType) => void;
 };
 
 export type UserContextType = {
@@ -31,6 +41,13 @@ export type UserContextType = {
   setUser: (user: UserType) => void;
   authenticated: boolean | null;
   setAuthenticated: (authenticated: boolean | null) => void;
+};
+
+export type AdminContextType = {
+  admin: AdminType;
+  setAdmin: (user: AdminType) => void;
+  authAdmin: boolean | null;
+  setAuthAdmin: (authAdmin: boolean | null) => void;
 };
 
 export type TimePickerType = {

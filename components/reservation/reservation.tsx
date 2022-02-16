@@ -5,7 +5,7 @@ import Calendar from "./calendar/";
 import NavigationArea from "./nav-area/";
 import { Container } from "@mui/material";
 import formatDate from "@comp/utils/formatDate";
-import { ReservationType } from "@comp/utils/types";
+import { TimeType, ReservationType } from "@comp/utils/types";
 import { getReservations } from "@comp/utils/requests";
 import { initialReservation } from "@comp/utils/constants";
 import ReservationContext from "@comp/contexts/reservationContext";
@@ -16,8 +16,10 @@ const Reservation = () => {
   const [reservations, setReservations] =
     useState<ReservationType[]>(initialReservation);
 
-  const [start, setStart] = useState<Date | number | null>(null);
-  const [end, setEnd] = useState<Date | number | null>(null);
+  const [pickerTime, setPickerTime] = useState<TimeType>({
+    start: null,
+    end: null,
+  });
 
   useEffect(() => {
     const getInitialReservations = async () => {
@@ -30,10 +32,8 @@ const Reservation = () => {
   return (
     <ReservationContext.Provider
       value={{
-        start,
-        setStart,
-        end,
-        setEnd,
+        pickerTime,
+        setPickerTime,
         date,
         setDate,
         reservations,

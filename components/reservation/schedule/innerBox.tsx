@@ -28,8 +28,7 @@ const InnerBox = (props: {
   } = props;
 
   let color = "transparent";
-  const { date, reservations, setStart, setEnd, start, end } =
-    useContext(ReservationContext);
+  const { date, reservations, setPickerTime } = useContext(ReservationContext);
 
   const isDateBeforeToday = isBefore(new Date(date), new Date());
   if (isDateBeforeToday) {
@@ -109,8 +108,12 @@ const InnerBox = (props: {
     if (color === "transparent") {
       setOpenTimePicker(true);
       setRoom(room);
-      setStart(new Date(new Date().setHours(Number(hour), 0)));
-      setEnd(new Date(new Date().setHours(Number(hour) + 2, 0)));
+
+      const selectedTime = {
+        start: new Date(new Date().setHours(Number(hour), 0)),
+        end: new Date(new Date().setHours(Number(hour) + 2, 0)),
+      };
+      setPickerTime(selectedTime);
     }
   };
   const isReservation =

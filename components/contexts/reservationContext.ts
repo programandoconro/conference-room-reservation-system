@@ -1,6 +1,10 @@
 import { createContext } from "react";
 import formatDate, { getTimestamp } from "@comp/utils/formatDate";
-import { ReservationType, ReservationContextType } from "@comp/utils/types";
+import {
+  ReservationType,
+  ReservationContextType,
+  TimeType,
+} from "@comp/utils/types";
 
 const InitialReservationContext: ReservationContextType = {
   date: formatDate(new Date()),
@@ -18,10 +22,12 @@ const InitialReservationContext: ReservationContextType = {
     },
   ],
   setReservations: (reservations: ReservationType[]) => {},
-  start: null,
-  end: null,
-  setStart: (start: Date | number | null) => {},
-  setEnd: (start: Date | number | null) => {},
+
+  pickerTime: {
+    start: null,
+    end: null,
+  },
+  setPickerTime: (pickerTime: TimeType) => {},
 };
 
 const ReservationContext = createContext<ReservationContextType>(

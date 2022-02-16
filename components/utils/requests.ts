@@ -38,6 +38,23 @@ export const loginUser = async (props: { email: string; password: string }) => {
       alert("wrong email or password");
     });
 };
+export const loginAdmin = async (props: {
+  email: string;
+  password: string;
+  company: string;
+}) => {
+  console.log(props);
+  return axios
+    .post(`http://localhost:3000/api/admin/${props.company}`, props)
+    .then((response) => {
+      console.log("login success", response.status);
+      return response;
+    })
+    .catch((err) => {
+      console.log(err);
+      alert("wrong email or password");
+    });
+};
 export const loginUserWithToken = async (props: { token: string }) => {
   return axios
     .post("http://localhost:3000/api/login", props)
@@ -57,7 +74,7 @@ export const getLimitTime = (
   setLimitSmallRoom: (n: number) => void
 ) => {
   try {
-    axios.get("/api/admin").then((res) => {
+    axios.get("/api/limits").then((res) => {
       res.data.data[0].forEach((item: { room: string; week: string }) => {
         if (item.room === "大会議室") {
           setLimitBigRoom(Number(item.week));
@@ -76,7 +93,7 @@ export const getLimitTime = (
 };
 
 export const postLimitTime = (room: string, target: string) => {
-  axios.post("/api/admin", {
+  axios.post("/api/limits", {
     room: room,
     week: target,
   });
