@@ -71,10 +71,11 @@ export const loginUserWithToken = async (props: { token: string }) => {
 export const getLimitTime = (
   setLimitBigRoom: (n: number) => void,
   setLimitMedRoom: (n: number) => void,
-  setLimitSmallRoom: (n: number) => void
+  setLimitSmallRoom: (n: number) => void,
+  company: string
 ) => {
   try {
-    axios.get("/api/limits").then((res) => {
+    axios.get(`/api/limits/${company}`).then((res) => {
       res.data.data[0].forEach((item: { room: string; week: string }) => {
         if (item.room === "大会議室") {
           setLimitBigRoom(Number(item.week));
@@ -92,9 +93,14 @@ export const getLimitTime = (
   }
 };
 
-export const postLimitTime = (room: string, target: string) => {
-  axios.post("/api/limits", {
-    room: room,
+export const postLimitTime = (
+  room: string,
+  target: string,
+  company: string
+) => {
+  axios.post(`/api/limits/${company}`, {
+    room,
     week: target,
+    company,
   });
 };

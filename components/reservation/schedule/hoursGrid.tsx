@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Grid, Typography, Box } from "@mui/material";
 import { rooms, hours } from "@comp/utils/constants";
 import { getLimitTime } from "@comp/utils/requests";
 import HeaderRow from "./headerRow";
 import InnerBox from "./innerBox";
+import UserContext from "@comp/contexts/userContext";
 
 const HoursGrid = (props: {
   setRoom: (v: string) => void;
@@ -15,14 +16,19 @@ const HoursGrid = (props: {
   const [limitMedRoom, setLimitMedRoom] = useState(0);
   const [limitSmallRoom, setLimitSmallRoom] = useState(0);
 
-  useEffect(() => {
-    getLimitTime(setLimitBigRoom, setLimitMedRoom, setLimitSmallRoom);
-  }, []);
+  const { user } = useContext(UserContext);
+  user.company &&
+    getLimitTime(
+      setLimitBigRoom,
+      setLimitMedRoom,
+      setLimitSmallRoom,
+      user.company
+    );
 
   const Rows = (props: { room: string }) => {
     return (
       <Grid
-        className="w-full hover:bg-purple-200 border-b  border-gray-200"
+        className="w-full hover:bg-purple-200 border-b transition border-gray-200"
         container
         wrap="nowrap"
       >

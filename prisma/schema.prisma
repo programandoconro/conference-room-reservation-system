@@ -39,8 +39,9 @@ model Reservation {
 }
 
 model RoomsLimits {
-  room String @id
-  week String
+  company String @id
+  room    String
+  week    String
 
 
 }

@@ -1,23 +1,28 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import prisma from "../../prisma/prisma";
+import prisma from "../../../prisma/prisma";
 
 const limitsRouter = async (req: NextApiRequest, res: NextApiResponse) => {
+  const companyPost = req.body.company;
+  const { company } = req.query;
   const room = req.body.room;
   const week = req.body.week;
 
   switch (req.method) {
     case "POST": {
-      room &&
-        week &&
+      companyPost &&
+        room &&
+        company === companyPost &&
         prisma.roomsLimits
           .upsert({
             where: {
-              room,
+              company: companyPost,
             },
             update: {
+              room,
               week,
             },
             create: {
+              company: companyPost,
               room,
               week,
             },

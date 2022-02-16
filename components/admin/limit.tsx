@@ -1,22 +1,28 @@
-import { useEffect, useState } from "react";
-import { Button, Card, Container, Input, Typography } from "@mui/material";
+import { useEffect, useState, useContext } from "react";
+import { Card, Container, Input, Typography } from "@mui/material";
 import { getLimitTime, postLimitTime } from "@comp/utils/requests";
+import AdminContext from "@comp/contexts/adminContext";
 
 const Limit = () => {
   const [limitBigRoom, setLimitBigRoom] = useState(0);
   const [limitMedRoom, setLimitMedRoom] = useState(0);
   const [limitSmallRoom, setLimitSmallRoom] = useState(0);
-  useEffect(() => {
-    getLimitTime(setLimitBigRoom, setLimitMedRoom, setLimitSmallRoom);
-  }, []);
+  const { admin } = useContext(AdminContext);
+  admin.company &&
+    getLimitTime(
+      setLimitBigRoom,
+      setLimitMedRoom,
+      setLimitSmallRoom,
+      admin.company
+    );
 
   const handleChange = (
     room: string,
     target: string,
     setState: (n: number) => void
   ) => {
-    if (Number(target) >= 0) {
-      postLimitTime(room, target);
+    if (Number(target) >= 0 && admin.company) {
+      postLimitTime(room, target, admin.company);
       setState(Number(target));
     }
   };
