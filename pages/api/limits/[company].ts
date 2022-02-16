@@ -2,15 +2,18 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../../prisma/prisma";
 
 const limitsRouter = async (req: NextApiRequest, res: NextApiResponse) => {
-  const companyPost = req.body.company;
   const { company } = req.query;
-  const room = req.body.room;
-  const week = req.body.week;
 
   switch (req.method) {
     case "POST": {
+      const companyPost = req.body.company;
+      const limitSmall = req.body.limitSmall;
+      const limitMed = req.body.limitMed;
+      const limitBig = req.body.limitBig;
       companyPost &&
-        room &&
+        limitSmall &&
+        limitMed &&
+        limitBig &&
         company === companyPost &&
         prisma.roomsLimits
           .upsert({
@@ -18,13 +21,15 @@ const limitsRouter = async (req: NextApiRequest, res: NextApiResponse) => {
               company: companyPost,
             },
             update: {
-              room,
-              week,
+              limitSmall,
+              limitMed,
+              limitBig,
             },
             create: {
               company: companyPost,
-              room,
-              week,
+              limitSmall,
+              limitMed,
+              limitBig,
             },
           })
           .catch((err) => {
@@ -32,7 +37,11 @@ const limitsRouter = async (req: NextApiRequest, res: NextApiResponse) => {
           });
     }
     case "GET": {
-      const response = await prisma.roomsLimits.findMany();
+      const response = await prisma.roomsLimits.findMany({
+        where: {
+          company: company.toString(),
+        },
+      });
       return res.status(200).json({ data: [response] });
     }
     default: {

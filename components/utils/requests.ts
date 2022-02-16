@@ -69,24 +69,20 @@ export const loginUserWithToken = async (props: { token: string }) => {
 };
 
 export const getLimitTime = (
-  setLimitBigRoom: (n: number) => void,
-  setLimitMedRoom: (n: number) => void,
   setLimitSmallRoom: (n: number) => void,
+  setLimitMedRoom: (n: number) => void,
+  setLimitBigRoom: (n: number) => void,
   company: string
 ) => {
   try {
     axios.get(`/api/limits/${company}`).then((res) => {
-      res.data.data[0].forEach((item: { room: string; week: string }) => {
-        if (item.room === "大会議室") {
-          setLimitBigRoom(Number(item.week));
+      res.data.data[0].forEach(
+        (item: { limitSmall: string; limitMed: string; limitBig: string }) => {
+          setLimitBigRoom(Number(item.limitSmall));
+          setLimitMedRoom(Number(item.limitMed));
+          setLimitSmallRoom(Number(item.limitBig));
         }
-        if (item.room === "中会議室") {
-          setLimitMedRoom(Number(item.week));
-        }
-        if (item.room === "小会議室") {
-          setLimitSmallRoom(Number(item.week));
-        }
-      });
+      );
     });
   } catch (e) {
     console.log(e);
@@ -94,13 +90,15 @@ export const getLimitTime = (
 };
 
 export const postLimitTime = (
-  room: string,
-  target: string,
+  limitSmall: string,
+  limitMed: string,
+  limitBig: string,
   company: string
 ) => {
   axios.post(`/api/limits/${company}`, {
-    room,
-    week: target,
+    limitSmall,
+    limitMed,
+    limitBig,
     company,
   });
 };

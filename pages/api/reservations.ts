@@ -27,7 +27,6 @@ const reservationsRoute = async (
       const end = req.body.end;
 
       const data = { name, email, company, room, date, timestamp, start, end };
-      console.log("posting reservation");
       if (allStrings(data)) {
         await prisma.reservation.create({
           data: {

@@ -19,9 +19,9 @@ const HoursGrid = (props: {
   const { user } = useContext(UserContext);
   user.company &&
     getLimitTime(
-      setLimitBigRoom,
-      setLimitMedRoom,
       setLimitSmallRoom,
+      setLimitMedRoom,
+      setLimitBigRoom,
       user.company
     );
 

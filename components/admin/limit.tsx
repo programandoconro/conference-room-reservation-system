@@ -1,60 +1,69 @@
 import { useEffect, useState, useContext } from "react";
-import { Card, Container, Input, Typography } from "@mui/material";
+import { Input, Typography } from "@mui/material";
 import { getLimitTime, postLimitTime } from "@comp/utils/requests";
 import AdminContext from "@comp/contexts/adminContext";
 
 const Limit = () => {
-  const [limitBigRoom, setLimitBigRoom] = useState(0);
-  const [limitMedRoom, setLimitMedRoom] = useState(0);
-  const [limitSmallRoom, setLimitSmallRoom] = useState(0);
+  const [limitSmall, setLimitSmall] = useState(0);
+  const [limitMed, setLimitMed] = useState(0);
+  const [limitBig, setLimitBig] = useState(0);
   const { admin } = useContext(AdminContext);
-  admin.company &&
-    getLimitTime(
-      setLimitBigRoom,
-      setLimitMedRoom,
-      setLimitSmallRoom,
-      admin.company
-    );
+  useEffect(() => {
+    admin.company &&
+      getLimitTime(setLimitSmall, setLimitMed, setLimitBig, admin.company);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const handleChange = (
-    room: string,
-    target: string,
-    setState: (n: number) => void
-  ) => {
-    if (Number(target) >= 0 && admin.company) {
-      postLimitTime(room, target, admin.company);
-      setState(Number(target));
+  const handlePost = () => {
+    if (admin.company) {
+      postLimitTime(
+        limitSmall.toString(),
+        limitMed.toString(),
+        limitBig.toString(),
+        admin.company
+      );
     }
+    alert("保存しました");
+  };
+
+  const handleChange = (e: string, setState: (v: number) => void) => {
+    Number(e) >= 0 && setState(Number(e));
   };
 
   return (
-    <Container
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
+    <div className="flex flex-col items-center">
+      <h5 className="p-2 m-2 underline">会社: {admin.company}</h5>
       <Typography variant="subtitle1">制限間「週」:</Typography>
-      <Card
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignContent: "center",
-          width: "fit-content",
-          padding: "10px",
-          flexDirection: "column",
-          minWidth: "200px",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "flex-end",
-            flexDirection: "row",
-            padding: "10px",
-          }}
-        >
+      <div className="flex justify-center items-center p-2 flex-col rounded shadow-lg bg-slate-300 shadow-slate-300">
+        <div className="flex p-2 items-end ">
+          <Typography paddingRight={"10px"}>小会議室</Typography>
+          <Input
+            type="number"
+            onChange={(e) => {
+              handleChange(e.target.value, setLimitSmall);
+            }}
+            value={limitSmall}
+            style={{
+              paddingLeft: "10px",
+              width: "40px",
+            }}
+          />
+        </div>
+        <div className="flex p-2 items-end ">
+          <Typography paddingRight={"10px"}>中会議室</Typography>
+          <Input
+            type="number"
+            onChange={(e) => {
+              handleChange(e.target.value, setLimitMed);
+            }}
+            value={limitMed}
+            style={{
+              paddingLeft: "10px",
+              width: "40px",
+            }}
+          />
+        </div>
+        <div className="flex p-2 items-end ">
           <Typography paddingRight={"10px"}>大会議室</Typography>
           <Input
             type="number"
@@ -63,55 +72,20 @@ const Limit = () => {
               width: "40px",
             }}
             onChange={(e) => {
-              handleChange("大会議室", e.target.value, setLimitBigRoom);
+              handleChange(e.target.value, setLimitBig);
             }}
-            value={limitBigRoom}
+            value={limitBig}
           />
         </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "flex-end",
-            flexDirection: "row",
-            padding: "10px",
-          }}
+
+        <button
+          onClick={handlePost}
+          className="bg-blue-800 rounded transition hover:bg-blue-400 w-full text-white"
         >
-          <Typography paddingRight={"10px"}>中会議室</Typography>
-          <Input
-            type="number"
-            onChange={(e) => {
-              handleChange("中会議室", e.target.value, setLimitMedRoom);
-            }}
-            value={limitMedRoom}
-            style={{
-              paddingLeft: "10px",
-              width: "40px",
-            }}
-          />
-        </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "flex-end",
-            flexDirection: "row",
-            padding: "10px",
-          }}
-        >
-          <Typography paddingRight={"10px"}>小会議室</Typography>
-          <Input
-            type="number"
-            onChange={(e) => {
-              handleChange("小会議室", e.target.value, setLimitSmallRoom);
-            }}
-            value={limitSmallRoom}
-            style={{
-              paddingLeft: "10px",
-              width: "40px",
-            }}
-          />
-        </div>
-      </Card>
-    </Container>
+          OK
+        </button>
+      </div>
+    </div>
   );
 };
 
