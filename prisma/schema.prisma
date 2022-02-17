@@ -43,7 +43,8 @@ model RoomsLimits {
   limitSmallRoom Int
   limitMedRoom   Int
   limitBigRoom   Int
-  coreTime       Int
+  coreTimeStart  Int
+  coreTimeEnd    Int
 
 
 }

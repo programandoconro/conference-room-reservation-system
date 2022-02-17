@@ -25,9 +25,9 @@ const CoreTime = () => {
     };
 
     calcCoreTime();
-    const d = limits.coreTime - monthUseTime;
-    setDifference(d);
-  }, [reservations, limits.coreTime]);
+    const deltaCoreTime = (limits.coreTimeEnd - limits.coreTimeStart) * 30;
+    setDifference(deltaCoreTime - monthUseTime);
+  }, [reservations, limits.coreTimeStart, limits.coreTimeEnd]);
 
   return (
     <div className="pt-2">

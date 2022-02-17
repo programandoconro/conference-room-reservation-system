@@ -75,20 +75,28 @@ export const getLimitTime = async (props: {
   const { setLimits, company } = props;
   try {
     const response = await axios.get(`/api/limits/${company}`);
-    setLimits(response.data[0]);
+    response.data[0] && setLimits(response.data[0]);
   } catch (e) {
     console.log(e);
   }
 };
 
 export const postLimitTime = (props: LimitsTypes) => {
-  const { company, limitSmallRoom, limitMedRoom, limitBigRoom, coreTime } =
-    props;
+  const {
+    company,
+    limitSmallRoom,
+    limitMedRoom,
+    limitBigRoom,
+    coreTimeStart,
+    coreTimeEnd,
+  } = props;
+  console.log(props);
   axios.post(`/api/limits/${company}`, {
     company,
     limitSmallRoom,
     limitMedRoom,
     limitBigRoom,
-    coreTime,
+    coreTimeStart,
+    coreTimeEnd,
   });
 };

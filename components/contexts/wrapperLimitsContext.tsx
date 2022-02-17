@@ -8,7 +8,8 @@ const WrapperLimitsContext: FC = ({ children }) => {
     limitSmallRoom: 0,
     limitMedRoom: 0,
     limitBigRoom: 0,
-    coreTime: 0,
+    coreTimeStart: 0,
+    coreTimeEnd: 0,
   });
 
   return (

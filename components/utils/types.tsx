@@ -48,7 +48,8 @@ export type LimitsTypes = {
   limitSmallRoom: number;
   limitMedRoom: number;
   limitBigRoom: number;
-  coreTime: number;
+  coreTimeStart: number;
+  coreTimeEnd: number;
 };
 
 export type AdminContextType = {

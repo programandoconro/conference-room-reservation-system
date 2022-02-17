@@ -6,15 +6,22 @@ const limitsRouter = async (req: NextApiRequest, res: NextApiResponse) => {
 
   switch (req.method) {
     case "POST": {
-      const { company, limitSmallRoom, limitMedRoom, limitBigRoom, coreTime } =
-        req.body;
+      const {
+        company,
+        limitSmallRoom,
+        limitMedRoom,
+        limitBigRoom,
+        coreTimeStart,
+        coreTimeEnd,
+      } = req.body;
 
       const isValid =
         company &&
         limitSmallRoom >= 0 &&
         limitMedRoom >= 0 &&
         limitBigRoom >= 0 &&
-        coreTime >= 0 &&
+        coreTimeStart >= 0 &&
+        coreTimeEnd >= 0 &&
         companyId === company;
 
       isValid
@@ -27,14 +34,16 @@ const limitsRouter = async (req: NextApiRequest, res: NextApiResponse) => {
                 limitSmallRoom,
                 limitMedRoom,
                 limitBigRoom,
-                coreTime,
+                coreTimeStart,
+                coreTimeEnd,
               },
               create: {
                 company,
                 limitSmallRoom,
                 limitMedRoom,
                 limitBigRoom,
-                coreTime,
+                coreTimeStart,
+                coreTimeEnd,
               },
             })
             .catch((err) => {

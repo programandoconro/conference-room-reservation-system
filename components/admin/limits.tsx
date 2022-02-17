@@ -10,9 +10,15 @@ const Limit = () => {
   const handlePost = () => {
     if (admin.company) {
       postLimitTime(limits);
+      alert("保存しました");
+    } else {
+      console.log("会社名が入力されていません");
     }
-    alert("保存しました");
   };
+
+  useEffect(() => {
+    setLimits({ ...limits, company: admin.company });
+  }, [admin.company]);
 
   return (
     <div className="flex flex-col items-center">
@@ -66,10 +72,24 @@ const Limit = () => {
           <input
             className="w-1/6 pl-1"
             type={"number"}
-            value={limits.coreTime}
+            value={limits.coreTimeStart}
             onChange={(e) => {
               Number(e.target.value) >= 0 &&
-                setLimits({ ...limits, coreTime: Number(e.target.value) });
+                setLimits({ ...limits, coreTimeStart: Number(e.target.value) });
+            }}
+          />
+          <h5>時</h5>
+        </div>
+        <div className="flex p-2 items-end gap-1 justify-end">
+          <h5>コアタイム</h5>
+          <input
+            className="w-1/6 pl-1"
+            type={"number"}
+            value={limits.coreTimeEnd}
+            onChange={(e) => {
+              Number(e.target.value) >= 0 &&
+                Number(e.target.value) >= limits.coreTimeStart &&
+                setLimits({ ...limits, coreTimeEnd: Number(e.target.value) });
             }}
           />
           <h5>時</h5>
