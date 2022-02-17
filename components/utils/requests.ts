@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ReservationType, UserType } from "./types";
+import { ReservationType, UserType, LimitsTypes } from "./types";
 
 export const postReservation = async (props: ReservationType) => {
   axios.post("http://localhost:3000/api/reservations", props);
@@ -68,37 +68,27 @@ export const loginUserWithToken = async (props: { token: string }) => {
     });
 };
 
-export const getLimitTime = (
-  setLimitSmallRoom: (n: number) => void,
-  setLimitMedRoom: (n: number) => void,
-  setLimitBigRoom: (n: number) => void,
-  company: string
-) => {
+export const getLimitTime = async (props: {
+  company: string;
+  setLimits: (limits: LimitsTypes) => void;
+}) => {
+  const { setLimits, company } = props;
   try {
-    axios.get(`/api/limits/${company}`).then((res) => {
-      res.data.data[0].forEach(
-        (item: { limitSmall: string; limitMed: string; limitBig: string }) => {
-          setLimitBigRoom(Number(item.limitSmall));
-          setLimitMedRoom(Number(item.limitMed));
-          setLimitSmallRoom(Number(item.limitBig));
-        }
-      );
-    });
+    const response = await axios.get(`/api/limits/${company}`);
+    setLimits(response.data[0]);
   } catch (e) {
     console.log(e);
   }
 };
 
-export const postLimitTime = (
-  limitSmall: string,
-  limitMed: string,
-  limitBig: string,
-  company: string
-) => {
+export const postLimitTime = (props: LimitsTypes) => {
+  const { company, limitSmallRoom, limitMedRoom, limitBigRoom, coreTime } =
+    props;
   axios.post(`/api/limits/${company}`, {
-    limitSmall,
-    limitMed,
-    limitBig,
     company,
+    limitSmallRoom,
+    limitMedRoom,
+    limitBigRoom,
+    coreTime,
   });
 };

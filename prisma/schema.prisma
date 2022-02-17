@@ -39,10 +39,11 @@ model Reservation {
 }
 
 model RoomsLimits {
-  company    String @id
-  limitSmall String
-  limitMed   String
-  limitBig   String
+  company        String @id
+  limitSmallRoom Int
+  limitMedRoom   Int
+  limitBigRoom   Int
+  coreTime       Int
 
 
 }

@@ -7,25 +7,16 @@ import getDay from "date-fns/getDay";
 import differenceInWeeks from "date-fns/differenceInWeeks";
 import minutesToPercentange from "./minutesToPercentange";
 import { getIsToday } from "@comp/utils/formatDate";
+import { LimitsTypes } from "@comp/utils/types";
 
 const InnerBox = (props: {
   hour: string;
   room: string;
-  limitMedRoom: Number;
-  limitBigRoom: Number;
-  limitSmallRoom: Number;
+  limits: LimitsTypes;
   setRoom: (v: string) => void;
   setOpenTimePicker: (v: boolean) => void;
 }) => {
-  const {
-    hour,
-    room,
-    limitBigRoom,
-    limitMedRoom,
-    limitSmallRoom,
-    setOpenTimePicker,
-    setRoom,
-  } = props;
+  const { hour, room, limits, setOpenTimePicker, setRoom } = props;
 
   let color = "transparent";
   const { date, reservations, setPickerTime } = useContext(ReservationContext);
@@ -45,19 +36,19 @@ const InnerBox = (props: {
     color = "lightgrey";
   }
   if (
-    differenceInWeeks(new Date(date), new Date()) < limitMedRoom &&
+    differenceInWeeks(new Date(date), new Date()) < limits.limitMedRoom &&
     room === "中会議室"
   ) {
     color = "lightgrey";
   }
   if (
-    differenceInWeeks(new Date(date), new Date()) < limitBigRoom &&
+    differenceInWeeks(new Date(date), new Date()) < limits.limitBigRoom &&
     room === "大会議室"
   ) {
     color = "lightgrey";
   }
   if (
-    differenceInWeeks(new Date(date), new Date()) < limitSmallRoom &&
+    differenceInWeeks(new Date(date), new Date()) < limits.limitSmallRoom &&
     room === "小会議室"
   ) {
     color = "lightgrey";

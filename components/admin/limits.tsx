@@ -1,0 +1,88 @@
+import { useEffect, useContext } from "react";
+import { getLimitTime, postLimitTime } from "@comp/utils/requests";
+import AdminContext from "@comp/contexts/adminContext";
+
+const Limit = () => {
+  const { admin, limits, setLimits } = useContext(AdminContext);
+
+  const handlePost = () => {
+    if (admin.company) {
+      postLimitTime(limits);
+    }
+    alert("保存しました");
+  };
+
+  return (
+    <div className="flex flex-col items-center">
+      <h5 className="p-2 m-2 underline">会社: {admin.company}</h5>
+      <div className="flex gap-1 justify-center items-center p-2 flex-col rounded shadow-lg bg-slate-300 shadow-slate-300">
+        <div className="flex p-2 items-end gap-1">
+          <h5>小会議室</h5>
+          <input
+            className="w-1/6 pl-1"
+            type="number"
+            onChange={(e) => {
+              Number(e.target.value) >= 0 &&
+                setLimits({
+                  ...limits,
+                  limitSmallRoom: Number(e.target.value),
+                });
+            }}
+            value={limits.limitSmallRoom}
+          />
+          <h5>週</h5>
+        </div>
+        <div className="flex p-2 items-end gap-1">
+          <h5>中会議室</h5>
+          <input
+            className="w-1/6 pl-1"
+            type="number"
+            onChange={(e) => {
+              Number(e.target.value) >= 0 &&
+                setLimits({ ...limits, limitMedRoom: Number(e.target.value) });
+            }}
+            value={limits.limitMedRoom}
+          />
+          <h5>週</h5>
+        </div>
+        <div className="flex p-2 items-end gap-1">
+          <h5>大会議室</h5>
+          <input
+            className="w-1/6 pl-1"
+            type="number"
+            onChange={(e) => {
+              Number(e.target.value) >= 0 &&
+                setLimits({ ...limits, limitBigRoom: Number(e.target.value) });
+            }}
+            value={limits.limitBigRoom}
+          />
+          <h5>週</h5>
+        </div>
+        <hr className="w-full h-1" />
+        <div className="flex p-2 items-end gap-1 justify-end">
+          <h5>コアタイム</h5>
+          <input
+            className="w-1/6 pl-1"
+            type={"number"}
+            value={limits.coreTime}
+            onChange={(e) => {
+              Number(e.target.value) >= 0 &&
+                setLimits({ ...limits, coreTime: Number(e.target.value) });
+            }}
+          />
+          <h5>時</h5>
+        </div>
+        <hr className="w-full h-1" />
+
+        <button
+          onClick={handlePost}
+          className="w-1/2 p-2 bg-blue-800 rounded transition hover:bg-blue-400  text-white"
+        >
+          OK
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Limit;

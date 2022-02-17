@@ -1,8 +1,5 @@
-import Limit from "@comp/admin/limit";
-import CoreTime from "@comp/admin/coreTime";
 import { useState, useContext } from "react";
 import {
-  Button,
   Card,
   CardContent,
   Container,
@@ -12,13 +9,15 @@ import {
 import { isEmail, isPassword } from "@comp/utils/checkers";
 import { loginAdmin } from "@comp/utils/requests";
 import AdminContext from "@comp/contexts/adminContext";
+import { getLimitTime } from "@comp/utils/requests";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [company, setCompany] = useState("");
 
-  const { setAuthAdmin, setAdmin } = useContext(AdminContext);
+  const { setAuthAdmin, setAdmin, setLimits, limits } =
+    useContext(AdminContext);
 
   const handleLogin = async () => {
     const isValid = isEmail(email) && isPassword(password);
@@ -33,20 +32,11 @@ const AdminLogin = () => {
           email: response.data.email,
           password: response.data.password,
         });
-
-        // router.push("/reservations");
+        company && getLimitTime({ company, setLimits });
       }
     } else {
       alert("Invalid email or password");
     }
-  };
-  const Admin = () => {
-    return (
-      <div>
-        <Limit />
-        <CoreTime />
-      </div>
-    );
   };
 
   return (

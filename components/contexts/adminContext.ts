@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { AdminType, AdminContextType } from "@comp/utils/types";
+import { AdminType, AdminContextType, LimitsTypes } from "@comp/utils/types";
 
 const InitialUserContext: AdminContextType = {
   admin: {
@@ -10,6 +10,14 @@ const InitialUserContext: AdminContextType = {
   setAdmin: (user: AdminType) => {},
   authAdmin: false,
   setAuthAdmin: (authAdmin: boolean | null) => {},
+  limits: {
+    company: "",
+    limitSmallRoom: 0,
+    limitMedRoom: 0,
+    limitBigRoom: 0,
+    coreTime: 0,
+  },
+  setLimits: (limits: LimitsTypes) => {},
 };
 
 const AdminContext = createContext<AdminContextType>(InitialUserContext);

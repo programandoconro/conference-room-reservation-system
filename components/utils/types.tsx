@@ -43,11 +43,21 @@ export type UserContextType = {
   setAuthenticated: (authenticated: boolean | null) => void;
 };
 
+export type LimitsTypes = {
+  company: string;
+  limitSmallRoom: number;
+  limitMedRoom: number;
+  limitBigRoom: number;
+  coreTime: number;
+};
+
 export type AdminContextType = {
   admin: AdminType;
   setAdmin: (user: AdminType) => void;
   authAdmin: boolean | null;
   setAuthAdmin: (authAdmin: boolean | null) => void;
+  limits: LimitsTypes;
+  setLimits: (limits: LimitsTypes) => void;
 };
 
 export type TimePickerType = {

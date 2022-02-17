@@ -1,9 +1,8 @@
 import AdminContext from "@comp/contexts/adminContext";
 import AdminLogin from "@comp/admin/adminLogin";
-import Limit from "@comp/admin/limit";
-import CoreTime from "@comp/admin/coreTime";
+import Limit from "@comp/admin/limits";
 import { useState } from "react";
-import { AdminType } from "@comp/utils/types";
+import { AdminType, LimitsTypes } from "@comp/utils/types";
 
 const Admin = () => {
   const [authAdmin, setAuthAdmin] = useState<boolean | null>(null);
@@ -12,18 +11,26 @@ const Admin = () => {
     email: "",
     password: "",
   });
+  const [limits, setLimits] = useState<LimitsTypes>({
+    company: "",
+    limitSmallRoom: 0,
+    limitMedRoom: 0,
+    limitBigRoom: 0,
+    coreTime: 0,
+  });
 
   const AdminPage = () => {
     return (
       <div>
         <Limit />
-        <CoreTime />
       </div>
     );
   };
 
   return (
-    <AdminContext.Provider value={{ authAdmin, setAuthAdmin, admin, setAdmin }}>
+    <AdminContext.Provider
+      value={{ authAdmin, setAuthAdmin, admin, setAdmin, limits, setLimits }}
+    >
       <div>{authAdmin ? <AdminPage /> : <AdminLogin />}</div>
     </AdminContext.Provider>
   );
