@@ -3,6 +3,8 @@ import LimitsContext from "@comp/contexts/limitsContext";
 import ReservationContext from "@comp/contexts/reservationContext";
 import { differenceInHours } from "date-fns";
 import { ReservationType } from "@comp/utils/types";
+import coreImage from "./core-time.png";
+import Image from "next/image";
 
 const CoreTime = () => {
   const { limits } = useContext(LimitsContext);
@@ -30,16 +32,17 @@ const CoreTime = () => {
   }, [reservations, limits.coreTimeStart, limits.coreTimeEnd]);
 
   return (
-    <div className="pt-2">
-      <h5 className="text-xs">今月のコアタイム</h5>
-      <div
-        className=" flex m-5 p-2 justify-center"
-        style={{
-          background: "linear-gradient(to right, blue, red)",
-        }}
-      >
-        <h5 className="text-white">{difference}</h5>
+    <div className="flex justify-center align-middle">
+      <div className="object-contain">
+        <Image
+          placeholder="blur"
+          alt="core-time"
+          quality={100}
+          src={coreImage}
+        />
       </div>
+
+      <h5 className="text-white absolute self-center text-xl">{difference}</h5>
     </div>
   );
 };

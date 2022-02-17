@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../prisma/prisma";
-import { encryptPassword } from "@comp/utils/encryption";
+//import { encryptPassword } from "@comp/utils/encryption";
 
 const loginRouter = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {

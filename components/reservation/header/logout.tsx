@@ -1,6 +1,5 @@
 import { useContext, FC } from "react";
 import UserContext from "@comp/contexts/userContext";
-import { Button } from "@mui/material";
 import MeetingRoomIcon from "@mui/icons-material/MeetingRoom";
 
 const Logout: FC = () => {

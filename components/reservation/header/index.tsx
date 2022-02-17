@@ -4,7 +4,7 @@ import Info from "./info";
 import News from "./news";
 import UserContext from "@comp/contexts/userContext";
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
-import pic from "./upper-area.png";
+import roomsPic from "./upper-area.png";
 import Image from "next/image";
 import CoreTime from "./coreTime";
 
@@ -36,11 +36,18 @@ const Header = () => {
         style={{ maxHeight: "40vh" }}
       >
         <div className="w-1/3 overflow-hidden border-0 rounded-full">
-          <Image layout="responsive" src={pic} alt="pic" />
+          <Image
+            placeholder="blur"
+            layout="responsive"
+            src={roomsPic}
+            alt="pic"
+          />
         </div>
-        <div className="w-2/3">
+        <div className=" w-2/3 align-middle">
           <News />
-          <CoreTime />
+          <div className="flex h-1/2 justify-center items-center">
+            <CoreTime />
+          </div>
         </div>
         <Info />
       </div>

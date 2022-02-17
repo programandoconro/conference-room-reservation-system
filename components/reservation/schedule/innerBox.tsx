@@ -7,7 +7,6 @@ import getDay from "date-fns/getDay";
 import differenceInWeeks from "date-fns/differenceInWeeks";
 import minutesToPercentange from "./minutesToPercentange";
 import { getIsToday } from "@comp/utils/formatDate";
-import { LimitsTypes } from "@comp/utils/types";
 import LimitsContext from "@comp/contexts/limitsContext";
 
 const InnerBox = (props: {
