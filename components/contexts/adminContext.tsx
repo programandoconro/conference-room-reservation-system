@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState, FC } from "react";
 import { AdminType, AdminContextType, LimitsTypes } from "@comp/utils/types";
 
 const InitialUserContext: AdminContextType = {

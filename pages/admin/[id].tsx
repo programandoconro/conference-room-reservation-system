@@ -2,8 +2,8 @@ import AdminContext from "@comp/contexts/adminContext";
 import AdminLogin from "@comp/admin/adminLogin";
 import Limit from "@comp/admin/limits";
 import { useState } from "react";
-import { AdminType, LimitsTypes } from "@comp/utils/types";
-import WrapperLimitsContext from "@comp/contexts/wrapperLimitsContext";
+import { AdminType } from "@comp/utils/types";
+import { LimitsContextProvider } from "@comp/contexts/limitsContext";
 
 const Admin = () => {
   const [authAdmin, setAuthAdmin] = useState<boolean | null>(null);
@@ -23,9 +23,9 @@ const Admin = () => {
 
   return (
     <AdminContext.Provider value={{ authAdmin, setAuthAdmin, admin, setAdmin }}>
-      <WrapperLimitsContext>
+      <LimitsContextProvider>
         <div>{authAdmin ? <AdminPage /> : <AdminLogin />}</div>
-      </WrapperLimitsContext>
+      </LimitsContextProvider>
     </AdminContext.Provider>
   );
 };

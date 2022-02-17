@@ -9,7 +9,7 @@ import { TimeType, ReservationType } from "@comp/utils/types";
 import { getReservations } from "@comp/utils/requests";
 import { initialReservation } from "@comp/utils/constants";
 import ReservationContext from "@comp/contexts/reservationContext";
-import WrapperLimitsContext from "@comp/contexts/wrapperLimitsContext";
+import { LimitsContextProvider } from "@comp/contexts/limitsContext";
 
 const Reservation = () => {
   const [date, setDate] = useState(formatDate(new Date()));
@@ -41,7 +41,7 @@ const Reservation = () => {
         setReservations,
       }}
     >
-      <WrapperLimitsContext>
+      <LimitsContextProvider>
         <div className="h-full w-full bg-white">
           <div className="m-1 p-1">
             <Header />
@@ -60,7 +60,7 @@ const Reservation = () => {
             </Container>
           </div>
         </div>
-      </WrapperLimitsContext>
+      </LimitsContextProvider>
     </ReservationContext.Provider>
   );
 };
