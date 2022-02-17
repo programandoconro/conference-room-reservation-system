@@ -25,10 +25,6 @@ export type TimeType = {
   start: Date | number | null;
   end: Date | number | null;
 };
-<<<<<<< HEAD
-=======
-
->>>>>>> coretime
 export type ReservationContextType = {
   date: string;
   setDate: (date: string) => void;
