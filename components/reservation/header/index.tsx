@@ -6,6 +6,7 @@ import UserContext from "@comp/contexts/userContext";
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import pic from "./upper-area.png";
 import Image from "next/image";
+import CoreTime from "./coreTime";
 
 const Header = () => {
   const { user } = useContext(UserContext);
@@ -37,7 +38,10 @@ const Header = () => {
         <div className="w-1/3 overflow-hidden border-0 rounded-full">
           <Image layout="responsive" src={pic} alt="pic" />
         </div>
-        <News />
+        <div className="w-2/3">
+          <News />
+          <CoreTime />
+        </div>
         <Info />
       </div>
     </div>

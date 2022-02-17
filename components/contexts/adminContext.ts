@@ -10,14 +10,6 @@ const InitialUserContext: AdminContextType = {
   setAdmin: (user: AdminType) => {},
   authAdmin: false,
   setAuthAdmin: (authAdmin: boolean | null) => {},
-  limits: {
-    company: "",
-    limitSmallRoom: 0,
-    limitMedRoom: 0,
-    limitBigRoom: 0,
-    coreTime: 0,
-  },
-  setLimits: (limits: LimitsTypes) => {},
 };
 
 const AdminContext = createContext<AdminContextType>(InitialUserContext);

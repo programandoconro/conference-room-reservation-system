@@ -5,7 +5,7 @@ import { getLimitTime } from "@comp/utils/requests";
 import HeaderRow from "./headerRow";
 import InnerBox from "./innerBox";
 import UserContext from "@comp/contexts/userContext";
-import { LimitsTypes } from "@comp/utils/types";
+import LimitsContext from "@comp/contexts/limitsContext";
 
 const HoursGrid = (props: {
   setRoom: (v: string) => void;
@@ -13,20 +13,13 @@ const HoursGrid = (props: {
 }) => {
   const { setOpenTimePicker, setRoom } = props;
 
-  const [limits, setLimits] = useState<LimitsTypes>({
-    company: "",
-    limitSmallRoom: 0,
-    limitMedRoom: 0,
-    limitBigRoom: 0,
-    coreTime: 0,
-  });
-
   const { user } = useContext(UserContext);
+  const { setLimits } = useContext(LimitsContext);
 
   useEffect(() => {
     const limitsProps = { company: user.company, setLimits };
     user.company && getLimitTime(limitsProps);
-  }, [user.company]);
+  }, [user.company, setLimits]);
 
   const Rows = (props: { room: string }) => {
     return (
@@ -44,7 +37,6 @@ const HoursGrid = (props: {
               <InnerBox
                 hour={hour}
                 room={props.room}
-                limits={limits}
                 setRoom={setRoom}
                 setOpenTimePicker={setOpenTimePicker}
               />

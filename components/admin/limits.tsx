@@ -1,9 +1,11 @@
 import { useEffect, useContext } from "react";
 import { getLimitTime, postLimitTime } from "@comp/utils/requests";
 import AdminContext from "@comp/contexts/adminContext";
+import LimitsContext from "@comp/contexts/limitsContext";
 
 const Limit = () => {
-  const { admin, limits, setLimits } = useContext(AdminContext);
+  const { admin } = useContext(AdminContext);
+  const { limits, setLimits } = useContext(LimitsContext);
 
   const handlePost = () => {
     if (admin.company) {

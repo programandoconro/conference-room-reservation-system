@@ -25,6 +25,10 @@ export type TimeType = {
   start: Date | number | null;
   end: Date | number | null;
 };
+<<<<<<< HEAD
+=======
+
+>>>>>>> coretime
 export type ReservationContextType = {
   date: string;
   setDate: (date: string) => void;
@@ -56,6 +60,9 @@ export type AdminContextType = {
   setAdmin: (user: AdminType) => void;
   authAdmin: boolean | null;
   setAuthAdmin: (authAdmin: boolean | null) => void;
+};
+
+export type LimitsContextType = {
   limits: LimitsTypes;
   setLimits: (limits: LimitsTypes) => void;
 };

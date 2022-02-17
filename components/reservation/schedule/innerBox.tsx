@@ -8,15 +8,17 @@ import differenceInWeeks from "date-fns/differenceInWeeks";
 import minutesToPercentange from "./minutesToPercentange";
 import { getIsToday } from "@comp/utils/formatDate";
 import { LimitsTypes } from "@comp/utils/types";
+import LimitsContext from "@comp/contexts/limitsContext";
 
 const InnerBox = (props: {
   hour: string;
   room: string;
-  limits: LimitsTypes;
   setRoom: (v: string) => void;
   setOpenTimePicker: (v: boolean) => void;
 }) => {
-  const { hour, room, limits, setOpenTimePicker, setRoom } = props;
+  const { hour, room, setOpenTimePicker, setRoom } = props;
+
+  const { limits } = useContext(LimitsContext);
 
   let color = "transparent";
   const { date, reservations, setPickerTime } = useContext(ReservationContext);

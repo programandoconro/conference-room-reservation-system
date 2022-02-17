@@ -3,6 +3,7 @@ import AdminLogin from "@comp/admin/adminLogin";
 import Limit from "@comp/admin/limits";
 import { useState } from "react";
 import { AdminType, LimitsTypes } from "@comp/utils/types";
+import WrapperLimitsContext from "@comp/contexts/wrapperLimitsContext";
 
 const Admin = () => {
   const [authAdmin, setAuthAdmin] = useState<boolean | null>(null);
@@ -10,13 +11,6 @@ const Admin = () => {
     company: "",
     email: "",
     password: "",
-  });
-  const [limits, setLimits] = useState<LimitsTypes>({
-    company: "",
-    limitSmallRoom: 0,
-    limitMedRoom: 0,
-    limitBigRoom: 0,
-    coreTime: 0,
   });
 
   const AdminPage = () => {
@@ -28,10 +22,10 @@ const Admin = () => {
   };
 
   return (
-    <AdminContext.Provider
-      value={{ authAdmin, setAuthAdmin, admin, setAdmin, limits, setLimits }}
-    >
-      <div>{authAdmin ? <AdminPage /> : <AdminLogin />}</div>
+    <AdminContext.Provider value={{ authAdmin, setAuthAdmin, admin, setAdmin }}>
+      <WrapperLimitsContext>
+        <div>{authAdmin ? <AdminPage /> : <AdminLogin />}</div>
+      </WrapperLimitsContext>
     </AdminContext.Provider>
   );
 };

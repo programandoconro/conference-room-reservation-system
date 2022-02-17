@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 
 const News = () => {
   return (
-    <div className="overflow-y-auto p-1  w-1/3 mt-1 border border-solid border-black">
+    <div className="overflow-y-auto p-1 h-1/2 mt-1 border border-solid border-black">
       <Typography
         variant="overline"
         style={{ fontWeight: "lighter", fontSize: "12px" }}

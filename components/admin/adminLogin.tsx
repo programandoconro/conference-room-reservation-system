@@ -10,14 +10,16 @@ import { isEmail, isPassword } from "@comp/utils/checkers";
 import { loginAdmin } from "@comp/utils/requests";
 import AdminContext from "@comp/contexts/adminContext";
 import { getLimitTime } from "@comp/utils/requests";
+import LimitsContext from "@comp/contexts/limitsContext";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [company, setCompany] = useState("");
 
-  const { setAuthAdmin, setAdmin, setLimits, limits } =
-    useContext(AdminContext);
+  const { setAuthAdmin, setAdmin } = useContext(AdminContext);
+
+  const { limits, setLimits } = useContext(LimitsContext);
 
   const handleLogin = async () => {
     const isValid = isEmail(email) && isPassword(password);
