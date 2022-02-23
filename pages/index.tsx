@@ -6,7 +6,8 @@ import Reservation from "@comp/reservation";
 import { loginUserWithToken } from "@comp/utils/requests";
 
 const Home: NextPage = () => {
-  const { authenticated, setAuthenticated, setUser } = useContext(UserContext);
+  const { authenticated, setAuthenticated, setUser, user } =
+    useContext(UserContext);
 
   useEffect(() => {
     const loginWithToken = async () => {
@@ -35,7 +36,7 @@ const Home: NextPage = () => {
   if (authenticated === null) {
     return <div style={{ color: "whitesmoke" }}>loading...</div>;
   } else if (authenticated) {
-    return <Reservation />;
+    return <Reservation company={user.company} />;
   }
   return <Login />;
 };

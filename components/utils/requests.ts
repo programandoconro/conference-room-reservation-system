@@ -2,17 +2,19 @@ import axios from "axios";
 import { ReservationType, UserType, LimitsTypes } from "./types";
 
 export const postReservation = async (props: ReservationType) => {
-  axios.post("http://localhost:3000/api/reservations", props);
+  axios.post(`http://localhost:3000/api/reservations/${props.company}`, props);
 };
-export const deleteReservation = async (id: number) => {
-  await axios.delete("http://localhost:3000/api/reservations", {
+export const deleteReservation = async (company: string, id: number) => {
+  await axios.delete(`http://localhost:3000/api/reservations/${company}`, {
     data: String(id),
   });
 };
 
-export const getReservations = async () => {
+export const getReservations = async (company: string) => {
   try {
-    const response = await axios.get("http://localhost:3000/api/reservations");
+    const response = await axios.get(
+      `http://localhost:3000/api/reservations/${company}`
+    );
     return response.data;
   } catch (e) {
     console.log(e);

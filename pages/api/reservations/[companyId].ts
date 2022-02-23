@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import prisma from "../../prisma/prisma";
+import prisma from "../../../prisma/prisma";
 import { ReservationType } from "utils/types";
 import { allStrings } from "@comp/utils/checkers";
 
@@ -11,9 +11,14 @@ const reservationsRoute = async (
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) => {
+  const { companyId } = req.query;
   switch (req.method) {
     case "GET": {
-      const reservations = await prisma.reservation.findMany();
+      const reservations = await prisma.reservation.findMany({
+        where: {
+          company: companyId.toString(),
+        },
+      });
       res.status(200).json({ data: reservations });
     }
     case "POST": {
@@ -36,7 +41,8 @@ const reservationsRoute = async (
         start,
         end,
       };
-      if (allStrings(data)) {
+      if (allStrings(data) && companyId === company) {
+        console.log(data);
         await prisma.reservation.create({
           data: {
             name,

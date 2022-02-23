@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Schedule from "./schedule";
 import Header from "./header";
 import Calendar from "./calendar/";
@@ -11,7 +11,8 @@ import { initialReservation } from "@comp/utils/constants";
 import ReservationContext from "@comp/contexts/reservationContext";
 import { LimitsContextProvider } from "@comp/contexts/limitsContext";
 
-const Reservation = () => {
+const Reservation = (props: { company: string }) => {
+  const { company } = props;
   const [date, setDate] = useState(formatDate(new Date()));
 
   const [reservations, setReservations] =
@@ -21,14 +22,15 @@ const Reservation = () => {
     start: null,
     end: null,
   });
-
   useEffect(() => {
     const getInitialReservations = async () => {
-      const response = await getReservations();
-      response?.data && setReservations(response.data);
+      if (company) {
+        const response = await getReservations(company);
+        response?.data && setReservations(response.data);
+      }
     };
     getInitialReservations();
-  }, []);
+  }, [company]);
 
   return (
     <ReservationContext.Provider

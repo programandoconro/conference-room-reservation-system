@@ -4,7 +4,7 @@ import ReservationContext from "contexts/reservationContext";
 import UserContext from "@comp/contexts/userContext";
 import { isBefore } from "date-fns";
 import { ReservationType } from "@comp/utils/types";
-import { deleteReservation } from "@comp/utils/requests";
+import { deleteReservation, getReservations } from "@comp/utils/requests";
 
 const Info = () => {
   const { reservations, setReservations, date } =
@@ -13,12 +13,15 @@ const Info = () => {
 
   const handleDelete = (id: number) => {
     let newReservations: ReservationType[] = [];
-    reservations.filter((reservation: ReservationType, key: number) => {
-      if (key !== id) {
-        newReservations.push(reservation);
-      } else if (key === id) deleteReservation(reservation.id);
-    });
-    setReservations(newReservations);
+    reservations
+      .slice(0)
+      .reverse()
+      .filter((reservation: ReservationType, key: number) => {
+        if (key !== id) {
+          newReservations.push(reservation);
+        } else if (key === id) deleteReservation(user.company, reservation.id);
+      });
+    setReservations(newReservations.reverse());
   };
   return (
     <div className="flex flex-col w-1/3 bg-slate-100 p-1 mt-1 overflow-y-auto">

@@ -4,7 +4,7 @@ import { TextField, Typography } from "@mui/material";
 import UserContext from "@comp/contexts/userContext";
 import ReservationContext from "@comp/contexts/reservationContext";
 import { getTimestamp } from "@comp/utils/formatDate";
-import { TimePickerType } from "@comp/utils/types";
+import { ReservationType, TimePickerType } from "@comp/utils/types";
 import { postReservation } from "@comp/utils/requests";
 
 const TimePickerMode = (props: TimePickerType) => {
@@ -16,9 +16,7 @@ const TimePickerMode = (props: TimePickerType) => {
 
   const handleSetReservation = () => {
     if (pickerTime.start && pickerTime.end) {
-      const newID: number = reservations.length
-        ? reservations[reservations.length - 1].id + 1
-        : 0;
+      const newID: number = Math.floor(Math.random() * 100000000) + 1;
       const reservation = {
         company: user.company,
         name: user.name,

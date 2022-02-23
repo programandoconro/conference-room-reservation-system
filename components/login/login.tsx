@@ -8,18 +8,18 @@ import {
   TextField,
 } from "@mui/material";
 import { isEmail, isPassword } from "@comp/utils/checkers";
-import { loginUser } from "@comp/utils/requests";
-import { useRouter } from "next/router";
+import { loginUser, getReservations } from "@comp/utils/requests";
 import UserContext from "@comp/contexts/userContext";
 import Link from "next/link";
 import { buttonStyle, inputStyle } from "../../pages/signup";
+import ReservationContext from "@comp/contexts/reservationContext";
 
 const Login = () => {
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const { setAuthenticated, user, setUser } = useContext(UserContext);
+  const { setReservations } = useContext(ReservationContext);
 
   const handleLogin = async () => {
     const isValid = isEmail(email) && isPassword(password);

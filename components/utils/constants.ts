@@ -28,14 +28,15 @@ const tomorrow = formatDate(
 export const rooms = ["大会議室", "中会議室", "小会議室"];
 export const initialReservation = [
   {
-    company: "lateral",
-    name: "John Doe",
-    email: "ro@casa.com",
+    company: "",
+    name: "",
+    email: "",
     timestamp: today,
-    date: "2022/02/07",
-    start: "4:00",
-    end: "5:00",
+    date: "",
+    start: "",
+    end: "",
     room: rooms[0],
+    id: 0,
   },
 ];
 export const SECRET_KEY =
