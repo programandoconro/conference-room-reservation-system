@@ -23,8 +23,6 @@ const loginRouter = async (req: NextApiRequest, res: NextApiResponse) => {
         },
       });
 
-      console.log(email, password, id);
-
       const isAdmin = await prisma.admin.findFirst({
         where: {
           email,

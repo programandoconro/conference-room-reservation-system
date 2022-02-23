@@ -1,4 +1,5 @@
 export type ReservationType = {
+  id: number;
   company: string;
   name: string;
   email: string;

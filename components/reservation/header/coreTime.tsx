@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import LimitsContext from "@comp/contexts/limitsContext";
 import ReservationContext from "@comp/contexts/reservationContext";
-import { differenceInMinutes, format } from "date-fns";
+import { differenceInMinutes } from "date-fns";
 import { ReservationType } from "@comp/utils/types";
 import coreImage from "./core-time.png";
 import Image from "next/image";

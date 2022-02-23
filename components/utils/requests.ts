@@ -4,6 +4,11 @@ import { ReservationType, UserType, LimitsTypes } from "./types";
 export const postReservation = async (props: ReservationType) => {
   axios.post("http://localhost:3000/api/reservations", props);
 };
+export const deleteReservation = async (id: number) => {
+  await axios.delete("http://localhost:3000/api/reservations", {
+    data: String(id),
+  });
+};
 
 export const getReservations = async () => {
   try {

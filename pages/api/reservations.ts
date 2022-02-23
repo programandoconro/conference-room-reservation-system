@@ -4,7 +4,7 @@ import { ReservationType } from "utils/types";
 import { allStrings } from "@comp/utils/checkers";
 
 type Data = {
-  data: ReservationType[] | "success";
+  data: ReservationType[] | "success" | "del";
 };
 
 const reservationsRoute = async (
@@ -25,8 +25,17 @@ const reservationsRoute = async (
       const timestamp = req.body.timestamp;
       const start = req.body.start;
       const end = req.body.end;
-
-      const data = { name, email, company, room, date, timestamp, start, end };
+      const id = req.body.id;
+      const data = {
+        name,
+        email,
+        company,
+        room,
+        date,
+        timestamp,
+        start,
+        end,
+      };
       if (allStrings(data)) {
         await prisma.reservation.create({
           data: {
@@ -38,9 +47,21 @@ const reservationsRoute = async (
             timestamp,
             start,
             end,
+            id,
           },
         });
         res.status(200).json({ data: "success" });
+      }
+    }
+    case "DELETE": {
+      const id = req.body;
+      if (id !== "" && id >= 0) {
+        await prisma.reservation.delete({
+          where: {
+            id: Number(id),
+          },
+        });
+        res.status(200).json({ data: "del" });
       }
     }
     default: {

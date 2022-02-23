@@ -93,7 +93,6 @@ const Limit = () => {
             onChange={(e) => {
               Number(e.target.value) >= 0 &&
                 Number(e.target.value) <= 24 &&
-                Number(e.target.value) >= limits.coreTimeStart &&
                 setLimits({ ...limits, coreTimeEnd: Number(e.target.value) });
             }}
           />

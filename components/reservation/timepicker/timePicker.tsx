@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import TimePicker from "@mui/lab/TimePicker";
-import { TextField, Button, Typography } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import UserContext from "@comp/contexts/userContext";
 import ReservationContext from "@comp/contexts/reservationContext";
 import { getTimestamp } from "@comp/utils/formatDate";
@@ -16,6 +16,9 @@ const TimePickerMode = (props: TimePickerType) => {
 
   const handleSetReservation = () => {
     if (pickerTime.start && pickerTime.end) {
+      const newID: number = reservations.length
+        ? reservations[reservations.length - 1].id + 1
+        : 0;
       const reservation = {
         company: user.company,
         name: user.name,
@@ -25,6 +28,7 @@ const TimePickerMode = (props: TimePickerType) => {
         end: String(pickerTime.end),
         room: room,
         timestamp: getTimestamp(),
+        id: newID,
       };
 
       setReservations([...reservations, reservation]);
@@ -56,7 +60,7 @@ const TimePickerMode = (props: TimePickerType) => {
               renderInput={(params) => <TextField {...params} />}
             />
           </div>
-          <Button onClick={handleSetReservation}>OK</Button>
+          <button onClick={handleSetReservation}>OK</button>
         </div>
       )}
     </div>

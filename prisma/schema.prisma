@@ -27,7 +27,7 @@ model Admin {
 }
 
 model Reservation {
-  id        Int    @id @default(autoincrement())
+  id        Int    @id
   email     String
   name      String
   company   String
