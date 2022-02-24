@@ -8,7 +8,7 @@ import roomsPic from "./upper-area.png";
 import Image from "next/image";
 import CoreTime from "./coreTime";
 
-const Header = () => {
+const Header = (props: { company: string }) => {
   const { user } = useContext(UserContext);
   return (
     <div>
@@ -46,7 +46,7 @@ const Header = () => {
         <div className=" w-2/3 align-middle">
           <News />
           <div className="flex h-1/2 justify-center items-center">
-            <CoreTime />
+            <CoreTime company={props.company} />
           </div>
         </div>
         <Info />

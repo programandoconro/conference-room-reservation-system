@@ -46,7 +46,7 @@ const Reservation = (props: { company: string }) => {
       <LimitsContextProvider>
         <div className="h-full w-full bg-white">
           <div className="m-1 p-1">
-            <Header />
+            <Header company={company} />
           </div>
           <div className="pb-4 border-2 border-solid border-grey">
             <Container>

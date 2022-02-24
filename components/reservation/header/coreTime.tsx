@@ -6,34 +6,36 @@ import { ReservationType } from "@comp/utils/types";
 import coreImage from "./core-time.png";
 import Image from "next/image";
 
-const CoreTime = () => {
+const CoreTime = (props: { company: string }) => {
   const { limits } = useContext(LimitsContext);
   const { reservations } = useContext(ReservationContext);
   const [difference, setDifference] = useState<number>(0);
 
   useEffect(() => {
-    let monthUseTime = 0;
-    const calcCoreTime = () => {
-      const currentMoth = new Date().getMonth();
-      reservations.forEach((res: ReservationType) => {
-        const resMoth = new Date(res.date).getMonth();
-        if (resMoth === currentMoth) {
-          const diff = differenceInMinutes(
-            new Date(res.end),
-            new Date(res.start)
-          );
-          diff && (monthUseTime += diff);
-        }
-      });
-    };
+    if (limits.company === props.company) {
+      let monthUseTime = 0;
+      const calcCoreTime = () => {
+        const currentMoth = new Date().getMonth();
+        reservations.forEach((res: ReservationType) => {
+          const resMoth = new Date(res.date).getMonth();
+          if (resMoth === currentMoth) {
+            const diff = differenceInMinutes(
+              new Date(res.end),
+              new Date(res.start)
+            );
+            diff && (monthUseTime += diff);
+          }
+        });
+      };
 
-    calcCoreTime();
+      calcCoreTime();
 
-    const deltaCoreTime = (limits.coreTimeEnd - limits.coreTimeStart) * 30;
-    const minutesToHours = monthUseTime / 60;
-    const remainingCoreTime = deltaCoreTime - minutesToHours;
+      const deltaCoreTime = (limits.coreTimeEnd - limits.coreTimeStart) * 30;
+      const minutesToHours = monthUseTime / 60;
+      const remainingCoreTime = deltaCoreTime - minutesToHours;
 
-    setDifference(remainingCoreTime);
+      setDifference(remainingCoreTime);
+    }
   }, [reservations, limits.coreTimeStart, limits.coreTimeEnd]);
 
   return (
