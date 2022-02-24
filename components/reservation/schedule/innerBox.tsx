@@ -10,12 +10,13 @@ import { getIsToday } from "@comp/utils/formatDate";
 import LimitsContext from "@comp/contexts/limitsContext";
 
 const InnerBox = (props: {
+  company: string;
   hour: string;
   room: string;
   setRoom: (v: string) => void;
   setOpenTimePicker: (v: boolean) => void;
 }) => {
-  const { hour, room, setOpenTimePicker, setRoom } = props;
+  const { company, hour, room, setOpenTimePicker, setRoom } = props;
 
   const { limits } = useContext(LimitsContext);
 
@@ -72,22 +73,29 @@ const InnerBox = (props: {
     const minutesBeforeHour = minutesToPercentange(Number(minutesEnd));
 
     if (date === res.date && room === res.room) {
+      const ownCompanyReservation = "yellow";
+      const differentCompanyReservation = "lightgrey";
+      let reservationColor = ownCompanyReservation;
+      if (res.company !== company) {
+        reservationColor = differentCompanyReservation;
+      }
+
       if (
         hour >= new Date(res.start).getHours().toString() &&
         hour < new Date(res.end).getHours().toString()
       ) {
         if (minutesStart === "0") {
-          const bg = `linear-gradient(to right, yellow ${minutesAfterHour},${isGrey} 0%)`;
+          const bg = `linear-gradient(to right, ${reservationColor} ${minutesAfterHour},${isGrey} 0%)`;
           color = bg;
         } else if (hour === hourStart) {
-          const bg = `linear-gradient(to right, ${isGrey} ${minutesAfterHour}, yellow 0%)`;
+          const bg = `linear-gradient(to right, ${isGrey} ${minutesAfterHour}, ${reservationColor} 0%)`;
           color = bg;
         } else if (hour > hourStart) {
-          const bg = `linear-gradient(to right, yellow 100%, transparent 0%)`;
+          const bg = `linear-gradient(to right, ${reservationColor} 100%, transparent 0%)`;
           color = bg;
         }
       } else if (hour === hourEnd && minutesEnd > "00") {
-        const bg = `linear-gradient(to right, yellow ${minutesBeforeHour}, ${isGrey} 0%)`;
+        const bg = `linear-gradient(to right, ${reservationColor} ${minutesBeforeHour}, ${isGrey} 0%)`;
         color = bg;
         isEndReservation = true;
       }

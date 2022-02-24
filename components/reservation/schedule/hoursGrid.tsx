@@ -39,6 +39,7 @@ const HoursGrid = (props: {
                 room={props.room}
                 setRoom={setRoom}
                 setOpenTimePicker={setOpenTimePicker}
+                company={user.company}
               />
             </div>
           );

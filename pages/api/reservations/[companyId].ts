@@ -14,11 +14,7 @@ const reservationsRoute = async (
   const { companyId } = req.query;
   switch (req.method) {
     case "GET": {
-      const reservations = await prisma.reservation.findMany({
-        where: {
-          company: companyId.toString(),
-        },
-      });
+      const reservations = await prisma.reservation.findMany();
       res.status(200).json({ data: reservations });
     }
     case "POST": {
@@ -42,7 +38,6 @@ const reservationsRoute = async (
         end,
       };
       if (allStrings(data) && companyId === company) {
-        console.log(data);
         await prisma.reservation.create({
           data: {
             name,
