@@ -29,8 +29,38 @@ const TimePickerMode = (props: TimePickerType) => {
         id: newID,
       };
 
-      setReservations([...reservations, reservation]);
-      postReservation(reservation);
+      let available = true;
+      reservations.forEach((res) => {
+        console.log(new Date(res.start), pickerTime.start);
+        const equalDate =
+          new Date(res.start).getHours() ===
+            new Date(String(pickerTime.start?.toString())).getHours() &&
+          new Date(res.end).getHours() ===
+            new Date(String(pickerTime.end?.toString())).getHours();
+
+        const insideDateCase1 =
+          new Date(res.start).getHours() <=
+            new Date(String(pickerTime.start?.toString())).getHours() &&
+          new Date(res.end).getHours() >=
+            new Date(String(pickerTime.end?.toString())).getHours();
+        const insideDateCase2 =
+          new Date(res.start).getHours() >=
+            new Date(String(pickerTime.start?.toString())).getHours() &&
+          new Date(res.end).getHours() <=
+            new Date(String(pickerTime.end?.toString())).getHours();
+        let isInsideDate = insideDateCase1 || insideDateCase2 || equalDate;
+
+        if (isInsideDate && res.room === room) {
+          console.log("same time");
+          available = false;
+        }
+      });
+      if (available) {
+        setReservations([...reservations, reservation]);
+        postReservation(reservation);
+      } else {
+        alert("not available");
+      }
     } else {
       // alert("時間を選択してください");
     }
