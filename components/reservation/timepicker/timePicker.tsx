@@ -38,17 +38,15 @@ const TimePickerMode = (props: TimePickerType) => {
           new Date(res.end).getHours() ===
             new Date(String(pickerTime.end?.toString())).getHours();
 
-        const insideDateCase1 =
-          new Date(res.start).getHours() <=
-            new Date(String(pickerTime.start?.toString())).getHours() &&
-          new Date(res.end).getHours() >=
-            new Date(String(pickerTime.end?.toString())).getHours();
-        const insideDateCase2 =
-          new Date(res.start).getHours() >=
-            new Date(String(pickerTime.start?.toString())).getHours() &&
-          new Date(res.end).getHours() <=
-            new Date(String(pickerTime.end?.toString())).getHours();
-        let isInsideDate = insideDateCase1 || insideDateCase2 || equalDate;
+        let isInsideDate =
+          (new Date(String(pickerTime.start?.toString())).getHours() >=
+            new Date(res.start).getHours() &&
+            new Date(String(pickerTime.start?.toString())).getHours() <
+              new Date(res.end).getHours()) ||
+          (new Date(String(pickerTime.end?.toString())).getHours() >
+            new Date(res.start).getHours() &&
+            new Date(String(pickerTime.end?.toString())).getHours() <=
+              new Date(res.end).getHours());
 
         if (isInsideDate && res.room === room) {
           console.log("same time");
