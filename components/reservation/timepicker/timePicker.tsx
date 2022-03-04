@@ -31,14 +31,13 @@ const TimePickerMode = (props: TimePickerType) => {
 
       let available = true;
       reservations.forEach((res) => {
-        console.log(new Date(res.start), pickerTime.start);
         const equalDate =
           new Date(res.start).getHours() ===
             new Date(String(pickerTime.start?.toString())).getHours() &&
           new Date(res.end).getHours() ===
             new Date(String(pickerTime.end?.toString())).getHours();
 
-        let isInsideDate =
+        const isInsideDate =
           (new Date(String(pickerTime.start?.toString())).getHours() >=
             new Date(res.start).getHours() &&
             new Date(String(pickerTime.start?.toString())).getHours() <
@@ -46,9 +45,13 @@ const TimePickerMode = (props: TimePickerType) => {
           (new Date(String(pickerTime.end?.toString())).getHours() >
             new Date(res.start).getHours() &&
             new Date(String(pickerTime.end?.toString())).getHours() <=
-              new Date(res.end).getHours());
+              new Date(res.end).getHours()) ||
+          equalDate;
+        const isSameDay =
+          new Date(date).toDateString() ===
+          new Date(String(pickerTime.start?.toString())).toDateString();
 
-        if (isInsideDate && res.room === room) {
+        if (isInsideDate && res.room === room && isSameDay) {
           console.log("same time");
           available = false;
         }
