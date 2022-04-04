@@ -1,8 +1,8 @@
 FROM node:17-alpine3.15
-RUN apk add --no-cache libc6-compat
 ENV TZ=Japan
 COPY . .
-RUN npm install --force
+RUN npm install
+RUN npx prisma generate && npx prisma db push
 RUN npm run build
 USER node
 
