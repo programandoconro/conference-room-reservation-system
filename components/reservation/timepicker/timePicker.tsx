@@ -4,7 +4,7 @@ import { TextField, Typography } from "@mui/material";
 import UserContext from "@comp/contexts/userContext";
 import ReservationContext from "@comp/contexts/reservationContext";
 import { getTimestamp } from "@comp/utils/formatDate";
-import { ReservationType, TimePickerType } from "@comp/utils/types";
+import { TimePickerType } from "@comp/utils/types";
 import { postReservation } from "@comp/utils/requests";
 
 const TimePickerMode = (props: TimePickerType) => {
