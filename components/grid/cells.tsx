@@ -12,7 +12,7 @@ const Cell = (props: {
   setOpenTimePicker: (v: boolean) => void;
 }) => {
   const { title, hour, reservation, setRoom, setOpenTimePicker, room } = props;
-  const { setPickerTime } = useContext(ReservationContext);
+  const { setPickerTime, date } = useContext(ReservationContext);
   const cellClassName =
     "border hover:border-purple-600 hover:border-2 transition";
   const titleClassName = "h-10 flex justify-end items-center";
@@ -52,11 +52,13 @@ const Cell = (props: {
           new Date(res.start)
         );
         const calcWidth = String(diff / 9) + "%";
-        console.log(calcWidth);
+
+        const showReservation =
+          hour === startHour && !title && date === res.date;
 
         return (
           <div key={key}>
-            {hour === startHour && !title && (
+            {showReservation && (
               <div
                 style={{ width: calcWidth }}
                 className="absolute rounded border border-1 border-yellow-400 bg-yellow-200 h-[39px] flex justify-center items-center"

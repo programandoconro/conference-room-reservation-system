@@ -7,7 +7,7 @@ import { ReservationType } from "@comp/utils/types";
 import TimePickerMode from "@comp/reservation/timepicker/timePicker";
 
 const Grid: FC = () => {
-  const { reservations, setPickerTime } = useContext(ReservationContext);
+  const { reservations } = useContext(ReservationContext);
   const [openTimePicker, setOpenTimePicker] = useState(false);
   const [room, setRoom] = useState("");
 
