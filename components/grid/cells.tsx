@@ -25,31 +25,32 @@ const Cell = (props: {
   } = props;
   const { setPickerTime, date } = useContext(ReservationContext);
 
-  const setBackgroundColor = () => {
-    const timeNow = new Date();
-    const dateNow = new Date(date);
+  const timeNow = new Date();
+  const dateNow = new Date(date);
 
-    const isDatebeforeNow = isBefore(dateNow, timeNow);
+  const isDatebeforeNow = isBefore(dateNow, timeNow);
 
-    if (isToday(dateNow)) {
-      const isHourBeforeNow = getHours(timeNow) >= Number(hour);
-      if (isHourBeforeNow) {
-        return "lightgrey";
-      }
-    } else if (isDatebeforeNow) {
-      return "lightgrey";
+  let backgroundColor = "";
+  if (isToday(dateNow)) {
+    const isHourBeforeNow = getHours(timeNow) >= Number(hour);
+    if (isHourBeforeNow) {
+      backgroundColor = "lightgrey";
     }
-  };
+  } else if (isDatebeforeNow) {
+    backgroundColor = "lightgrey";
+  }
 
   const handleClickReservation = () => {
-    setOpenTimePicker(true);
-    setRoom(room);
+    if (!backgroundColor) {
+      setOpenTimePicker(true);
+      setRoom(room);
 
-    const selectedTime = {
-      start: new Date(new Date().setHours(Number(hour), 0)),
-      end: new Date(new Date().setHours(Number(hour) + 2, 0)),
-    };
-    setPickerTime(selectedTime);
+      const selectedTime = {
+        start: new Date(new Date().setHours(Number(hour), 0)),
+        end: new Date(new Date().setHours(Number(hour) + 2, 0)),
+      };
+      setPickerTime(selectedTime);
+    }
   };
 
   return (
@@ -91,8 +92,12 @@ const Cell = (props: {
         );
       })}
       <div
-        className=" border hover:bg-purple-200 hover:border-purple-600 transition h-10 flex justify-end items-center"
-        style={{ backgroundColor: setBackgroundColor() }}
+        className={
+          !backgroundColor
+            ? " border hover:bg-purple-200 hover:border-purple-600 h-10 flex justify-end items-center"
+            : "border h-10"
+        }
+        style={{ backgroundColor: backgroundColor }}
         onClick={handleClickReservation}
       />
     </div>
