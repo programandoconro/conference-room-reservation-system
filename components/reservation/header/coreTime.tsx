@@ -3,8 +3,6 @@ import LimitsContext from "@comp/contexts/limitsContext";
 import ReservationContext from "@comp/contexts/reservationContext";
 import { differenceInMinutes } from "date-fns";
 import { ReservationType } from "@comp/utils/types";
-import coreImage from "./core-time.png";
-import Image from "next/image";
 
 const CoreTime = (props: { company: string }) => {
   const { limits } = useContext(LimitsContext);
@@ -39,18 +37,12 @@ const CoreTime = (props: { company: string }) => {
   }, [reservations, limits.coreTimeStart, limits.coreTimeEnd]);
 
   return (
-    <div className="flex justify-center align-middle">
-      <div className="object-contain">
-        <Image
-          placeholder="blur"
-          alt="core-time"
-          quality={100}
-          src={coreImage}
-        />
+    <>
+      <h5 className="pr-1">Core time: </h5>
+      <div className="flex justify-center align-middle border w-10">
+        <h5 className="text-black self-center text-xl">{difference}</h5>
       </div>
-
-      <h5 className="text-white absolute self-center text-xl">{difference}</h5>
-    </div>
+    </>
   );
 };
 

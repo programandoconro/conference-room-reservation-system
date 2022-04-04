@@ -10,18 +10,18 @@ const Cell = (props: {
   room: string;
   setRoom: (v: string) => void;
   setOpenTimePicker: (v: boolean) => void;
+  company: string;
 }) => {
-  const { title, hour, reservation, setRoom, setOpenTimePicker, room } = props;
+  const {
+    title,
+    hour,
+    reservation,
+    setRoom,
+    setOpenTimePicker,
+    room,
+    company,
+  } = props;
   const { setPickerTime, date } = useContext(ReservationContext);
-  const cellClassName =
-    "border hover:border-purple-600 hover:border-2 transition";
-  const titleClassName = "h-10 flex justify-end items-center";
-  const className = title
-    ? titleClassName
-    : titleClassName + " " + cellClassName;
-
-  const totalCols = 14;
-  const marginUnit = "1" + " rem";
 
   const handleClickReservation = () => {
     setOpenTimePicker(true);
@@ -51,17 +51,20 @@ const Cell = (props: {
           new Date(res.end),
           new Date(res.start)
         );
-        const calcWidth = String(diff / 9) + "%";
+        const calcWidth = String(diff / 9.5) + "100%";
 
         const showReservation =
-          hour === startHour && !title && date === res.date;
+          hour === startHour &&
+          !title &&
+          date === res.date &&
+          company === res.company;
 
         return (
           <div key={key}>
             {showReservation && (
               <div
                 style={{ width: calcWidth }}
-                className="absolute rounded border border-1 border-yellow-400 bg-yellow-200 h-[39px] flex justify-center items-center"
+                className="absolute border text-xs border-yellow-400 bg-yellow-200 h-10 flex justify-center items-center"
               >
                 {startHour}:{startMinutes} - {endHour}:{endMinutes}
               </div>
@@ -69,9 +72,11 @@ const Cell = (props: {
           </div>
         );
       })}
-      <div className={className} onClick={handleClickReservation}>
-        {title}
-      </div>
+      <div
+        className=" border hover:bg-purple-200 hover:border-purple-600 transition h-10 flex justify-end items-center"
+        style={{ backgroundColor: "" }}
+        onClick={handleClickReservation}
+      />
     </div>
   );
 };

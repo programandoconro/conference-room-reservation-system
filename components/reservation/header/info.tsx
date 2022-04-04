@@ -45,7 +45,7 @@ const Info = () => {
                   <Card
                     className="flex min-w-full mt-2 w-8/12 "
                     style={{
-                      backgroundColor: date === res.date ? "yellow" : "white",
+                      backgroundColor: date === res.date ? "#fef08a" : "white",
                     }}
                   >
                     <CardContent>

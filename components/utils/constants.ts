@@ -31,6 +31,7 @@ export const labelHours = [
   "18",
   "19",
   "20",
+  "~",
 ];
 
 const today = formatDate(new Date());

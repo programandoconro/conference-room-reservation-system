@@ -1,5 +1,6 @@
 import { FC, useContext, useState } from "react";
 import ReservationContext from "@comp/contexts/reservationContext";
+import UserContext from "@comp/contexts/userContext";
 import Rooms from "./rooms";
 import Cell from "./cells";
 import { labelHours, ROOMS } from "@comp/utils/constants";
@@ -8,6 +9,7 @@ import TimePickerMode from "@comp/reservation/timepicker/timePicker";
 
 const Grid: FC = () => {
   const { reservations } = useContext(ReservationContext);
+  const { user } = useContext(UserContext);
   const [openTimePicker, setOpenTimePicker] = useState(false);
   const [room, setRoom] = useState("");
 
@@ -36,27 +38,31 @@ const Grid: FC = () => {
           room={room}
         />
       </div>
-      <div className="grid grid-flow-col auto-cols-auto relative">
+      <div className="grid grid-flow-col auto-cols-auto relative border-b">
         <Rooms />
         {labelHours.map((hour) => {
           return (
             <div key={hour}>
-              <div className="h-10 justify-end flex translate-x-2 self-start items-end">
+              <div className="flex justify-end translate-x-2 h-10  items-end">
                 {hour}
               </div>
-              <Cell
-                reservation={bigRoomReservations}
-                hour={hour}
-                setOpenTimePicker={setOpenTimePicker}
-                setRoom={setRoom}
-                room={ROOMS.med}
-              />
+              <div className="border-t">
+                <Cell
+                  reservation={bigRoomReservations}
+                  hour={hour}
+                  setOpenTimePicker={setOpenTimePicker}
+                  setRoom={setRoom}
+                  room={ROOMS.big}
+                  company={user.company}
+                />
+              </div>
               <Cell
                 reservation={medRoomReservations}
                 hour={hour}
                 setOpenTimePicker={setOpenTimePicker}
                 setRoom={setRoom}
-                room={ROOMS.small}
+                room={ROOMS.med}
+                company={user.company}
               />
               <Cell
                 reservation={smallRoomReservations}
@@ -64,6 +70,7 @@ const Grid: FC = () => {
                 setOpenTimePicker={setOpenTimePicker}
                 setRoom={setRoom}
                 room={ROOMS.small}
+                company={user.company}
               />
             </div>
           );

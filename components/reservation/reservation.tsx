@@ -57,10 +57,8 @@ const Reservation = (props: { company: string }) => {
               <NavigationArea />
             </Container>
             <Container>
-              <div className="schedule">
-                <Grid />
-                <Schedule />
-              </div>
+              <Grid />
+              <Schedule />
             </Container>
           </div>
         </div>
