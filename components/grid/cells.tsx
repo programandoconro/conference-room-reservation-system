@@ -73,17 +73,19 @@ const Cell = (props: {
         const calcWidth = String(diff / 9.5) + "100%";
 
         const showReservation =
-          hour === startHour &&
-          !title &&
-          date === res.date &&
-          company === res.company;
+          hour === startHour && !title && date === res.date;
+
+        const isYourCompany = company === res.company;
 
         return (
           <div key={key}>
             {showReservation && (
               <div
-                style={{ width: calcWidth }}
-                className="absolute border text-xs border-yellow-400 bg-yellow-200 h-10 flex justify-center items-center"
+                style={{
+                  width: calcWidth,
+                  backgroundColor: isYourCompany ? "#fef08a" : "lightgrey",
+                }}
+                className="absolute border text-xs h-10 flex justify-center items-center"
               >
                 {startHour}:{startMinutes} - {endHour}:{endMinutes}
               </div>
