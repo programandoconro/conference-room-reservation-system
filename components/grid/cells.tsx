@@ -1,19 +1,38 @@
+import { useContext } from "react";
 import { ReservationType } from "@comp/utils/types";
 import differenceInMinutes from "date-fns/differenceInMinutes";
+import ReservationContext from "@comp/contexts/reservationContext";
 
 const Cell = (props: {
   title?: string;
   hour?: string;
   reservation?: ReservationType[];
-  room?: string;
+  room: string;
+  setRoom: (v: string) => void;
+  setOpenTimePicker: (v: boolean) => void;
 }) => {
-  const { title, hour, reservation } = props;
-  const hover = "hover:border-purple-600 hover:border-2 transition";
-  const noHover = `h-10 border flex justify-center items-center`;
-  const className = title ? noHover : noHover + " " + hover;
+  const { title, hour, reservation, setRoom, setOpenTimePicker, room } = props;
+  const { setPickerTime } = useContext(ReservationContext);
+  const cellClassName =
+    "border hover:border-purple-600 hover:border-2 transition";
+  const titleClassName = "h-10 flex justify-end items-center";
+  const className = title
+    ? titleClassName
+    : titleClassName + " " + cellClassName;
 
   const totalCols = 14;
   const marginUnit = "1" + " rem";
+
+  const handleClickReservation = () => {
+    setOpenTimePicker(true);
+    setRoom(room);
+
+    const selectedTime = {
+      start: new Date(new Date().setHours(Number(hour), 0)),
+      end: new Date(new Date().setHours(Number(hour) + 2, 0)),
+    };
+    setPickerTime(selectedTime);
+  };
 
   return (
     <div>
@@ -48,7 +67,9 @@ const Cell = (props: {
           </div>
         );
       })}
-      <div className={className}>{title}</div>
+      <div className={className} onClick={handleClickReservation}>
+        {title}
+      </div>
     </div>
   );
 };
