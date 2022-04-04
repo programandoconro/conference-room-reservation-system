@@ -43,8 +43,8 @@ const Grid: FC = () => {
         {labelHours.map((hour) => {
           return (
             <div key={hour}>
-              <div className="flex justify-end translate-x-2 h-10  items-end">
-                {hour}
+              <div className="flex justify-end translate-x-2 h-10 items-end">
+                <div className="absolute">{hour}</div>
               </div>
               <div className="border-t">
                 <Cell
