@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect } from "react";
+import { FC, useContext } from "react";
 import ReservationContext from "@comp/contexts/reservationContext";
 import Rooms from "./rooms";
 import Cell from "./cells";
