@@ -1,5 +1,4 @@
-FROM node:17-alpine3.15 AS builder
-RUN apk add --no-cache libc6-compat openssl
+FROM node:17-alpine3.15
 ENV TZ=Japan
 COPY . .
 RUN npm install
