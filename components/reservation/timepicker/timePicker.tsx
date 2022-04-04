@@ -31,28 +31,29 @@ const TimePickerMode = (props: TimePickerType) => {
 
       let available = true;
       reservations.forEach((res) => {
-        const equalDate =
-          new Date(res.start).getHours() ===
-            new Date(String(pickerTime.start?.toString())).getHours() &&
-          new Date(res.end).getHours() ===
-            new Date(String(pickerTime.end?.toString())).getHours();
+        const resStart = new Date(res.start).getHours();
+        const resEnd = new Date(res.end).getHours();
+
+        const pickerStart = new Date(
+          String(pickerTime.start?.toString())
+        ).getHours();
+
+        const pickerEnd = new Date(
+          String(pickerTime.end?.toString())
+        ).getHours();
+
+        const equalDate = resStart === pickerStart && resEnd === pickerEnd;
 
         const isInsideDate =
-          (new Date(String(pickerTime.start?.toString())).getHours() >=
-            new Date(res.start).getHours() &&
-            new Date(String(pickerTime.start?.toString())).getHours() <
-              new Date(res.end).getHours()) ||
-          (new Date(String(pickerTime.end?.toString())).getHours() >
-            new Date(res.start).getHours() &&
-            new Date(String(pickerTime.end?.toString())).getHours() <=
-              new Date(res.end).getHours()) ||
+          (pickerStart >= resStart && pickerStart < resEnd) ||
+          (pickerEnd > resStart && pickerEnd <= resEnd) ||
           equalDate;
+
         const isSameDay =
           new Date(date).toDateString() ===
           new Date(String(pickerTime.start?.toString())).toDateString();
 
         if (isInsideDate && res.room === room && isSameDay) {
-          console.log("same time");
           available = false;
         }
       });
