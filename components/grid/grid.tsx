@@ -41,6 +41,7 @@ const Grid: FC = () => {
       <div className="grid grid-flow-col auto-cols-auto relative border-b">
         <Rooms />
         {labelHours.map((hour) => {
+          const hourReservation = String(Number(hour) - 1);
           return (
             <div key={hour}>
               <div className="flex justify-end translate-x-2 h-10 items-end">
@@ -49,7 +50,7 @@ const Grid: FC = () => {
               <div className="border-t">
                 <Cell
                   reservation={bigRoomReservations}
-                  hour={hour}
+                  hour={hourReservation}
                   setOpenTimePicker={setOpenTimePicker}
                   setRoom={setRoom}
                   room={ROOMS.big}
@@ -58,7 +59,7 @@ const Grid: FC = () => {
               </div>
               <Cell
                 reservation={medRoomReservations}
-                hour={hour}
+                hour={hourReservation}
                 setOpenTimePicker={setOpenTimePicker}
                 setRoom={setRoom}
                 room={ROOMS.med}
@@ -66,7 +67,7 @@ const Grid: FC = () => {
               />
               <Cell
                 reservation={smallRoomReservations}
-                hour={hour}
+                hour={hourReservation}
                 setOpenTimePicker={setOpenTimePicker}
                 setRoom={setRoom}
                 room={ROOMS.small}
