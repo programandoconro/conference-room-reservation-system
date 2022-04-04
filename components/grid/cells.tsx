@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { ReservationType } from "@comp/utils/types";
 import differenceInMinutes from "date-fns/differenceInMinutes";
 import ReservationContext from "@comp/contexts/reservationContext";
+import isBefore from "date-fns/isBefore";
+import { getHours, isToday } from "date-fns";
 
 const Cell = (props: {
   title?: string;
@@ -22,6 +24,22 @@ const Cell = (props: {
     company,
   } = props;
   const { setPickerTime, date } = useContext(ReservationContext);
+
+  const setBackgroundColor = () => {
+    const timeNow = new Date();
+    const dateNow = new Date(date);
+
+    const isDatebeforeNow = isBefore(dateNow, timeNow);
+
+    if (isToday(dateNow)) {
+      const isHourBeforeNow = getHours(timeNow) >= Number(hour);
+      if (isHourBeforeNow) {
+        return "lightgrey";
+      }
+    } else if (isDatebeforeNow) {
+      return "lightgrey";
+    }
+  };
 
   const handleClickReservation = () => {
     setOpenTimePicker(true);
@@ -74,7 +92,7 @@ const Cell = (props: {
       })}
       <div
         className=" border hover:bg-purple-200 hover:border-purple-600 transition h-10 flex justify-end items-center"
-        style={{ backgroundColor: "" }}
+        style={{ backgroundColor: setBackgroundColor() }}
         onClick={handleClickReservation}
       />
     </div>

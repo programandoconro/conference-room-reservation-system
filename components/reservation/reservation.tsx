@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Schedule from "./schedule";
 import Header from "./header";
 import Calendar from "./calendar/";
 import NavigationArea from "./nav-area/";
@@ -58,7 +57,6 @@ const Reservation = (props: { company: string }) => {
             </Container>
             <Container>
               <Grid />
-              <Schedule />
             </Container>
           </div>
         </div>
