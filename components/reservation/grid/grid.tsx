@@ -31,47 +31,55 @@ const Grid: FC = () => {
 
   return (
     <div>
-      <div className="flex">
+      <div className="flex pb-2 justify-center">
         <TimePickerMode open={openPicker} setOpen={setOpenPicker} room={room} />
       </div>
-      <div className="grid grid-flow-col auto-cols-auto relative border-b">
-        <Rooms />
-        {labelHours.map((hour) => {
-          const hourReservation = String(Number(hour) - 1);
-          return (
-            <div key={hour}>
-              <div className="flex justify-end translate-x-2 h-10 items-end">
-                <div className="absolute">{hour}</div>
-              </div>
-              <div className="border-t">
+      <div
+        className="px-4 pb-4"
+        style={{
+          opacity: openPicker ? 0.5 : 1,
+          border: openPicker ? "1px solid purple" : "none",
+        }}
+      >
+        <div className="grid grid-flow-col auto-cols-auto relative border-b">
+          <Rooms />
+          {labelHours.map((hour) => {
+            const hourReservation = String(Number(hour) - 1);
+            return (
+              <div key={hour}>
+                <div className="flex justify-end translate-x-2 h-10 items-end">
+                  <div className="absolute">{hour}</div>
+                </div>
+                <div className="border-t">
+                  <Cell
+                    reservation={bigRoomReservations}
+                    hour={hourReservation}
+                    setOpenTimePicker={setOpenPicker}
+                    setRoom={setRoom}
+                    room={ROOMS.big}
+                    company={user.company}
+                  />
+                </div>
                 <Cell
-                  reservation={bigRoomReservations}
+                  reservation={medRoomReservations}
                   hour={hourReservation}
                   setOpenTimePicker={setOpenPicker}
                   setRoom={setRoom}
-                  room={ROOMS.big}
+                  room={ROOMS.med}
+                  company={user.company}
+                />
+                <Cell
+                  reservation={smallRoomReservations}
+                  hour={hourReservation}
+                  setOpenTimePicker={setOpenPicker}
+                  setRoom={setRoom}
+                  room={ROOMS.small}
                   company={user.company}
                 />
               </div>
-              <Cell
-                reservation={medRoomReservations}
-                hour={hourReservation}
-                setOpenTimePicker={setOpenPicker}
-                setRoom={setRoom}
-                room={ROOMS.med}
-                company={user.company}
-              />
-              <Cell
-                reservation={smallRoomReservations}
-                hour={hourReservation}
-                setOpenTimePicker={setOpenPicker}
-                setRoom={setRoom}
-                room={ROOMS.small}
-                company={user.company}
-              />
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
   );
