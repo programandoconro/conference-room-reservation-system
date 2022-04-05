@@ -42,16 +42,15 @@ const TimePickerMode = (props: TimePickerType) => {
           String(pickerTime.end?.toString())
         ).getHours();
 
-        const equalDate = resStart === pickerStart && resEnd === pickerEnd;
+        const equalTime = resStart === pickerStart && resEnd === pickerEnd;
 
         const isInsideDate =
           (pickerStart >= resStart && pickerStart < resEnd) ||
           (pickerEnd > resStart && pickerEnd <= resEnd) ||
-          equalDate;
+          equalTime;
 
         const isSameDay =
-          new Date(date).toDateString() ===
-          new Date(String(pickerTime.start?.toString())).toDateString();
+          new Date(date).toDateString() === new Date(res.date).toDateString();
 
         if (isInsideDate && res.room === room && isSameDay) {
           available = false;
