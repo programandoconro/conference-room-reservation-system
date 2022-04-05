@@ -6,6 +6,7 @@ import ReservationContext from "@comp/contexts/reservationContext";
 import { getTimestamp } from "@comp/utils/formatDate";
 import { TimePickerType } from "@comp/utils/types";
 import { postReservation } from "@comp/utils/requests";
+import { isSameRoom, isInsideDate, isSameDay } from "@comp/utils/constrains";
 
 const TimePickerMode = (props: TimePickerType) => {
   const { open, setOpen, room } = props;
@@ -42,17 +43,11 @@ const TimePickerMode = (props: TimePickerType) => {
           String(pickerTime.end?.toString())
         ).getHours();
 
-        const equalTime = resStart === pickerStart && resEnd === pickerEnd;
-
-        const isInsideDate =
-          (pickerStart >= resStart && pickerStart < resEnd) ||
-          (pickerEnd > resStart && pickerEnd <= resEnd) ||
-          equalTime;
-
-        const isSameDay =
-          new Date(date).toDateString() === new Date(res.date).toDateString();
-
-        if (isInsideDate && res.room === room && isSameDay) {
+        if (
+          isInsideDate({ resStart, resEnd, pickerEnd, pickerStart }) &&
+          isSameRoom({ room, res }) &&
+          isSameDay({ date, res })
+        ) {
           available = false;
         }
       });

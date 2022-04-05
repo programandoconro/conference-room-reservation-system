@@ -23,6 +23,7 @@ const Info = () => {
       });
     setReservations(newReservations.reverse());
   };
+  const handleEdit = (id: number) => {};
   return (
     <div className="flex flex-col w-1/3 bg-slate-100 p-1 mt-1 overflow-y-auto">
       {reservations

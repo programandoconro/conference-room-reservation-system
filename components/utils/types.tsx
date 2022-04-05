@@ -70,3 +70,20 @@ export type TimePickerType = {
   setOpen: (open: boolean) => void;
   room: string;
 };
+
+export type EqualTime = {
+  resStart: number;
+  pickerStart: number;
+  resEnd: number;
+  pickerEnd: number;
+};
+
+export type SameDay = {
+  date: string;
+  res: ReservationType;
+};
+
+export type SameRoom = {
+  room: string;
+  res: ReservationType;
+};
