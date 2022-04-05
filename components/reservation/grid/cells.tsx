@@ -96,7 +96,7 @@ const Cell = (props: {
       <div
         className={
           !backgroundColor
-            ? " border hover:bg-purple-200 hover:border-purple-600 h-10 flex justify-end items-center"
+            ? " border hover:bg-purple-200 transition-colors hover:border-purple-600 h-10 flex justify-end items-center"
             : "border h-10"
         }
         style={{ backgroundColor: backgroundColor }}

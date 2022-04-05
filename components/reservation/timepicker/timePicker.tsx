@@ -91,7 +91,20 @@ const TimePickerMode = (props: TimePickerType) => {
               renderInput={(params) => <TextField {...params} />}
             />
           </div>
-          <button onClick={handleSetReservation}>OK</button>
+          <div className="flex items-center gap-1">
+            <button
+              className="bg-blue-300 w-10 h-10 ml-1 rounded hover:bg-blue-500"
+              onClick={handleSetReservation}
+            >
+              OK
+            </button>
+            <button
+              className="border h-10 p-1 bg-gray-100 rounded hover:bg-gray-200 transition"
+              onClick={() => setOpenPicker(false)}
+            >
+              クローズ
+            </button>
+          </div>
         </div>
       )}
     </div>
