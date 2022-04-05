@@ -1,19 +1,11 @@
 import { useContext } from "react";
-import { ReservationType } from "@comp/utils/types";
+import { ReservationType, CellType } from "@comp/utils/types";
 import differenceInMinutes from "date-fns/differenceInMinutes";
 import ReservationContext from "@comp/contexts/reservationContext";
 import isBefore from "date-fns/isBefore";
 import { getHours, isToday } from "date-fns";
 
-const Cell = (props: {
-  title?: string;
-  hour?: string;
-  reservation?: ReservationType[];
-  room: string;
-  setRoom: (v: string) => void;
-  setOpenTimePicker: (v: boolean) => void;
-  company: string;
-}) => {
+const Cell = (props: CellType) => {
   const {
     title,
     hour,
@@ -23,7 +15,7 @@ const Cell = (props: {
     room,
     company,
   } = props;
-  const { setPickerTime, date, openPicker } = useContext(ReservationContext);
+  const { setPickerTime, date } = useContext(ReservationContext);
 
   const timeNow = new Date();
   const dateNow = new Date(date);

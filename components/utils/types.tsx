@@ -89,3 +89,13 @@ export type SameRoom = {
   room: string;
   res: ReservationType;
 };
+
+export type CellType = {
+  title?: string;
+  hour?: string;
+  reservation?: ReservationType[];
+  room: string;
+  setRoom: (v: string) => void;
+  setOpenTimePicker: (v: boolean) => void;
+  company: string;
+};
