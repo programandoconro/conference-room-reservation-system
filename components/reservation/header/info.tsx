@@ -7,7 +7,7 @@ import { ReservationType } from "@comp/utils/types";
 import { deleteReservation, getReservations } from "@comp/utils/requests";
 
 const Info = () => {
-  const { reservations, setReservations, date } =
+  const { reservations, setReservations, date, setOpenPicker } =
     useContext(ReservationContext);
   const { user } = useContext(UserContext);
 
@@ -23,7 +23,10 @@ const Info = () => {
       });
     setReservations(newReservations.reverse());
   };
-  const handleEdit = (id: number) => {};
+  const handleEdit = (id: number) => {
+    setOpenPicker(true);
+    handleDelete(id);
+  };
   return (
     <div className="flex flex-col w-1/3 bg-slate-100 p-1 mt-1 overflow-y-auto">
       {reservations
@@ -55,7 +58,7 @@ const Info = () => {
                       >
                         {res.date} {timeStart} - {timeEnd}
                         {res.room}
-                        <button>
+                        <button onClick={() => handleEdit(key)}>
                           <h5 className="pl-2 text-blue-700 text-xs hover:text-blue-500">
                             編集
                           </h5>

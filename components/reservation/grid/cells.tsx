@@ -23,7 +23,7 @@ const Cell = (props: {
     room,
     company,
   } = props;
-  const { setPickerTime, date } = useContext(ReservationContext);
+  const { setPickerTime, date, openPicker } = useContext(ReservationContext);
 
   const timeNow = new Date();
   const dateNow = new Date(date);

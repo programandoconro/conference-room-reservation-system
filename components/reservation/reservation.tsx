@@ -9,7 +9,7 @@ import { getReservations } from "@comp/utils/requests";
 import { initialReservation } from "@comp/utils/constants";
 import ReservationContext from "@comp/contexts/reservationContext";
 import { LimitsContextProvider } from "@comp/contexts/limitsContext";
-import Grid from "@comp/grid/grid";
+import Grid from "./grid";
 
 const Reservation = (props: { company: string }) => {
   const { company } = props;
