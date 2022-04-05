@@ -35,6 +35,8 @@ export type ReservationContextType = {
 
   pickerTime: TimeType;
   setPickerTime: (time: TimeType) => void;
+  openPicker: boolean;
+  setOpenPicker: (openPicker: boolean) => void;
 };
 
 export type UserContextType = {

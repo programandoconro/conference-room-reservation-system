@@ -9,11 +9,18 @@ import { postReservation } from "@comp/utils/requests";
 import { isSameRoom, isInsideDate, isSameDay } from "@comp/utils/constrains";
 
 const TimePickerMode = (props: TimePickerType) => {
-  const { open, setOpen, room } = props;
+  const { room } = props;
 
   const { user } = useContext(UserContext);
-  const { date, setReservations, reservations, pickerTime, setPickerTime } =
-    useContext(ReservationContext);
+  const {
+    date,
+    setReservations,
+    reservations,
+    pickerTime,
+    setPickerTime,
+    openPicker,
+    setOpenPicker,
+  } = useContext(ReservationContext);
 
   const handleSetReservation = () => {
     if (pickerTime.start && pickerTime.end) {
@@ -60,12 +67,12 @@ const TimePickerMode = (props: TimePickerType) => {
     } else {
       // alert("時間を選択してください");
     }
-    setOpen(false);
+    setOpenPicker(false);
   };
 
   return (
     <div>
-      {open && (
+      {openPicker && (
         <div className="flex">
           <div className="w-36">
             <TimePicker

@@ -29,6 +29,8 @@ const InitialReservationContext: ReservationContextType = {
     end: null,
   },
   setPickerTime: (pickerTime: TimeType) => {},
+  openPicker: false,
+  setOpenPicker: (openPicker: boolean) => {},
 };
 
 const ReservationContext = createContext<ReservationContextType>(

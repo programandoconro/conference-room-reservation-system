@@ -8,9 +8,9 @@ import { ReservationType } from "@comp/utils/types";
 import TimePickerMode from "@comp/reservation/timepicker/timePicker";
 
 const Grid: FC = () => {
-  const { reservations } = useContext(ReservationContext);
+  const { reservations, openPicker, setOpenPicker } =
+    useContext(ReservationContext);
   const { user } = useContext(UserContext);
-  const [openTimePicker, setOpenTimePicker] = useState(false);
   const [room, setRoom] = useState("");
 
   let smallRoomReservations: ReservationType[] = [];
@@ -32,11 +32,7 @@ const Grid: FC = () => {
   return (
     <div>
       <div className="flex">
-        <TimePickerMode
-          open={openTimePicker}
-          setOpen={setOpenTimePicker}
-          room={room}
-        />
+        <TimePickerMode open={openPicker} setOpen={setOpenPicker} room={room} />
       </div>
       <div className="grid grid-flow-col auto-cols-auto relative border-b">
         <Rooms />
@@ -51,7 +47,7 @@ const Grid: FC = () => {
                 <Cell
                   reservation={bigRoomReservations}
                   hour={hourReservation}
-                  setOpenTimePicker={setOpenTimePicker}
+                  setOpenTimePicker={setOpenPicker}
                   setRoom={setRoom}
                   room={ROOMS.big}
                   company={user.company}
@@ -60,7 +56,7 @@ const Grid: FC = () => {
               <Cell
                 reservation={medRoomReservations}
                 hour={hourReservation}
-                setOpenTimePicker={setOpenTimePicker}
+                setOpenTimePicker={setOpenPicker}
                 setRoom={setRoom}
                 room={ROOMS.med}
                 company={user.company}
@@ -68,7 +64,7 @@ const Grid: FC = () => {
               <Cell
                 reservation={smallRoomReservations}
                 hour={hourReservation}
-                setOpenTimePicker={setOpenTimePicker}
+                setOpenTimePicker={setOpenPicker}
                 setRoom={setRoom}
                 room={ROOMS.small}
                 company={user.company}

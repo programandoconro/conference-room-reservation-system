@@ -22,6 +22,7 @@ const Reservation = (props: { company: string }) => {
     start: null,
     end: null,
   });
+  const [openPicker, setOpenPicker] = useState(false);
   useEffect(() => {
     const getInitialReservations = async () => {
       if (company) {
@@ -41,6 +42,8 @@ const Reservation = (props: { company: string }) => {
         setDate,
         reservations,
         setReservations,
+        openPicker,
+        setOpenPicker,
       }}
     >
       <LimitsContextProvider>
