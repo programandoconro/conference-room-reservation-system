@@ -62,7 +62,7 @@ const Cell = (props: CellType) => {
           new Date(res.end),
           new Date(res.start)
         );
-        const calcWidth = String(diff / 9.5) + "100%";
+        const calcWidth = String(diff / 9.6) + "100%";
 
         const showReservation =
           hour === startHour && !title && date === res.date;
